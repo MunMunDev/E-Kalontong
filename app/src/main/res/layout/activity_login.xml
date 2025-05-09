@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.login.LoginActivity"
+    android:background="@color/white"
+    android:paddingBottom="20dp">
+
+    <ImageView
+        android:id="@+id/ivTopHeader"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/top_background_login"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="26dp"
+        android:text="Hi, \nPlease Login"
+        android:textSize="32sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:lineSpacingExtra="4dp"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/ivTopHeader"
+        android:layout_marginTop="38dp"
+        android:paddingBottom="22dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
+
+        <EditText
+            android:id="@+id/etUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="18dp"
+            android:background="@drawable/bg_card"
+            android:hint="Masukkan Username"
+            android:textColorHint="@color/abuabu_tua"
+            android:inputType="text"
+            android:maxLength="30"/>
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/etUsername"
+            android:layout_marginTop="14dp"
+            android:padding="18dp"
+            android:background="@drawable/bg_card"
+            android:hint="Masukkan Password"
+            android:textColorHint="@color/abuabu_tua"
+            android:inputType="textPassword"
+            android:maxLength="16"/>
+
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/etPassword"
+            android:layout_marginTop="16dp"
+            android:text="Login"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:background="@drawable/bg_btn"/>
+
+        <View
+            android:id="@+id/vPembatas"
+            android:layout_width="match_parent"
+            android:layout_height="1.6dp"
+            app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+            android:layout_marginTop="28dp"
+            android:background="@color/abuabu_muda" />
+
+        <TextView
+            android:id="@+id/tvNotHaveAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/vPembatas"
+            app:layout_constraintBottom_toBottomOf="@id/vPembatas"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Have Fun For Today"
+            android:textSize="16sp"
+            android:textColor="@color/abuabu_tua"
+            android:background="@color/white"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

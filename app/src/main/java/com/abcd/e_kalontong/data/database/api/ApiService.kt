@@ -1,5 +1,6 @@
 package com.abcd.e_kalontong.data.database.api
 
+import com.abcd.e_kalontong.data.model.UserModel
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -7,10 +8,12 @@ import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface ApiService {
-//    @GET("absensi-sman-5/api/get.php")
-//    suspend fun getAllSiswa(
-//        @Query("all_siswa") all_siswa: String
-//    ): ArrayList<SiswaModel>
+    @GET("e-kelontong/api/get.php")
+    suspend fun getUser(
+        @Query("get_user") get_user: String,
+        @Query("username") username: String,
+        @Query("password") password: String,
+    ): ArrayList<UserModel>
 
     // POST
 
