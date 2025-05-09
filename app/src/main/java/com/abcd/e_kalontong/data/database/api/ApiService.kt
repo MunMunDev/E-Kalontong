@@ -1,5 +1,6 @@
 package com.abcd.e_kalontong.data.database.api
 
+import com.abcd.e_kalontong.data.model.ResponseModel
 import com.abcd.e_kalontong.data.model.UserModel
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -17,17 +18,17 @@ interface ApiService {
 
     // POST
 
-    // Siswa
-//    @FormUrlEncoded
-//    @POST("absensi-sman-5/api/post.php")
-//    suspend fun addUser(
-//        @Field("add_user") addUser:String,
-//        @Field("nama") nama:String,
-//        @Field("kelas") kelas:String,
-//        @Field("nomor_hp") nomorHp:String,
-//        @Field("nis") nis:String,
-//        @Field("password") password:String,
-//        @Field("sebagai") sebagai:String
-//    ): ArrayList<ResponseModel>
+    // User
+    @FormUrlEncoded
+    @POST("absensi-sman-5/api/post.php")
+    suspend fun addUser(
+        @Field("add_user") addUser:String,
+        @Field("nama") nama:String,
+        @Field("kelas") kelas:String,
+        @Field("nomor_hp") nomorHp:String,
+        @Field("nis") nis:String,
+        @Field("password") password:String,
+        @Field("sebagai") sebagai:String
+    ): ArrayList<ResponseModel>
 
 }
