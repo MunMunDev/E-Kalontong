@@ -1,16 +1,43 @@
 package com.abcd.e_kalontong.ui.splash_screen
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.abcd.e_kalontong.R
+import com.abcd.e_kalontong.utils.SharedPreferencesLogin
 
 class SplashScreenActivity : AppCompatActivity() {
+    private lateinit var sharedPreferencesLogin: SharedPreferencesLogin
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
+        supportActionBar?.let {
+            it.hide()
+        }
 
+        sharedPreferencesLogin = SharedPreferencesLogin(this@SplashScreenActivity)
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            if(sharedPreferencesLogin.getId() != ""){
+                if(sharedPreferencesLogin.getSebagai() == "siswa"){
+                    // To Siswa
+//                    startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
+//                    finish()
+                } else if(sharedPreferencesLogin.getSebagai() == "admin"){
+                    // To admin
+//                    startActivity(Intent(this@SplashScreenActivity, AdminMainActivity::class.java))
+//                    finish()
+                } else{
+//                    startActivity(Intent(this@SplashScreenActivity, LoginActivity::class.java))
+//                    finish()
+                }
+            }
+            else{
+//                startActivity(Intent(this@SplashScreenActivity, LoginActivity::class.java))
+//                finish()
+            }
+        }, 3000)
     }
 }
