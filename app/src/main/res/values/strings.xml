@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">E-Kalontong</string>
+    <string name="app_name">E-Kalontong Toko Rara Sidrap</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

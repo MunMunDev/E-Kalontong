@@ -2,4 +2,31 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+
+    <color name="text_white">#F3F3F3</color>
+    <color name="bg_white">#F5F5FA</color>
+    <color name="abuabu_muda_sekali">#CCEEEEEE</color>
+    <color name="abuabu_muda">#DDDDDD</color>
+    <color name="abuabu_tua">#767676</color>
+
+    <color name="biru">#2C4F93</color>
+
+    <color name="success">#73B908</color>
+    <color name="danger">#DE252A</color>
+    <color name="merah">#FF0E15</color>
+    <color name="batal">#747496</color>
+    <color name="edit">#F0AD4E</color>
+
+    <color name="primaryColor">#068251</color>
+    <!--    <color name="secondaryColor">#068251</color>-->
+    <color name="secondaryColor">#85c485</color>
+    <color name="backgroundTransparent">#B3000000</color>
+    <color name="textJudulTransparent">#FFFFFF</color>
+    <color name="textPenulisTransparent">#DCDCDC</color>
+
+    <color name="startGradient">#0D9459</color>
+    <color name="centerGradient">#5DC16D</color>
+    <color name="endGradient">#B3DABC</color>
 </resources>
