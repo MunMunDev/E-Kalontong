@@ -6,6 +6,8 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.abcd.e_kalontong.R
+import com.abcd.e_kalontong.ui.activity.login.LoginActivity
+import com.abcd.e_kalontong.ui.activity.user.main.MainActivity
 import com.abcd.e_kalontong.utils.SharedPreferencesLogin
 
 class SplashScreenActivity : AppCompatActivity() {
@@ -21,22 +23,22 @@ class SplashScreenActivity : AppCompatActivity() {
 
         Handler(Looper.getMainLooper()).postDelayed({
             if(sharedPreferencesLogin.getId() != ""){
-                if(sharedPreferencesLogin.getSebagai() == "siswa"){
-                    // To Siswa
-//                    startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
-//                    finish()
+                if(sharedPreferencesLogin.getSebagai() == "user"){
+                    // To User
+                    startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
+                    finish()
                 } else if(sharedPreferencesLogin.getSebagai() == "admin"){
                     // To admin
 //                    startActivity(Intent(this@SplashScreenActivity, AdminMainActivity::class.java))
 //                    finish()
                 } else{
-//                    startActivity(Intent(this@SplashScreenActivity, LoginActivity::class.java))
-//                    finish()
+                    startActivity(Intent(this@SplashScreenActivity, LoginActivity::class.java))
+                    finish()
                 }
             }
             else{
-//                startActivity(Intent(this@SplashScreenActivity, LoginActivity::class.java))
-//                finish()
+                startActivity(Intent(this@SplashScreenActivity, LoginActivity::class.java))
+                finish()
             }
         }, 3000)
     }
