@@ -22,7 +22,7 @@ class SplashScreenActivity : AppCompatActivity() {
         sharedPreferencesLogin = SharedPreferencesLogin(this@SplashScreenActivity)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            if(sharedPreferencesLogin.getId() != ""){
+            if(sharedPreferencesLogin.getIdUser().toString() != ""){
                 if(sharedPreferencesLogin.getSebagai() == "user"){
                     // To User
                     startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
