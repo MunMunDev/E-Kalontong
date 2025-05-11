@@ -14,8 +14,10 @@ import com.abcd.e_kalontong.databinding.ActivityRegisterBinding
 import com.abcd.e_kalontong.ui.activity.login.LoginActivity
 import com.abcd.e_kalontong.utils.LoadingAlertDialog
 import com.abcd.e_kalontong.utils.network.UIState
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
     @Inject
