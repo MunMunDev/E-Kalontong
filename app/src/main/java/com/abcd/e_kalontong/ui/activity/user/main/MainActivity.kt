@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.abcd.e_kalontong.R
 import com.abcd.e_kalontong.databinding.ActivityMainBinding
-import com.abcd.e_kalontong.ui.fragment.home.HomeFragment
+import com.abcd.e_kalontong.ui.fragment.user.home.HomeFragment
 import com.abcd.e_kalontong.utils.SharedPreferencesLogin
 
 class MainActivity : AppCompatActivity() {
