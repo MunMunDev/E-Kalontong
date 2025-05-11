@@ -29,4 +29,13 @@
     <color name="startGradient">#0D9459</color>
     <color name="centerGradient">#5DC16D</color>
     <color name="endGradient">#B3DABC</color>
+
+    <color name="colorBackgroundSearch">#66DADADA</color>
+    <color name="colorBackgroundBottom">#99F5F5F5</color>
+
+    <color name="buttonBackgroundBottom">#E66FB0F4</color>
+
+    <color name="textSnowDrift">#F8FBF8</color>
+    <color name="textColorWhite">#FAF5EF</color>
+    <color name="textColorBlack">#1A1A1A</color>
 </resources>
