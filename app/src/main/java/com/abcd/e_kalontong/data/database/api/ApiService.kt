@@ -1,5 +1,6 @@
 package com.abcd.e_kalontong.data.database.api
 
+import com.abcd.e_kalontong.data.model.PesananModel
 import com.abcd.e_kalontong.data.model.ResponseModel
 import com.abcd.e_kalontong.data.model.UserModel
 import retrofit2.http.Field
@@ -16,6 +17,12 @@ interface ApiService {
         @Query("password") password: String,
     ): ArrayList<UserModel>
 
+    @GET("e-kelontong/api/get.php")
+    suspend fun getPesanan(
+        @Query("get_pesanan") get_pesanan: String,
+        @Query("id_user") id_user: Int,
+    ): ArrayList<PesananModel>
+
     // POST
 
     // User
@@ -30,5 +37,20 @@ interface ApiService {
         @Field("password") password:String,
         @Field("sebagai") sebagai:String
     ): ArrayList<ResponseModel>
+
+    @FormUrlEncoded
+    @POST("absensi-sman-5/api/post.php")
+    suspend fun postUpdatePesanan(
+        @Field("update_pesanan") update_pesanan:String,
+        @Field("id_produk") id_produk:Int,
+        @Field("jumlah") jumlah:String,
+    ): ResponseModel
+
+    @FormUrlEncoded
+    @POST("absensi-sman-5/api/post.php")
+    suspend fun postDeletePesanan(
+        @Field("delete_pesanan") delete_pesanan:String,
+        @Field("id_produk") id_produk:Int,
+    ): ResponseModel
 
 }
