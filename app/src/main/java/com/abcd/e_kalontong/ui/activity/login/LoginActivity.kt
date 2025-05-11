@@ -96,7 +96,7 @@ class LoginActivity : AppCompatActivity() {
             valueIdUser = it.toInt()
         }
         val valueNama = userModel[0].nama.toString()
-        val valueNomorHp = userModel[0].noHp.toString()
+        val valueNomorHp = userModel[0].nomor_hp.toString()
         val valueUsername = userModel[0].username.toString()
         val valuePassword = userModel[0].password.toString()
         val valueSebagai= userModel[0].sebagai.toString()
