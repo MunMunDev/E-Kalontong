@@ -12,8 +12,8 @@ class UserModel (
     @SerializedName("alamat")
     var alamat: String? = null,
 
-    @SerializedName("no_hp")
-    var noHp: String? = null,
+    @SerializedName("nomor_hp")
+    var nomor_hp: String? = null,
 
     @SerializedName("username")
     var username: String? = null,

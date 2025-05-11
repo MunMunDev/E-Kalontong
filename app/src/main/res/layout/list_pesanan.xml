@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="12dp"
+    app:cardCornerRadius="12dp"
+    android:backgroundTint="@color/white">
+
+    <ImageView
+        android:id="@+id/ivGambar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/icon_product_home"
+        android:scaleType="centerCrop"
+        android:elevation="1dp"/>
+
+    <TextView
+        android:id="@+id/tvProduk"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivGambar"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:lineSpacingExtra="3dp"
+        android:text="Nama Produk"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:elevation="20dp"/>
+
+    <TextView
+        android:id="@+id/tvTitleHarga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvProduk"
+        app:layout_constraintStart_toEndOf="@id/ivGambar"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="12dp"
+        android:maxLines="1"
+        android:text="Harga : "
+        android:textSize="14sp"
+        android:textColor="@color/abuabu_tua"
+        android:elevation="20dp"/>
+
+
+    <TextView
+        android:id="@+id/tvHarga"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/tvTitleHarga"
+        app:layout_constraintStart_toEndOf="@id/tvTitleHarga"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="20dp"
+        android:maxLines="1"
+        android:text="Rp.10.0000"
+        android:textSize="14sp"
+        android:textColor="@color/abuabu_tua"
+        android:elevation="20dp"/>
+
+    <TextView
+        android:id="@+id/tvTitleJumlah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvHarga"
+        app:layout_constraintStart_toEndOf="@id/ivGambar"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="12dp"
+        android:maxLines="1"
+        android:text="Jumlah : "
+        android:textSize="14sp"
+        android:textColor="@color/abuabu_tua"
+        android:elevation="20dp"/>
+
+
+    <TextView
+        android:id="@+id/tvJumlah"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/tvTitleJumlah"
+        app:layout_constraintStart_toEndOf="@id/tvTitleJumlah"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="20dp"
+        android:maxLines="1"
+        android:text="3"
+        android:textSize="14sp"
+        android:textColor="@color/abuabu_tua"
+        android:elevation="20dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1.2dp"
+        android:background="@color/abuabu_muda"
+        app:layout_constraintTop_toBottomOf="@+id/ivGambar"
+        android:layout_marginTop="10dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
