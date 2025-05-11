@@ -7,11 +7,13 @@ import androidx.lifecycle.viewModelScope
 import com.abcd.e_kalontong.data.database.api.ApiService
 import com.abcd.e_kalontong.data.model.UserModel
 import com.abcd.e_kalontong.utils.network.UIState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class LoginViewModel @Inject constructor(
     private val api: ApiService
 ): ViewModel() {
