@@ -16,8 +16,10 @@ import com.abcd.e_kalontong.ui.activity.user.main.MainActivity
 import com.abcd.e_kalontong.utils.LoadingAlertDialog
 import com.abcd.e_kalontong.utils.SharedPreferencesLogin
 import com.abcd.e_kalontong.utils.network.UIState
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
     private lateinit var loginBinding: ActivityLoginBinding
     private lateinit var sharedPreferencesLogin: SharedPreferencesLogin
