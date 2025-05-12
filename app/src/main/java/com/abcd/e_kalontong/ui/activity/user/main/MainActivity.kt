@@ -11,8 +11,11 @@ import androidx.fragment.app.Fragment
 import com.abcd.e_kalontong.R
 import com.abcd.e_kalontong.databinding.ActivityMainBinding
 import com.abcd.e_kalontong.ui.fragment.user.home.HomeFragment
+import com.abcd.e_kalontong.ui.fragment.user.product.ProductFragment
 import com.abcd.e_kalontong.utils.SharedPreferencesLogin
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var sharedPreferences: SharedPreferencesLogin
@@ -63,14 +66,6 @@ class MainActivity : AppCompatActivity() {
             ivRiwayat.setImageResource(R.drawable.icon_riwayat)
             ivAccount.setImageResource(R.drawable.icon_akun)
 
-//            // button view visibility
-//            btnHome.setBackgroundResource(R.drawable.bg_btn_bottom_bar)
-//            btnProduk.setBackgroundResource(R.drawable.bg_btn_bottom_bar_transparent)
-//            btnRiwayat.setBackgroundResource(R.drawable.bg_btn_bottom_bar_transparent)
-//            btnAccount.setBackgroundResource(R.drawable.bg_btn_bottom_bar_transparent)
-
-//            btnHome.startAnimation(scaleAnimation)
-
             setFragment(HomeFragment())
             checkFragmentPosition = 0
         }
@@ -90,15 +85,7 @@ class MainActivity : AppCompatActivity() {
             ivRiwayat.setImageResource(R.drawable.icon_riwayat)
             ivAccount.setImageResource(R.drawable.icon_akun)
 
-//            // button view visibility
-//            btnHome.setBackgroundResource(R.drawable.bg_btn_bottom_bar_transparent)
-//            btnProduk.setBackgroundResource(R.drawable.bg_btn_bottom_bar)
-//            btnRiwayat.setBackgroundResource(R.drawable.bg_btn_bottom_bar_transparent)
-//            btnAccount.setBackgroundResource(R.drawable.bg_btn_bottom_bar_transparent)
-
-//            btnProduk.startAnimation(scaleAnimation)
-
-//            setFragment(ProdukFragment())
+            setFragment(ProductFragment())
             checkFragmentPosition = 1
         }
     }
@@ -116,14 +103,6 @@ class MainActivity : AppCompatActivity() {
             ivProduk.setImageResource(R.drawable.icon_product)
             ivRiwayat.setImageResource(R.drawable.icon_riwayat_active)
             ivAccount.setImageResource(R.drawable.icon_akun)
-
-            // button view visibility
-//            btnHome.setBackgroundResource(R.drawable.bg_btn_bottom_bar_transparent)
-//            btnProduk.setBackgroundResource(R.drawable.bg_btn_bottom_bar_transparent)
-//            btnRiwayat.setBackgroundResource(R.drawable.bg_btn_bottom_bar)
-//            btnAccount.setBackgroundResource(R.drawable.bg_btn_bottom_bar_transparent)
-
-//            btnRiwayat.startAnimation(scaleAnimation)
 
 //            setFragment(RiwayatFragment())
             checkFragmentPosition = 2
@@ -143,14 +122,6 @@ class MainActivity : AppCompatActivity() {
             ivProduk.setImageResource(R.drawable.icon_product)
             ivRiwayat.setImageResource(R.drawable.icon_riwayat)
             ivAccount.setImageResource(R.drawable.icon_akun_active)
-
-            // button view visibility
-//            btnHome.setBackgroundResource(R.drawable.bg_btn_bottom_bar_transparent)
-//            btnProduk.setBackgroundResource(R.drawable.bg_btn_bottom_bar_transparent)
-//            btnRiwayat.setBackgroundResource(R.drawable.bg_btn_bottom_bar_transparent)
-//            btnAccount.setBackgroundResource(R.drawable.bg_btn_bottom_bar)
-
-//            btnRiwayat.startAnimation(scaleAnimation)
 
 //            setFragment(AccountFragment())
             checkFragmentPosition = 3
