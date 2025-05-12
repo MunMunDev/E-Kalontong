@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -69,8 +71,18 @@ class HomeFragment : Fragment() {
         getPesanan()
         getDeletePesanan()
         getUpdatePesanan()
+        setSwipeRefreshLayout()
 
         return binding.root
+    }
+
+    private fun setSwipeRefreshLayout() {
+        binding.swipeRefresh.setOnRefreshListener {
+            Handler(Looper.getMainLooper()).postDelayed({
+                binding.swipeRefresh.isRefreshing = false
+                fetchPesanan()
+            }, 1500)
+        }
     }
 
     private fun setSharedPreferencesLogin() {
@@ -107,7 +119,7 @@ class HomeFragment : Fragment() {
     private fun getPesanan() {
         viewModel.getPesanan().observe(contextLifecycleOwner){result->
             when(result){
-                is UIState.Loading-> {}
+                is UIState.Loading-> setStartShimmerProduk()
                 is UIState.Failure-> setFailureFetchPesanan(result.message)
                 is UIState.Success-> setSuccessFetchPesanan(result.data)
             }
@@ -127,7 +139,6 @@ class HomeFragment : Fragment() {
 
             listPesanan = data
         } else{
-//            Toast.makeText(context, "Tidak ada data", Toast.LENGTH_SHORT).show()
             setNoHaveData()
         }
     }
@@ -333,6 +344,7 @@ class HomeFragment : Fragment() {
             btnPesan.visibility = View.GONE
 
             tvNotHavePesanan.visibility = View.VISIBLE
+            setStopShimmerProduk()
         }
     }
 
@@ -342,6 +354,25 @@ class HomeFragment : Fragment() {
             btnPesan.visibility = View.VISIBLE
 
             tvNotHavePesanan.visibility = View.GONE
+            setStopShimmerProduk()
+        }
+    }
+
+
+    private fun setStartShimmerProduk(){
+        binding.apply {
+            smPesanan.startShimmer()
+            rvPesanan.visibility = View.GONE
+            smPesanan.visibility = View.VISIBLE
+
+            btnPesan.visibility = View.GONE
+        }
+    }
+
+    private fun setStopShimmerProduk(){
+        binding.apply {
+            smPesanan.stopShimmer()
+            smPesanan.visibility = View.GONE
         }
     }
 
