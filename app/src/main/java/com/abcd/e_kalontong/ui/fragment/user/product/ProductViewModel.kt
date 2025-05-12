@@ -39,7 +39,7 @@ class ProductViewModel @Inject constructor(
             _pesan.postValue(UIState.Loading)
             delay(1_000)
             try {
-                val data = api.postPesan("", idUser, idProduk, jumlah)
+                val data = api.postTambahPesanan("", idUser, idProduk, jumlah)
                 _pesan.postValue(UIState.Success(data))
             } catch (ex: Exception){
                 _pesan.postValue(UIState.Failure("Gagal : ${ex.message}"))
