@@ -1,5 +1,6 @@
 package com.abcd.e_kalontong.ui.fragment.user.home
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -23,8 +24,9 @@ import com.abcd.e_kalontong.databinding.AlertDialogKonfirmasiBinding
 import com.abcd.e_kalontong.databinding.AlertDialogPesanProdukBinding
 import com.abcd.e_kalontong.databinding.AlertDialogShowImageBinding
 import com.abcd.e_kalontong.databinding.FragmentHomeBinding
-import com.abcd.e_kalontong.ui.activity.produk.search.SearchProdukActivity
 import com.abcd.e_kalontong.ui.activity.user.main.MainActivity
+import com.abcd.e_kalontong.ui.activity.user.produk.search.SearchProdukActivity
+import com.abcd.e_kalontong.utils.Constant
 import com.abcd.e_kalontong.utils.KontrolNavigationDrawer
 import com.abcd.e_kalontong.utils.KonversiRupiah
 import com.abcd.e_kalontong.utils.LoadingAlertDialog
@@ -38,7 +40,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModels()
-    private lateinit var view: FragmentHomeBinding
+    private lateinit var binding: FragmentHomeBinding
     private lateinit var kontrolNavigationDrawer: KontrolNavigationDrawer
     private lateinit var sharedPreferencesLogin: SharedPreferencesLogin
     @Inject
@@ -48,6 +50,7 @@ class HomeFragment : Fragment() {
     private lateinit var pesananAdapter: PesananAdapter
     private var listPesanan: ArrayList<PesananModel> = ArrayList()
 
+    private lateinit var activityContext: Activity
     private lateinit var context: Context
     private lateinit var contextLifecycleOwner: LifecycleOwner
 
@@ -55,7 +58,8 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        view = FragmentHomeBinding.inflate(layoutInflater)
+        binding = FragmentHomeBinding.inflate(layoutInflater)
+        activityContext = (activity as MainActivity)
         context = requireContext().applicationContext
         contextLifecycleOwner = viewLifecycleOwner
 
@@ -66,7 +70,7 @@ class HomeFragment : Fragment() {
         getDeletePesanan()
         getUpdatePesanan()
 
-        return view.root
+        return binding.root
     }
 
     private fun setSharedPreferencesLogin() {
@@ -74,7 +78,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setButton() {
-        view.apply {
+        binding.apply {
             srcData.setOnClickListener {
                 startActivity(Intent(context, SearchProdukActivity::class.java))
             }
@@ -158,7 +162,7 @@ class HomeFragment : Fragment() {
             }
 
         })
-        view.apply {
+        binding.apply {
             rvPesanan.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             rvPesanan.adapter = pesananAdapter
         }
@@ -168,7 +172,7 @@ class HomeFragment : Fragment() {
     private fun setShowDialogDelete(pesanan: PesananModel) {
         val view = AlertDialogKonfirmasiBinding.inflate(layoutInflater)
 
-        val alertDialog = AlertDialog.Builder(context)
+        val alertDialog = AlertDialog.Builder(activityContext)
         alertDialog.setView(view.root)
             .setCancelable(false)
         val dialogInputan = alertDialog.create()
@@ -197,7 +201,7 @@ class HomeFragment : Fragment() {
     private fun getDeletePesanan(){
         viewModel.getDeletePesanan().observe(contextLifecycleOwner){result->
             when(result){
-                is UIState.Loading-> loading.alertDialogLoading(context)
+                is UIState.Loading-> loading.alertDialogLoading(activityContext)
                 is UIState.Success-> setSuccessDeletePesanan(result.data)
                 is UIState.Failure-> setFailureDeletePesanan(result.message)
             }
@@ -222,7 +226,7 @@ class HomeFragment : Fragment() {
     private fun setShowDialogEdit(pesanan: PesananModel) {
         val view = AlertDialogPesanProdukBinding.inflate(layoutInflater)
 
-        val alertDialog = AlertDialog.Builder(context)
+        val alertDialog = AlertDialog.Builder(activityContext)
         alertDialog.setView(view.root)
             .setCancelable(false)
         val dialogInputan = alertDialog.create()
@@ -243,7 +247,7 @@ class HomeFragment : Fragment() {
             }
             btnKurang.setOnClickListener {
                 var jumlah = tvJumlah.text.toString().toInt()
-                if (jumlah > 0){
+                if (jumlah > 1){
                     jumlah-=1
                     tvJumlah.text = jumlah.toString()
                 }
@@ -277,7 +281,7 @@ class HomeFragment : Fragment() {
     private fun getUpdatePesanan(){
         viewModel.getUpdatePesanan().observe(contextLifecycleOwner){result->
             when(result){
-                is UIState.Loading-> loading.alertDialogLoading(context)
+                is UIState.Loading-> loading.alertDialogLoading(activityContext)
                 is UIState.Success-> setSuccessUpdatePesanan(result.data)
                 is UIState.Failure-> setFailureUpdatePesanan(result.message)
             }
@@ -299,17 +303,17 @@ class HomeFragment : Fragment() {
         loading.alertDialogCancel()
     }
 
-    private fun setShowImage(gambar: String, jenisPlafon: String) {
+    private fun setShowImage(gambar: String, produk: String) {
         val view = AlertDialogShowImageBinding.inflate(layoutInflater)
 
-        val alertDialog = AlertDialog.Builder(context)
+        val alertDialog = AlertDialog.Builder(activityContext)
         alertDialog.setView(view.root)
             .setCancelable(false)
         val dialogInputan = alertDialog.create()
         dialogInputan.show()
 
         view.apply {
-            tvTitle.text = jenisPlafon
+            tvTitle.text = produk
             btnClose.setOnClickListener {
                 dialogInputan.dismiss()
             }
@@ -317,13 +321,14 @@ class HomeFragment : Fragment() {
 
         Glide.with(context)
             .load(gambar) // URL Gambar
-            .error(R.drawable.gambar_not_have_image)
+            .placeholder(R.drawable.loading)
+            .error(R.drawable.icon_product_home)
             .into(view.ivShowImage) // imageView mana yang akan diterapkan
 
     }
 
     private fun setNoHaveData(){
-        view.apply {
+        binding.apply {
             rvPesanan.visibility = View.GONE
             btnPesan.visibility = View.GONE
 
@@ -332,7 +337,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setHaveData(){
-        view.apply {
+        binding.apply {
             rvPesanan.visibility = View.VISIBLE
             btnPesan.visibility = View.VISIBLE
 
