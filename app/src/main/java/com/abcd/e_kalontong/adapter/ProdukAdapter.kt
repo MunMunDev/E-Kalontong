@@ -17,8 +17,7 @@ import java.util.Locale
 
 class ProdukAdapter(
     private var listProduk: ArrayList<ProdukModel>,
-    private var click: OnClickItem.ClickProduk,
-    private val checkHome: Boolean
+    private var click: OnClickItem.ClickProduk
 ): RecyclerView.Adapter<ProdukAdapter.ViewHolder>() {
 
     private val rupiah = KonversiRupiah()
@@ -28,7 +27,7 @@ class ProdukAdapter(
     @SuppressLint("NotifyDataSetChanged", "DefaultLocale")
     fun searchData(kata: String){
         val vKata = kata.lowercase(Locale.getDefault()).trim()
-        var data = listProduk.filter {
+        val data = listProduk.filter {
             (
                 it.produk!!.lowercase().trim().contains(vKata)
                 or
@@ -48,11 +47,7 @@ class ProdukAdapter(
     }
 
     override fun getItemCount(): Int {
-        return if(checkHome){
-            if(tempProduk.size>5) 5 else tempProduk.size
-        } else{
-            tempProduk.size
-        }
+        return tempProduk.size
     }
 
     @SuppressLint("SetTextI18n")
@@ -70,9 +65,6 @@ class ProdukAdapter(
                 val harga = rupiah.rupiah(produk.harga!!.toLong())
                 tvHarga.text = harga
 
-                ivGambarProduk.setOnClickListener{
-                    click.clickGambarProduk(produk.gambar!!, produk.produk!!, it)
-                }
                 itemView.setOnClickListener {
                     click.clickItemPesan(produk, it)
                 }
