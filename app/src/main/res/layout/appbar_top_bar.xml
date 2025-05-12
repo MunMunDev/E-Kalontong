@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/primaryColor"
+    android:id="@+id/myAppBar"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="14dp"
+        android:layout_gravity="center_vertical">
+
+        <LinearLayout
+            android:id="@+id/llSearchProduk"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/bg_card_search"
+            android:layout_marginEnd="2dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:elevation="2dp">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="14dp"
+                android:contentDescription="icon search"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:src="@drawable/image_search_white"
+                android:elevation="20dp"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="Cari Produk Yang Anda Inginkan"
+                android:textSize="14sp"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.Toolbar>

@@ -4,6 +4,7 @@ import com.abcd.aplikasipenjualanplafon.utils.TanggalDanWaktu
 import com.abcd.e_kalontong.data.database.api.ApiService
 import com.abcd.e_kalontong.utils.Constant
 import com.abcd.e_kalontong.utils.KataAcak
+import com.abcd.e_kalontong.utils.KonversiRupiah
 import com.abcd.e_kalontong.utils.LoadingAlertDialog
 import com.abcd.e_kalontong.utils.network.CheckNetwork
 import com.google.gson.GsonBuilder
@@ -48,5 +49,9 @@ object AppModule {
     @Provides
     @Singleton
     fun checkNetwork(): CheckNetwork = CheckNetwork()
+
+    @Provides
+    @Singleton
+    fun checkrupiah(): KonversiRupiah = KonversiRupiah()
 
 }
