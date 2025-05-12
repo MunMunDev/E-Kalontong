@@ -40,17 +40,17 @@ class PesananAdapter(
 
             ivGambar.setOnClickListener {
                 click.clickGambarPesanan(
-                    "${Constant.BASE_URL}${Constant.LOCATION_GAMBAR}${dataPesanan.produk.gambar!!}",
+                    "${Constant.LOCATION_GAMBAR}${dataPesanan.produk.gambar!!}",
                     dataPesanan.produk.produk!!,
                     it
                 )
             }
 
-            Glide.with(holder.itemView)
-                .load("${Constant.BASE_URL}${Constant.LOCATION_GAMBAR}${dataPesanan.produk.gambar!!}")
+            Glide.with(holder.itemView.context)
+                .load("${Constant.LOCATION_GAMBAR}${dataPesanan.produk.gambar}") // URL Gambar
                 .placeholder(R.drawable.loading)
-                .error(R.drawable.gambar_not_have_image)
-                .into(ivGambar)
+                .error(R.drawable.icon_product_home)
+                .into(ivGambar) // imageView mana yang akan diterapkan
         }
         holder.itemView.setOnClickListener{
             click.clickItemPesanan(dataPesanan, it)
