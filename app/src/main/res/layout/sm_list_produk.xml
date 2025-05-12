@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="230dp"
+    android:layout_height="310dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="4dp"
+    android:layout_marginTop="4dp"
+    app:cardCornerRadius="12dp"
+    android:background="@drawable/bg_btn">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/ivGambarProduk"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@color/abuabu_tua"
+            android:scaleType="centerCrop"
+            android:elevation="1dp"/>
+
+        <TextView
+            android:id="@+id/tvJudulProduk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/tvHarga"
+            app:layout_constraintTop_toBottomOf="@id/ivGambarProduk"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:text="Judul Produk anda tentang ini dan itu judul ini adalah materi kewirausahaan"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="@color/abuabu_tua"
+            android:background="@color/abuabu_tua"/>
+
+        <TextView
+            android:id="@+id/tvHarga"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tvJudulProduk"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="12dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="Rp. 50.000"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            android:textColor="@color/abuabu_tua"
+            android:background="@color/abuabu_tua"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
