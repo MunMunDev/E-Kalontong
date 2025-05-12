@@ -46,6 +46,15 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST("absensi-sman-5/api/post.php")
+    suspend fun postTambahPesanan(
+        @Field("tambah_pesanan") tambah_pesanan:String,
+        @Field("id_user") id_user:Int,
+        @Field("id_produk") id_produk:Int,
+        @Field("jumlah") jumlah:String,
+    ): ResponseModel
+
+    @FormUrlEncoded
+    @POST("absensi-sman-5/api/post.php")
     suspend fun postUpdatePesanan(
         @Field("update_pesanan") update_pesanan:String,
         @Field("id_produk") id_produk:Int,
@@ -57,15 +66,6 @@ interface ApiService {
     suspend fun postDeletePesanan(
         @Field("delete_pesanan") delete_pesanan:String,
         @Field("id_produk") id_produk:Int,
-    ): ResponseModel
-
-    @FormUrlEncoded
-    @POST("absensi-sman-5/api/post.php")
-    suspend fun postPesan(
-        @Field("post_pesan") post_pesan:String,
-        @Field("id_produk") id_produk:Int,
-        @Field("id_user") id_user:Int,
-        @Field("jumlah") jumlah:String,
     ): ResponseModel
 
 }

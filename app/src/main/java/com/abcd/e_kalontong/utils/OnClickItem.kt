@@ -12,6 +12,5 @@ interface OnClickItem {
 
     interface ClickProduk{
         fun clickItemPesan(produk: ProdukModel, it: View)
-        fun clickGambarProduk(gambar: String, produk:String, it: View)
     }
 }
