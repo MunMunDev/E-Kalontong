@@ -1,6 +1,7 @@
 package com.abcd.e_kalontong.ui.fragment.user.home
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -22,6 +23,7 @@ import com.abcd.e_kalontong.databinding.AlertDialogKonfirmasiBinding
 import com.abcd.e_kalontong.databinding.AlertDialogPesanProdukBinding
 import com.abcd.e_kalontong.databinding.AlertDialogShowImageBinding
 import com.abcd.e_kalontong.databinding.FragmentHomeBinding
+import com.abcd.e_kalontong.ui.activity.produk.search.SearchProdukActivity
 import com.abcd.e_kalontong.ui.activity.user.main.MainActivity
 import com.abcd.e_kalontong.utils.KontrolNavigationDrawer
 import com.abcd.e_kalontong.utils.KonversiRupiah
@@ -30,8 +32,10 @@ import com.abcd.e_kalontong.utils.OnClickItem
 import com.abcd.e_kalontong.utils.SharedPreferencesLogin
 import com.abcd.e_kalontong.utils.network.UIState
 import com.bumptech.glide.Glide
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var view: FragmentHomeBinding
@@ -71,6 +75,9 @@ class HomeFragment : Fragment() {
 
     private fun setButton() {
         view.apply {
+            srcData.setOnClickListener {
+                startActivity(Intent(context, SearchProdukActivity::class.java))
+            }
             btnProduk.setOnClickListener {
                 (activity as MainActivity).clickProduk()
             }
@@ -96,7 +103,7 @@ class HomeFragment : Fragment() {
     private fun getPesanan() {
         viewModel.getPesanan().observe(contextLifecycleOwner){result->
             when(result){
-                is UIState.Loading-> loading.alertDialogLoading(context)
+                is UIState.Loading-> {}
                 is UIState.Failure-> setFailureFetchPesanan(result.message)
                 is UIState.Success-> setSuccessFetchPesanan(result.data)
             }
@@ -107,7 +114,6 @@ class HomeFragment : Fragment() {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
         Log.d("DetailTAG", "setFailureFetchPesanan: $message")
         setNoHaveData()
-        loading.alertDialogCancel()
     }
 
     private fun setSuccessFetchPesanan(data: ArrayList<PesananModel>) {
@@ -120,7 +126,6 @@ class HomeFragment : Fragment() {
 //            Toast.makeText(context, "Tidak ada data", Toast.LENGTH_SHORT).show()
             setNoHaveData()
         }
-        loading.alertDialogCancel()
     }
 
     private fun setAdapter(data: ArrayList<PesananModel>) {

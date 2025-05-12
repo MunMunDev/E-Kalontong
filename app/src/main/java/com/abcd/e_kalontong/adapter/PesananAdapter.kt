@@ -47,7 +47,7 @@ class PesananAdapter(
             }
 
             Glide.with(holder.itemView)
-                .load("${Constant.BASE_URL}${Constant.LOCATION_GAMBAR}${dataPesanan.produk.gambar}")
+                .load("${Constant.BASE_URL}${Constant.LOCATION_GAMBAR}${dataPesanan.produk.gambar!!}")
                 .placeholder(R.drawable.loading)
                 .error(R.drawable.gambar_not_have_image)
                 .into(ivGambar)
