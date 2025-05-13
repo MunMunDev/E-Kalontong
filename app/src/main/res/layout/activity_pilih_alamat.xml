@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.alamat.PilihAlamatActivity">
+    <include
+        android:id="@+id/app_navbar_drawer"
+        layout="@layout/appbar_nav_drawer"/>
+    <!--    <View-->
+    <!--        android:id="@+id/bgHeader"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="90dp"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/titleHeader"-->
+    <!--        android:background="@color/primaryColor"/>-->
+
+    <!--    <ImageView-->
+    <!--        android:id="@+id/btnBack"-->
+    <!--        android:layout_width="35dp"-->
+    <!--        android:layout_height="35dp"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        android:layout_marginStart="20dp"-->
+    <!--        android:src="@drawable/icon_arrow_back"-->
+    <!--        android:elevation="10dp"/>-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/titleHeader"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintStart_toEndOf="@id/btnBack"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        android:layout_marginTop="22dp"-->
+    <!--        android:layout_marginStart="16dp"-->
+    <!--        android:layout_marginEnd="20dp"-->
+    <!--        android:text="Pilih Alamat"-->
+    <!--        android:textSize="20sp"-->
+    <!--        android:textColor="@color/white"-->
+    <!--        android:textStyle="bold"/>-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvAlamat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/app_navbar_drawer"
+        app:layout_constraintBottom_toTopOf="@id/btnTambahAlamat"
+        android:paddingBottom="6dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        tools:listitem="@layout/list_pilih_alamat"
+        tools:itemCount="6"
+        android:visibility="gone"/>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/smAlamat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingBottom="6dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        app:layout_constraintTop_toBottomOf="@id/app_navbar_drawer"
+        app:layout_constraintBottom_toTopOf="@id/btnTambahAlamat"
+        android:visibility="visible">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <include layout="@layout/list_pilih_alamat_shimmer"/>
+            <include layout="@layout/list_pilih_alamat_shimmer"/>
+            <include layout="@layout/list_pilih_alamat_shimmer"/>
+            <include layout="@layout/list_pilih_alamat_shimmer"/>
+            <include layout="@layout/list_pilih_alamat_shimmer"/>
+            <include layout="@layout/list_pilih_alamat_shimmer"/>
+            <include layout="@layout/list_pilih_alamat_shimmer"/>
+            <include layout="@layout/list_pilih_alamat_shimmer"/>
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <Button
+        android:id="@+id/btnTambahAlamat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="55dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/bg_card_no_radius"
+        android:text="Tambah Alamat"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:textStyle="normal"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
