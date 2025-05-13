@@ -27,6 +27,7 @@ import com.abcd.e_kalontong.databinding.AlertDialogPesanProdukBinding
 import com.abcd.e_kalontong.databinding.AlertDialogShowImageBinding
 import com.abcd.e_kalontong.databinding.FragmentHomeBinding
 import com.abcd.e_kalontong.ui.activity.user.main.MainActivity
+import com.abcd.e_kalontong.ui.activity.user.payment.PaymentActivity
 import com.abcd.e_kalontong.ui.activity.user.produk.search.SearchProdukActivity
 import com.abcd.e_kalontong.utils.Constant
 import com.abcd.e_kalontong.utils.KontrolNavigationDrawer
@@ -105,9 +106,9 @@ class HomeFragment : Fragment() {
             }
             btnPesan.setOnClickListener {
 //                showDialogPesan(listPesanan)
-//                val i = Intent(context, PaymentActivity::class.java)
-//                i.putParcelableArrayListExtra("pesanan", listPesanan)
-//                startActivity(i)
+                val i = Intent(context, PaymentActivity::class.java)
+                i.putParcelableArrayListExtra("pesanan", listPesanan)
+                startActivity(i)
             }
         }
     }
