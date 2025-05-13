@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">E-Kalontong Toko Rara Sidrap</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="metode_pembayaran">
+        <item>Online</item>
+        <item>Ditempat</item>
+    </string-array>
+    <string-array name="print_laporan">
+        <item>Pembayaran Online</item>
+        <item>Pembayaran Ditempat</item>
+    </string-array>
+    <string name="ket_klik_file">Klik To Upload File</string>
+    <string name="add_image">Klik Untuk Masukkan Gambar</string>
+
+    <string name="alamat">Maaf alamat belum ada. Klik untuk menambahkan alamat</string>
 </resources>

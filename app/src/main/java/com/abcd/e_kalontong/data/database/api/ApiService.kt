@@ -1,5 +1,6 @@
 package com.abcd.e_kalontong.data.database.api
 
+import com.abcd.e_kalontong.data.model.AlamatModel
 import com.abcd.e_kalontong.data.model.PesananModel
 import com.abcd.e_kalontong.data.model.ProdukModel
 import com.abcd.e_kalontong.data.model.ResponseModel
@@ -28,6 +29,13 @@ interface ApiService {
     suspend fun getProduk(
         @Query("get_produk") get_produk: String,
     ): ArrayList<ProdukModel>
+
+    @GET("e-kelontong/api/get.php")
+    suspend fun getAlamat(
+        @Query("get_pilih_alamat") get_pilih_alamat: String,
+        @Query("id_user") id_user: Int,
+    ): ArrayList<AlamatModel>
+
 
     // POST
 
@@ -67,5 +75,20 @@ interface ApiService {
         @Field("delete_pesanan") delete_pesanan:String,
         @Field("id_produk") id_produk:Int,
     ): ResponseModel
+
+    @FormUrlEncoded
+    @POST("marketplace-wo/api/post.php")
+    suspend fun postPesanCod(
+        @Field("post_cod") post_cod:String,
+        @Field("id_user") id_user: Int,
+    ): ArrayList<ResponseModel>
+
+    @FormUrlEncoded
+    @POST("marketplace-wo/api/post.php")
+    suspend fun postRegistrasiPembayaran(
+        @Field("post_register_pembayaran") post_register_pembayaran:String,
+        @Field("kode_unik") kode_unik: String,
+        @Field("id_user") id_user: Int,
+    ): ArrayList<ResponseModel>
 
 }
