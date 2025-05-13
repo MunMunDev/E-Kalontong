@@ -171,4 +171,56 @@ class TanggalDanWaktu {
         mTimePicker.show()
     }
 
+    fun selectedDateTime(tanggalTempt:String, tv: TextView, context: Context){
+        var arrayTanggalSekarang = tanggalTempt.split("-")
+
+        val c = Calendar.getInstance()
+        val year = arrayTanggalSekarang[0].toInt()
+        val month = arrayTanggalSekarang[1].toInt()-1   // Kurang 1, diambil dari array
+        val day = arrayTanggalSekarang[2].toInt()
+
+
+        val mDatePicker = DatePickerDialog(context, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            var tahun = year.toString()
+            var bulan = (monthOfYear+1).toString()
+            var tanggal = dayOfMonth.toString()
+            if(bulan.length==1){
+                bulan = "0$bulan"
+            }
+            if(tanggal.length==1){
+                tanggal = "0$tanggal"
+            }
+
+            val tanggalFull = "$tahun-$bulan-$tanggal"
+
+            // Waktu
+            var valueWaktu = ""
+            val hour = 10
+            val minute = 0
+            val mTimePicker: TimePickerDialog = TimePickerDialog(context,
+                { timePicker, selectedHour, selectedMinute ->
+                    var menit = selectedMinute.toString()
+                    var jam = selectedHour.toString()
+                    if(jam.length==1){
+                        jam = "0$selectedHour"
+                    }
+                    if(menit.length==1){
+                        menit = "0$selectedMinute"
+                    }
+                    valueWaktu = "$jam:$menit:00"
+
+                    tv.text = "$tanggalFull $valueWaktu"
+                },
+                hour,
+                minute,
+                true
+            )
+            mTimePicker.setTitle("Pilih Waktu")
+            mTimePicker.show()
+
+        }, year, month, day)
+        mDatePicker.setTitle("Pilih Tanggal")
+        mDatePicker.show()
+    }
+
 }

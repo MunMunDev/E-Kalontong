@@ -25,5 +25,39 @@ class ProdukModel (
 
     @SerializedName("jenis_produk")
     val jenis_produk: JenisProdukModel? = null,
+) : Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readString(),
+        parcel.readParcelable(JenisProdukModel::class.java.classLoader)
+    ) {
+    }
 
-)
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeValue(id_produk)
+        parcel.writeString(id_jenis_produk)
+        parcel.writeString(produk)
+        parcel.writeString(harga)
+        parcel.writeValue(stok)
+        parcel.writeString(gambar)
+        parcel.writeParcelable(jenis_produk, flags)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<ProdukModel> {
+        override fun createFromParcel(parcel: Parcel): ProdukModel {
+            return ProdukModel(parcel)
+        }
+
+        override fun newArray(size: Int): Array<ProdukModel?> {
+            return arrayOfNulls(size)
+        }
+    }
+}
