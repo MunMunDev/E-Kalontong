@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="8dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clAlamat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:id="@+id/llNamaDanNomorHp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ivDetail"
+            android:layout_marginTop="6dp">
+            <TextView
+                android:id="@+id/tvNama"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama User"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
+                android:text=" | "
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:textStyle="normal"/>
+
+            <TextView
+                android:id="@+id/tvNomorHp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(081234567890)"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:textStyle="normal"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvKecamatan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/llNamaDanNomorHp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ivDetail"
+            android:layout_marginTop="4dp"
+            android:text="Kecamatan Bacukiki Barat, Parepare"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:textStyle="normal"/>
+
+        <TextView
+            android:id="@+id/tvAlamatDetail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tvKecamatan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ivDetail"
+            android:layout_marginTop="2dp"
+            android:text="Di Kosan Kamar 12"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:textStyle="normal"/>
+
+        <ImageView
+            android:id="@+id/ivDetail"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/baseline_arrow_right_24"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/btnUbah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/clAlamat"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="2dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:paddingEnd="6dp"
+        android:paddingStart="0dp"
+        android:text="Ubah"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/biru"/>
+
+    <TextView
+        android:id="@+id/tvTitleAlamatSekarang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/clAlamat"
+        app:layout_constraintStart_toEndOf="@id/btnUbah"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="2dp"
+        android:text="|  Alamat Sekarang"
+        android:textSize="14sp"
+        android:textColor="@color/merah"
+        android:visibility="gone"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1.2dp"
+        app:layout_constraintTop_toBottomOf="@id/btnUbah"
+        android:layout_marginTop="8dp"
+        android:background="@color/abuabu_muda"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
