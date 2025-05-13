@@ -33,13 +33,13 @@ interface ApiService {
 
     @GET("e-kelontong/api/get.php")
     suspend fun getAlamatUtama(
-        @Query("get_pilih_alamat") get_pilih_alamat: String,
+        @Query("get_alamat_utama") get_alamat_utama: String,
         @Query("id_user") id_user: Int,
     ): ArrayList<AlamatModel>
 
     @GET("e-kelontong/api/get.php")
     suspend fun getAlamatUser(
-        @Query("get_alamat") get_alamat: String,
+        @Query("get_pilih_alamat") get_pilih_alamat: String,
         @Query("id_user") id_user: Int,
     ): ArrayList<AlamatModel>
 

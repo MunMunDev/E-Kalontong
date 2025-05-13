@@ -130,7 +130,7 @@ class PaymentActivity : AppCompatActivity() {
                 finish()
             }
             btnBayar.setOnClickListener {
-                if(tvAlamatDetail.text.toString().trim() == resources.getString(R.string.alamat).trim()){
+                if(tvKecamatan.text.toString().trim() == resources.getString(R.string.alamat).trim()){
                     Toast.makeText(this@PaymentActivity, "Tolong masukkan alamat anda", Toast.LENGTH_SHORT).show()
                 } else{
                     if(numberPosition == 0){
@@ -258,36 +258,25 @@ class PaymentActivity : AppCompatActivity() {
     private fun setAlamat(data: ArrayList<AlamatModel>) {
         binding.apply {
             // Alamat
-            var alamatModel = AlamatModel("", "", "", "", "", "")
             if(data.isNotEmpty()){
-                alamatModel = data[0]
-//                for(values in data){
-//                    if(values.main == "1"){
-//                        alamatModel = values
-//                    }
-//                }
+                data[0].apply {
+                    val kecamatan = "${kecamatan!!.kecamatan}, Kabupaten Sidenreng Rappang"
+                    kecamatanKabKota = kecamatan
+                    tvNama.text = nama_lengkap
+                    tvNomorHp.text = nomor_hp
+                    tvKecamatan.text = kecamatan
+                    tvAlamatDetail.text = detail_alamat
+
+                    namaLengkap = nama_lengkap!!
+                    nomorHp = nomor_hp!!
+                    detailAlamat = detail_alamat!!
+                }
             } else{
                 // Tidak ada data
                 tvNama.text = sharedPreferencesLogin.getNama()
                 tvNomorHp.text = sharedPreferencesLogin.getNomorHp()
-                tvAlamatDetail.text = resources.getString(R.string.alamat)
+                tvKecamatan.text = resources.getString(R.string.alamat)
             }
-            if(alamatModel.id_alamat!!.isNotEmpty()){
-                val kecamatan = "${alamatModel.kecamatan!!.kecamatan}, Kabupaten Sidenreng Rappang"
-                kecamatanKabKota = kecamatan
-                tvNama.text = alamatModel.nama_lengkap
-                tvNomorHp.text = alamatModel.nomor_hp
-                tvKecamatan.text = kecamatan
-                tvAlamatDetail.text = alamatModel.detail_alamat
-            } else{
-                tvNama.text = sharedPreferencesLogin.getNama()
-                tvNomorHp.text = sharedPreferencesLogin.getNomorHp()
-                tvAlamatDetail.text = resources.getString(R.string.alamat)
-            }
-
-            namaLengkap = alamatModel.nama_lengkap!!
-            nomorHp = alamatModel.nomor_hp!!
-            detailAlamat = alamatModel.detail_alamat!!
 
             setCustomerDetails()
         }
