@@ -144,8 +144,7 @@ class PaymentActivity : AppCompatActivity() {
 
             clAlamat.setOnClickListener {
                 val i = Intent(this@PaymentActivity, PilihAlamatActivity::class.java)
-//                i.putParcelableArrayListExtra("vendor", vendor)
-//                i.putExtra("nama_wedding_organizer", namaWeddingOrganizer)
+                i.putParcelableArrayListExtra("pesanan", pesanan)
                 startActivity(i)
                 finish()
             }
@@ -274,7 +273,7 @@ class PaymentActivity : AppCompatActivity() {
                 tvAlamatDetail.text = resources.getString(R.string.alamat)
             }
             if(alamatModel.id_alamat!!.isNotEmpty()){
-                val kecamatan = "${alamatModel.kecamatan!!.kecamatan}, Sidenreng Rappang"
+                val kecamatan = "${alamatModel.kecamatan!!.kecamatan}, Kabupaten Sidenreng Rappang"
                 kecamatanKabKota = kecamatan
                 tvNama.text = alamatModel.nama_lengkap
                 tvNomorHp.text = alamatModel.nomor_hp

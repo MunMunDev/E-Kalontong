@@ -27,7 +27,7 @@ class PaymentViewModel @Inject constructor(
             _pembayaran.postValue(UIState.Loading)
             delay(1_000)
             try {
-                val dataPembayaran = api.getAlamat("", idUser)
+                val dataPembayaran = api.getAlamatUtama("", idUser)
                 _pembayaran.postValue(UIState.Success(dataPembayaran))
             } catch (ex: Exception){
                 _pembayaran.postValue(UIState.Failure("Error pada: ${ex.message}"))
