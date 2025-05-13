@@ -89,7 +89,7 @@
                             android:id="@+id/tvNama"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Nama User"
+                            android:text=""
                             android:textSize="12sp"
                             android:textColor="@color/black"
                             android:textStyle="normal"/>
@@ -107,7 +107,7 @@
                             android:id="@+id/tvNomorHp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="08122222222"
+                            android:text=""
                             android:textSize="12sp"
                             android:textColor="@color/black"
                             android:textStyle="normal"/>
