@@ -103,7 +103,7 @@ class PilihAlamatActivity : AppCompatActivity() {
             val arrayAdapterKecamatan = ArrayAdapter(
                 this@PilihAlamatActivity,
                 android.R.layout.simple_spinner_item,
-                listKecamatan
+                listNamaKecamatan
             )
 
             arrayAdapterKecamatan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
