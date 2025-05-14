@@ -5,6 +5,7 @@ import com.abcd.e_kalontong.data.model.KecamatanModel
 import com.abcd.e_kalontong.data.model.PesananModel
 import com.abcd.e_kalontong.data.model.ProdukModel
 import com.abcd.e_kalontong.data.model.ResponseModel
+import com.abcd.e_kalontong.data.model.RiwayatPesananModel
 import com.abcd.e_kalontong.data.model.UserModel
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -21,8 +22,8 @@ interface ApiService {
     ): ArrayList<UserModel>
 
     @GET("e-kelontong/api/get.php")
-    suspend fun getPesanan(
-        @Query("get_pesanan") get_pesanan: String,
+    suspend fun getKeranjangBelanja(
+        @Query("get_keranjang_belanja") get_keranjang_belanja: String,
         @Query("id_user") id_user: Int,
     ): ArrayList<PesananModel>
 
@@ -47,6 +48,18 @@ interface ApiService {
     suspend fun getKecamatan(
         @Query("get_kecamatan") get_kecamatan: String,
     ): ArrayList<KecamatanModel>
+
+    @GET("e-kelontong/api/get.php")
+    suspend fun getPesanan(
+        @Query("get_pesanan") get_pesanan: String,
+        @Query("id_user") idUser: String
+    ): ArrayList<RiwayatPesananModel>
+
+    @GET("e-kelontong/api/get.php")
+    suspend fun getRiwayatPesanan(
+        @Query("get_riwayat_pesanan") get_riwayat_pesanan: String,
+        @Query("id_user") idUser: String
+    ): ArrayList<RiwayatPesananModel>
 
 
     // POST

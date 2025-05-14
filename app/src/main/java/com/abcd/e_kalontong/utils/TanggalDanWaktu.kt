@@ -75,6 +75,14 @@ class TanggalDanWaktu {
         return "${arrayWaktu[0]}:${arrayWaktu[1]}"
     }
 
+    fun konversiTanggalDanWaktu(tanggalDanWaktu: String): String{
+        val arrayTanggalDanWaktu = tanggalDanWaktu.split(" ")
+        val tanggal = arrayTanggalDanWaktu[0]
+        val waktu = arrayTanggalDanWaktu[1]
+
+        return "${konversiBulan(tanggal)} ${waktuNoSecond(waktu)}"
+    }
+
     fun tanggalSekarangZonaMakassar():String{
         var date = ""
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
