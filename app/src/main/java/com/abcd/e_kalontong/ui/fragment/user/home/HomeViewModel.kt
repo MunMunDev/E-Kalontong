@@ -18,19 +18,19 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val api: ApiService
 ): ViewModel() {
-    private var _pesanan = MutableLiveData<UIState<ArrayList<PesananModel>>>()
+    private var _keranjangBelanja = MutableLiveData<UIState<ArrayList<PesananModel>>>()
     private var _updatePesanan = MutableLiveData<UIState<ResponseModel>>()
     private var _deletePesanan = MutableLiveData<UIState<ResponseModel>>()
 
-    fun fetchPesanan(idUser: Int){
+    fun fetchKeranjangBelanja(idUser: Int){
         viewModelScope.launch(Dispatchers.IO) {
-            _pesanan.postValue(UIState.Loading)
+            _keranjangBelanja.postValue(UIState.Loading)
             delay(1_000)
             try {
-                val data = api.getPesanan("", idUser)
-                _pesanan.postValue(UIState.Success(data))
+                val data = api.getKeranjangBelanja("", idUser)
+                _keranjangBelanja.postValue(UIState.Success(data))
             } catch (ex: Exception){
-                _pesanan.postValue(UIState.Failure("Gagal : ${ex.message}"))
+                _keranjangBelanja.postValue(UIState.Failure("Gagal : ${ex.message}"))
             }
         }
     }
@@ -61,7 +61,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getPesanan(): LiveData<UIState<ArrayList<PesananModel>>> = _pesanan
+    fun getKeranjangBelanja(): LiveData<UIState<ArrayList<PesananModel>>> = _keranjangBelanja
     fun getUpdatePesanan(): LiveData<UIState<ResponseModel>> = _updatePesanan
     fun getDeletePesanan(): LiveData<UIState<ResponseModel>> = _deletePesanan
 }

@@ -29,7 +29,6 @@ import com.abcd.e_kalontong.databinding.FragmentHomeBinding
 import com.abcd.e_kalontong.ui.activity.user.main.MainActivity
 import com.abcd.e_kalontong.ui.activity.user.payment.PaymentActivity
 import com.abcd.e_kalontong.ui.activity.user.produk.search.SearchProdukActivity
-import com.abcd.e_kalontong.utils.Constant
 import com.abcd.e_kalontong.utils.KontrolNavigationDrawer
 import com.abcd.e_kalontong.utils.KonversiRupiah
 import com.abcd.e_kalontong.utils.LoadingAlertDialog
@@ -114,11 +113,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun fetchPesanan() {
-        viewModel.fetchPesanan(sharedPreferencesLogin.getIdUser())
+        viewModel.fetchKeranjangBelanja(sharedPreferencesLogin.getIdUser())
     }
 
     private fun getPesanan() {
-        viewModel.getPesanan().observe(contextLifecycleOwner){result->
+        viewModel.getKeranjangBelanja().observe(contextLifecycleOwner){ result->
             when(result){
                 is UIState.Loading-> setStartShimmerProduk()
                 is UIState.Failure-> setFailureFetchPesanan(result.message)
