@@ -98,8 +98,8 @@ class HomeFragment : Fragment() {
             btnProduk.setOnClickListener {
                 (activity as MainActivity).clickProduk()
             }
-            btnRiwayat.setOnClickListener {
-                (activity as MainActivity).clickRiwayat()
+            btnPesanan.setOnClickListener {
+                (activity as MainActivity).clickPesanan()
             }
             btnAkun.setOnClickListener {
                 (activity as MainActivity).clickAccount()
