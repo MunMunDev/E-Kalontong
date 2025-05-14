@@ -4,6 +4,7 @@ import android.view.View
 import com.abcd.e_kalontong.data.model.AlamatModel
 import com.abcd.e_kalontong.data.model.PesananModel
 import com.abcd.e_kalontong.data.model.ProdukModel
+import com.abcd.e_kalontong.data.model.RiwayatPesananModel
 
 interface OnClickItem {
     interface ClickPesanan{
@@ -18,5 +19,9 @@ interface OnClickItem {
     interface ClickPilihAlamat{
         fun clickItemPilih(alamat: AlamatModel, it: View)
         fun clickItemEdit(alamat: AlamatModel, it: View)
+    }
+
+    interface ClickRiwayatPesanan{
+        fun clickItemRiwayatPesanan(riwayatPesanan: RiwayatPesananModel, it: View)
     }
 }
