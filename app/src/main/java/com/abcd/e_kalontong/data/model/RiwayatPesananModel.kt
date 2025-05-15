@@ -51,7 +51,7 @@ class RiwayatPesananModel (
     val waktu: String? = null,
 
     @SerializedName("jum_jenis_produk")
-    val jum_jenis_produk: String? = null,
+    var jum_jenis_produk: String? = null,
 
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
