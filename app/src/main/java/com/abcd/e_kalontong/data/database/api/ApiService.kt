@@ -147,4 +147,12 @@ interface ApiService {
         @Field("detail_alamat") detail_alamat: String,
     ): ArrayList<ResponseModel>
 
+    @FormUrlEncoded
+    @POST("e-kelontong/api/post.php")
+    suspend fun postUpdateSudahDiterima(
+        @Field("update_pilih_alamat") update_pilih_alamat: String,
+        @Field("id_riwayat_pesanan") id_riwayat_pesanan: String,
+        @Field("selesai") selesai: String,
+    ): ArrayList<ResponseModel>
+
 }
