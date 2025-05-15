@@ -1,21 +1,18 @@
 package com.abcd.e_kalontong.ui.fragment.user.pesanan
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.abcd.e_kalontong.R
 import com.abcd.e_kalontong.adapter.RiwayatPesananAdapter
-import com.abcd.e_kalontong.data.model.PesananModel
 import com.abcd.e_kalontong.data.model.RiwayatPesananModel
 import com.abcd.e_kalontong.databinding.FragmentPesananBinding
 import com.abcd.e_kalontong.ui.activity.pesanan.detail.PesananDetailActivity
@@ -66,7 +63,7 @@ class PesananFragment : Fragment() {
     private fun getPesanan(){
         viewModel.getPesanan().observe(contextLifecycleOwner){ result->
             when(result){
-                is UIState.Loading->{}
+                is UIState.Loading-> setStartShimmerPesanan()
                 is UIState.Success-> setSuccessFetchPesanan(result.data)
                 is UIState.Failure-> setFailureFetchPesanan(result.message)
             }
@@ -75,25 +72,29 @@ class PesananFragment : Fragment() {
 
     private fun setFailureFetchPesanan(message: String) {
         Toast.makeText(activityContext, message, Toast.LENGTH_SHORT).show()
+        setStopShimmerPesanan()
     }
 
     private fun setSuccessFetchPesanan(data: ArrayList<RiwayatPesananModel>) {
         tempListPesanan = data
+        listPesanan = data
 
         if(data.isNotEmpty()){
-            searchDataHalPesanan(data)
+            searchDataPesanan(data)
             setAdapterPesanan(listPesanan)
         } else{
             Toast.makeText(activityContext, "Tidak ada data Pesanan", Toast.LENGTH_SHORT).show()
         }
+
+        setStopShimmerPesanan()
     }
 
     private fun setAdapterPesanan(data: ArrayList<RiwayatPesananModel>) {
         val adapter = RiwayatPesananAdapter(data, object : OnClickItem.ClickRiwayatPesanan{
             override fun clickItemRiwayatPesanan(riwayatPesanan: RiwayatPesananModel, it: View) {
-                val pesanan = tempListPesanan.find { it.id_pemesanan == riwayatPesanan.id_pemesanan }
+                val pesanan = tempListPesanan.filter { it.id_pemesanan == riwayatPesanan.id_pemesanan } as ArrayList<RiwayatPesananModel>
                 val i = Intent(activityContext, PesananDetailActivity::class.java)
-                i.putExtra("pesanan", pesanan)
+                i.putParcelableArrayListExtra("pesanan", pesanan)
                 startActivity(i)
             }
         })
@@ -110,7 +111,7 @@ class PesananFragment : Fragment() {
     private fun getRiwayatPesanan(){
         viewModel.getRiwayatPesanan().observe(contextLifecycleOwner){ result->
             when(result){
-                is UIState.Loading->{}
+                is UIState.Loading-> setStartShimmerRiwayatPesanan()
                 is UIState.Success-> setSuccessFetchRiwayatPesanan(result.data)
                 is UIState.Failure-> setFailureFetchRiwayatPesanan(result.message)
             }
@@ -119,23 +120,27 @@ class PesananFragment : Fragment() {
 
     private fun setFailureFetchRiwayatPesanan(message: String) {
         Toast.makeText(activityContext, message, Toast.LENGTH_SHORT).show()
+        setStopShimmerRiwayatPesanan()
     }
 
     private fun setSuccessFetchRiwayatPesanan(data: ArrayList<RiwayatPesananModel>) {
+        tempListRiwayatPesanan = data
+        listRiwayatPesanan = data
         if(data.isNotEmpty()){
-            searchDataHalRiwayatPesanan(data)
+            searchDataRiwayatPesanan(data)
             setAdapterRiwayatPesanan(listRiwayatPesanan)
         } else{
             Toast.makeText(activityContext, "Tidak ada data Riwayat Pesanan", Toast.LENGTH_SHORT).show()
         }
+        setStopShimmerRiwayatPesanan()
     }
 
     private fun setAdapterRiwayatPesanan(data: ArrayList<RiwayatPesananModel>) {
         val adapter = RiwayatPesananAdapter(data, object : OnClickItem.ClickRiwayatPesanan{
             override fun clickItemRiwayatPesanan(riwayatPesanan: RiwayatPesananModel, it: View) {
-                val pesanan = tempListRiwayatPesanan.find { it.id_pemesanan == riwayatPesanan.id_pemesanan }
+                val pesanan = tempListRiwayatPesanan.filter { it.id_pemesanan == riwayatPesanan.id_pemesanan } as ArrayList<RiwayatPesananModel>
                 val i = Intent(activityContext, PesananDetailActivity::class.java)
-                i.putExtra("pesanan", pesanan)
+                i.putParcelableArrayListExtra("pesanan", pesanan)
                 startActivity(i)
             }
         })
@@ -146,29 +151,65 @@ class PesananFragment : Fragment() {
         }
     }
 
-    private fun searchDataHalPesanan(data: ArrayList<RiwayatPesananModel>){
+    private fun searchDataPesanan(data: ArrayList<RiwayatPesananModel>){
         listPesanan = data.distinctBy { it.id_pemesanan } as ArrayList<RiwayatPesananModel>
+        Log.d("DetailTAG", "searchDataPesanan: ${listPesanan.size}")
+        for(value in listPesanan){
+
+        }
         for((no, value) in listPesanan.withIndex()){
-            val searchData = tempListPesanan.find { it.id_pemesanan == value.id_pemesanan } as ArrayList<RiwayatPesananModel>
+            val searchData = tempListPesanan.filter { it.id_pemesanan == value.id_pemesanan } as ArrayList<RiwayatPesananModel>
 
             val jumlah = searchData.size
             val totalHarga = searchData.sumOf { it.harga!!.toInt() }
 
             listPesanan[no].harga = totalHarga.toString()
-            listPesanan[no].jumlah = jumlah.toString()
+            listPesanan[no].jum_jenis_produk = "$jumlah Jenis Produk"
         }
     }
 
-    private fun searchDataHalRiwayatPesanan(data: ArrayList<RiwayatPesananModel>){
+    private fun searchDataRiwayatPesanan(data: ArrayList<RiwayatPesananModel>){
         listRiwayatPesanan = data.distinctBy { it.id_pemesanan } as ArrayList<RiwayatPesananModel>
         for((no, value) in listRiwayatPesanan.withIndex()){
-            val searchData = tempListRiwayatPesanan.find { it.id_pemesanan == value.id_pemesanan } as ArrayList<RiwayatPesananModel>
+            val searchData = tempListRiwayatPesanan.filter { it.id_pemesanan == value.id_pemesanan } as ArrayList<RiwayatPesananModel>
 
             val jumlah = searchData.size
             val totalHarga = searchData.sumOf { it.harga!!.toInt() }
 
             listRiwayatPesanan[no].harga = totalHarga.toString()
-            listRiwayatPesanan[no].jumlah = jumlah.toString()
+            listRiwayatPesanan[no].jum_jenis_produk = "$jumlah Jenis Produk"
+        }
+    }
+
+    private fun setStartShimmerPesanan(){
+        binding.apply {
+            smPesanan.startShimmer()
+            rvPesanan.visibility = View.GONE
+            smPesanan.visibility = View.VISIBLE
+        }
+    }
+
+    private fun setStopShimmerPesanan(){
+        binding.apply {
+            smPesanan.stopShimmer()
+            rvPesanan.visibility = View.VISIBLE
+            smPesanan.visibility = View.GONE
+        }
+    }
+
+    private fun setStartShimmerRiwayatPesanan(){
+        binding.apply {
+            smRiwayatPesanan.startShimmer()
+            rvRiwayatPesanan.visibility = View.GONE
+            smRiwayatPesanan.visibility = View.VISIBLE
+        }
+    }
+
+    private fun setStopShimmerRiwayatPesanan(){
+        binding.apply {
+            smRiwayatPesanan.stopShimmer()
+            rvRiwayatPesanan.visibility = View.VISIBLE
+            smRiwayatPesanan.visibility = View.GONE
         }
     }
 
