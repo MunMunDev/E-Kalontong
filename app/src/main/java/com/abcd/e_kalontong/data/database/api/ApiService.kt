@@ -70,9 +70,8 @@ interface ApiService {
     suspend fun addUser(
         @Field("add_user") addUser:String,
         @Field("nama") nama:String,
-        @Field("kelas") kelas:String,
         @Field("nomor_hp") nomorHp:String,
-        @Field("nis") nis:String,
+        @Field("username") username:String,
         @Field("password") password:String,
         @Field("sebagai") sebagai:String
     ): ArrayList<ResponseModel>
@@ -149,10 +148,14 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST("e-kelontong/api/post.php")
-    suspend fun postUpdateSudahDiterima(
-        @Field("update_pilih_alamat") update_pilih_alamat: String,
-        @Field("id_riwayat_pesanan") id_riwayat_pesanan: String,
-        @Field("selesai") selesai: String,
+    suspend fun postUpdateUser(
+        @Field("update_akun") updateAkun:String,
+        @Field("id_user") idUser: String,
+        @Field("nama") nama:String,
+        @Field("nomor_hp") nomorHp:String,
+        @Field("username") username:String,
+        @Field("password") password:String,
+        @Field("username_lama") usernameLama: String
     ): ArrayList<ResponseModel>
 
 }
