@@ -13,6 +13,7 @@ import com.abcd.e_kalontong.databinding.ActivityMainBinding
 import com.abcd.e_kalontong.ui.fragment.user.home.HomeFragment
 import com.abcd.e_kalontong.ui.fragment.user.pesanan.PesananFragment
 import com.abcd.e_kalontong.ui.fragment.user.product.ProductFragment
+import com.abcd.e_kalontong.ui.fragment.user.profile.ProfileFragment
 import com.abcd.e_kalontong.utils.SharedPreferencesLogin
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -124,7 +125,7 @@ class MainActivity : AppCompatActivity() {
             ivPesanan.setImageResource(R.drawable.icon_riwayat)
             ivAccount.setImageResource(R.drawable.icon_akun_active)
 
-//            setFragment(AccountFragment())
+            setFragment(ProfileFragment())
             checkFragmentPosition = 3
         }
     }

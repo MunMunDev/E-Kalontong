@@ -82,30 +82,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
                     android:layout_marginBottom="6dp"
-                    android:text="Alamat"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"/>
-                <EditText
-                    android:id="@+id/etEditAlamat"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/title"
-                    android:layout_marginTop="4dp"
-                    android:padding="18dp"
-                    android:background="@drawable/bg_card"
-                    android:hint="Masukkan Alamat"
-                    android:textColorHint="@color/abuabu_tua"
-                    android:inputType="textMultiLine"
-                    android:lines="2"
-                    android:maxLines="3"
-                    android:maxLength="50" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
-                    android:layout_marginBottom="6dp"
                     android:text="Nomor HP"
                     android:textSize="16sp"
                     android:textColor="@color/black"
