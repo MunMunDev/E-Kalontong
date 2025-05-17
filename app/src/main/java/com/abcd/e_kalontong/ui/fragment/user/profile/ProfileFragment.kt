@@ -1,6 +1,7 @@
 package com.abcd.e_kalontong.ui.fragment.user.profile
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import com.abcd.e_kalontong.data.model.ResponseModel
 import com.abcd.e_kalontong.data.model.UserModel
 import com.abcd.e_kalontong.databinding.AlertDialogAkunBinding
 import com.abcd.e_kalontong.databinding.FragmentProfileBinding
+import com.abcd.e_kalontong.ui.activity.login.LoginActivity
 import com.abcd.e_kalontong.utils.KontrolNavigationDrawer
 import com.abcd.e_kalontong.utils.LoadingAlertDialog
 import com.abcd.e_kalontong.utils.SharedPreferencesLogin
@@ -65,9 +67,20 @@ class ProfileFragment : Fragment() {
     }
 
     private fun button() {
-        binding.btnUbahData.setOnClickListener {
-            setDialogUpdateData()
+        binding.apply {
+            btnUbahData.setOnClickListener {
+                setDialogUpdateData()
+            }
+            btnLogout.setOnClickListener{
+                setLogout()
+            }
         }
+    }
+
+    private fun setLogout() {
+        sharedPreferences.setLogout()
+        startActivity(Intent(activityContext, LoginActivity::class.java))
+        activityContext.finish()
     }
 
     private fun setDialogUpdateData() {

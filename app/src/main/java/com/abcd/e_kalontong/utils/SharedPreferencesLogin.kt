@@ -25,6 +25,18 @@ class SharedPreferencesLogin(val context: Context) {
         }
     }
 
+    fun setLogout(){
+        editPref.apply{
+            putInt(keyIdUser, 0)
+            putString(keyNama, "")
+            putString(keyNomorHp, "")
+            putString(keyUsername, "")
+            putString(keyPassword, "")
+            putString(keySebagai, "")
+            apply()
+        }
+    }
+
     fun getIdUser(): Int{
         return sharedPref.getInt(keyIdUser, 0)
     }
