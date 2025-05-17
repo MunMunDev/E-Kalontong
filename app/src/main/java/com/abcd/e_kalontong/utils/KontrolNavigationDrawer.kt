@@ -8,6 +8,9 @@ import android.widget.ImageView
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.abcd.e_kalontong.R
+import com.abcd.e_kalontong.ui.activity.admin.jenis_produk.AdminJenisProdukActivity
+import com.abcd.e_kalontong.ui.activity.admin.main.AdminMainActivity
+
 //import com.abcd.e_kalontong.ui.activity.login.LoginActivity
 
 class KontrolNavigationDrawer(var context: Context) {
@@ -24,11 +27,33 @@ class KontrolNavigationDrawer(var context: Context) {
             if(sharedPreferences.getSebagai() == "admin"){
                 when(it.itemId){
                     R.id.adminNavDrawerHome -> {
-//                        val intent = Intent(context, AdminMainActivity::class.java)
-//                        context.startActivity(intent)
-//                        activity.finish()
+                        val intent = Intent(context, AdminMainActivity::class.java)
+                        context.startActivity(intent)
+                        activity.finish()
                     }
+                    R.id.adminNavDrawerKasir -> {
 
+                    }
+                    R.id.adminNavDrawerJenisProduk -> {
+                        val intent = Intent(context, AdminJenisProdukActivity::class.java)
+                        context.startActivity(intent)
+                        activity.finish()
+                    }
+                    R.id.adminNavDrawerProduk -> {
+
+                    }
+                    R.id.adminNavDrawerKeranjangBelanja -> {
+
+                    }
+                    R.id.adminNavDrawerPesanan-> {
+
+                    }
+                    R.id.adminNavDrawerRiwayatPesanan -> {
+
+                    }
+                    R.id.adminNavDrawerAkun -> {
+
+                    }
                     R.id.adminDrawerBottom ->{
                         logoutGuruAdmin(activity)
                     }

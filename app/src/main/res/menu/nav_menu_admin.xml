@@ -7,6 +7,27 @@
         <item
             android:id="@+id/adminNavDrawerHome"
             android:title="Halaman Home"/>
+        <item
+            android:id="@+id/adminNavDrawerKasir"
+            android:title="Halaman Kasir"/>
+        <item
+            android:id="@+id/adminNavDrawerJenisProduk"
+            android:title="Halaman Jenis Produk"/>
+        <item
+            android:id="@+id/adminNavDrawerProduk"
+            android:title="Halaman Produk"/>
+        <item
+            android:id="@+id/adminNavDrawerKeranjangBelanja"
+            android:title="Halaman Keranjang Belanja"/>
+        <item
+            android:id="@+id/adminNavDrawerPesanan"
+            android:title="Halaman Pesanan"/>
+        <item
+            android:id="@+id/adminNavDrawerRiwayatPesanan"
+            android:title="Halaman Riwayat Pesanan"/>
+        <item
+            android:id="@+id/adminNavDrawerAkun"
+            android:title="Halaman Akun"/>
     </group>
 
     <group android:id="@+id/adminDrawerBottom">
