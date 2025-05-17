@@ -89,7 +89,7 @@ interface ApiService {
     @POST("e-kelontong/api/post.php")
     suspend fun postUpdatePesanan(
         @Field("update_pesanan") update_pesanan:String,
-        @Field("id_produk") id_produk:Int,
+        @Field("id_pesanan") id_pesanan:Int,
         @Field("jumlah") jumlah:String,
     ): ResponseModel
 
@@ -97,7 +97,7 @@ interface ApiService {
     @POST("e-kelontong/api/post.php")
     suspend fun postDeletePesanan(
         @Field("delete_pesanan") delete_pesanan:String,
-        @Field("id_produk") id_produk:Int,
+        @Field("id_pesanan") id_pesanan:Int,
     ): ResponseModel
 
     @FormUrlEncoded
