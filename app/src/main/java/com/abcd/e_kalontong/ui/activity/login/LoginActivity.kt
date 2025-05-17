@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.abcd.e_kalontong.data.model.UserModel
 import com.abcd.e_kalontong.databinding.ActivityLoginBinding
+import com.abcd.e_kalontong.ui.activity.admin.main.AdminMainActivity
 import com.abcd.e_kalontong.ui.activity.register.RegisterActivity
 import com.abcd.e_kalontong.ui.activity.user.main.MainActivity
 import com.abcd.e_kalontong.utils.LoadingAlertDialog
@@ -117,9 +118,9 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                 finish()
             } else if(valueSebagai=="admin"){
-//                sharedPreferencesLogin.setLogin(valueIdUser, valueNama, valueNomorHp, valueUsername, valuePassword, valueSebagai)
-//                startActivity(Intent(this@LoginActivity, AdminMainActivity::class.java))
-//                finish()
+                sharedPreferencesLogin.setLogin(valueIdUser, valueNama, valueNomorHp, valueUsername, valuePassword, valueSebagai)
+                startActivity(Intent(this@LoginActivity, AdminMainActivity::class.java))
+                finish()
             } else{
                 Toast.makeText(this@LoginActivity, "Data tidak ditemukan \nPastikan Username dan Password ada", Toast.LENGTH_SHORT).show()
             }
