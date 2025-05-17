@@ -9,9 +9,6 @@ class UserModel (
     @SerializedName("nama")
     var nama: String? = null,
 
-    @SerializedName("alamat")
-    var alamat: String? = null,
-
     @SerializedName("nomor_hp")
     var nomor_hp: String? = null,
 

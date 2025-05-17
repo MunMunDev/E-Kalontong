@@ -156,6 +156,6 @@ interface ApiService {
         @Field("username") username:String,
         @Field("password") password:String,
         @Field("username_lama") usernameLama: String
-    ): ArrayList<ResponseModel>
+    ): ResponseModel
 
 }
