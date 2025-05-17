@@ -2,6 +2,7 @@ package com.abcd.e_kalontong.utils
 
 import android.view.View
 import com.abcd.e_kalontong.data.model.AlamatModel
+import com.abcd.e_kalontong.data.model.JenisProdukModel
 import com.abcd.e_kalontong.data.model.PesananModel
 import com.abcd.e_kalontong.data.model.ProdukModel
 import com.abcd.e_kalontong.data.model.RiwayatPesananModel
@@ -23,5 +24,9 @@ interface OnClickItem {
 
     interface ClickRiwayatPesanan{
         fun clickItemRiwayatPesanan(riwayatPesanan: RiwayatPesananModel, it: View)
+    }
+
+    interface ClickAdminJenisProduk{
+        fun clickItemSetting(jenisProduk: JenisProdukModel, it: View)
     }
 }

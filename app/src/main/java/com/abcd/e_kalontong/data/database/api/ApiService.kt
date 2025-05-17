@@ -1,6 +1,7 @@
 package com.abcd.e_kalontong.data.database.api
 
 import com.abcd.e_kalontong.data.model.AlamatModel
+import com.abcd.e_kalontong.data.model.JenisProdukModel
 import com.abcd.e_kalontong.data.model.KecamatanModel
 import com.abcd.e_kalontong.data.model.PesananModel
 import com.abcd.e_kalontong.data.model.ProdukModel
@@ -61,6 +62,11 @@ interface ApiService {
         @Query("id_user") idUser: String
     ): ArrayList<RiwayatPesananModel>
 
+    @GET("e-kelontong/api/get.php")
+    suspend fun getJenisProduk(
+        @Query("get_jenis_produk") get_jenis_produk: String
+    ): ArrayList<JenisProdukModel>
+
 
     // POST
 
@@ -74,7 +80,7 @@ interface ApiService {
         @Field("username") username:String,
         @Field("password") password:String,
         @Field("sebagai") sebagai:String
-    ): ArrayList<ResponseModel>
+    ): ResponseModel
 
     @FormUrlEncoded
     @POST("e-kelontong/api/post.php")
@@ -157,5 +163,29 @@ interface ApiService {
         @Field("password") password:String,
         @Field("username_lama") usernameLama: String
     ): ResponseModel
+
+    // Post Jenis Produk
+    @FormUrlEncoded
+    @POST("e-kelontong/api/post.php")
+    suspend fun postTambahJenisProduk(
+        @Field("tambah_jenis_produk") tambahJenisProduk: String,
+        @Field("jenis_produk") jenis_produk: String,
+    ): ResponseModel
+
+    @FormUrlEncoded
+    @POST("e-kelontong/api/post.php")
+    suspend fun postUpdateJenisProduk(
+        @Field("update_jenis_produk") updateJenisProduk: String,
+        @Field("id_jenis_produk") id_jenis_produk: String,
+        @Field("jenis_produk") jenis_produk: String,
+    ): ResponseModel
+
+    @FormUrlEncoded
+    @POST("e-kelontong/api/post.php")
+    suspend fun postDeleteJenisProduk(
+        @Field("delete_jenis_produk") delete_jenis_produk:String,
+        @Field("id_jenis_produk") id_jenis_produk: String
+    ): ResponseModel
+
 
 }
