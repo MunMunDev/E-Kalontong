@@ -110,7 +110,7 @@ class ProfileFragment : Fragment() {
                         etEditNomorHp.text.toString(),
                         etEditUsername.text.toString(),
                         etEditPassword.text.toString(),
-                        sharedPreferences.getUsername()
+                        sharedPreferences.getSebagai()
                     )
                     postUpdateData(
                         sharedPreferences.getIdUser().toString(),
@@ -150,25 +150,21 @@ class ProfileFragment : Fragment() {
         loading.alertDialogCancel()
     }
 
-    private fun setSuccessUpdateData(data: ArrayList<ResponseModel>) {
-        if(data.isNotEmpty()){
-            if(data[0].status == "0"){
-                Toast.makeText(activityContext, "Berhasil Update Akun", Toast.LENGTH_SHORT).show()
-                sharedPreferences.setLogin(
-                    tempUser.idUser!!.trim().toInt(),
-                    tempUser.nama!!,
-                    tempUser.nomor_hp!!,
-                    tempUser.username!!,
-                    tempUser.password!!,
-                    "user"
-                )
-                tempUser = UserModel()
-                setData()
-            } else{
-                Toast.makeText(activityContext, data[0].message_response, Toast.LENGTH_SHORT).show()
-            }
+    private fun setSuccessUpdateData(data: ResponseModel) {
+        if(data.status == "0"){
+            Toast.makeText(activityContext, "Berhasil Update Akun", Toast.LENGTH_SHORT).show()
+            sharedPreferences.setLogin(
+                tempUser.idUser!!.trim().toInt(),
+                tempUser.nama!!,
+                tempUser.nomor_hp!!,
+                tempUser.username!!,
+                tempUser.password!!,
+                "user"
+            )
+            tempUser = UserModel()
+            setData()
         } else{
-            Toast.makeText(activityContext, "Gagal: Ada kesalahan di API", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activityContext, data.message_response, Toast.LENGTH_SHORT).show()
         }
         loading.alertDialogCancel()
     }

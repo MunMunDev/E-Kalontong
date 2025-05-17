@@ -16,7 +16,7 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor(
     private val api: ApiService
 ): ViewModel() {
-    private var _responsePostUpdateUser = MutableLiveData<UIState<ArrayList<ResponseModel>>>()
+    private var _responsePostUpdateUser = MutableLiveData<UIState<ResponseModel>>()
 
     fun postUpdateUser(
         idUser:String, nama: String, nomorHp: String,
@@ -33,5 +33,5 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    fun getUpdateData(): LiveData<UIState<ArrayList<ResponseModel>>> = _responsePostUpdateUser
+    fun getUpdateData(): LiveData<UIState<ResponseModel>> = _responsePostUpdateUser
 }
