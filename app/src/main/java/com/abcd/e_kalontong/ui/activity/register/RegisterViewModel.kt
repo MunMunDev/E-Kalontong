@@ -16,12 +16,12 @@ import javax.inject.Inject
 class RegisterViewModel @Inject constructor(
     private val api: ApiService
 ): ViewModel() {
-    private var _registerUser = MutableLiveData<UIState<ArrayList<ResponseModel>>>()
+    private var _registerUser = MutableLiveData<UIState<ResponseModel>>()
 
-    fun postRegisterUser(nama:String, alamat:String, nomorHp:String, username:String, password:String, sebagai:String){
+    fun postRegisterUser(nama:String, nomorHp:String, username:String, password:String, sebagai:String){
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val registerUser = api.addUser("", nama, alamat, nomorHp, username, password, sebagai)
+                val registerUser = api.addUser("", nama, nomorHp, username, password, sebagai)
                 _registerUser.postValue(UIState.Success(registerUser))
             } catch (ex: Exception){
                 _registerUser.postValue(UIState.Failure("Gagal : ${ex.message}"))
@@ -29,5 +29,5 @@ class RegisterViewModel @Inject constructor(
         }
     }
 
-    fun getRegisterUser(): LiveData<UIState<ArrayList<ResponseModel>>> = _registerUser
+    fun getRegisterUser(): LiveData<UIState<ResponseModel>> = _registerUser
 }

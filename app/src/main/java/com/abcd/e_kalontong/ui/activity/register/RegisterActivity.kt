@@ -50,10 +50,6 @@ class RegisterActivity : AppCompatActivity() {
                 etEditNama.error = "Tidak Boleh Kosong"
                 cek = true
             }
-            if (etEditAlamat.toString().isEmpty()) {
-                etEditAlamat.error = "Tidak Boleh Kosong"
-                cek = true
-            }
             if (etEditNomorHp.toString().isEmpty()) {
                 etEditNomorHp.error = "Tidak Boleh Kosong"
                 cek = true
@@ -70,7 +66,6 @@ class RegisterActivity : AppCompatActivity() {
             if (!cek) {
                 postTambahData(
                     etEditNama.text.toString().trim(),
-                    etEditAlamat.text.toString().trim(),
                     etEditNomorHp.text.toString().trim(),
                     etEditUsername.text.toString().trim(),
                     etEditPassword.text.toString().trim()
@@ -79,8 +74,8 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun postTambahData(nama: String, alamat: String, nomorHp: String, username: String, password: String){
-        viewModel.postRegisterUser(nama, alamat, nomorHp, username, password, "user")
+    private fun postTambahData(nama: String, nomorHp: String, username: String, password: String){
+        viewModel.postRegisterUser(nama, nomorHp, username, password, "user")
     }
 
     private fun postRegisterUser(){
@@ -98,15 +93,11 @@ class RegisterActivity : AppCompatActivity() {
         loading.alertDialogCancel()
     }
 
-    private fun responseSuccessRegiserUser(data: ArrayList<ResponseModel>) {
-        if (data.isNotEmpty()){
-            if (data[0].status == "0"){
-                Toast.makeText(this@RegisterActivity, "Berhasil melakukan registrasi", Toast.LENGTH_SHORT).show()
-            } else{
-                Toast.makeText(this@RegisterActivity, data[0].message_response, Toast.LENGTH_SHORT).show()
-            }
-        }else{
-            Toast.makeText(this@RegisterActivity, "Maaf gagal", Toast.LENGTH_SHORT).show()
+    private fun responseSuccessRegiserUser(data: ResponseModel) {
+        if (data.status == "0"){
+            Toast.makeText(this@RegisterActivity, "Berhasil melakukan registrasi", Toast.LENGTH_SHORT).show()
+        } else{
+            Toast.makeText(this@RegisterActivity, data.message_response, Toast.LENGTH_SHORT).show()
         }
         loading.alertDialogCancel()
     }
