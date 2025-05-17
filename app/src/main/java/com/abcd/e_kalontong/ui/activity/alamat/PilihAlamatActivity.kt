@@ -180,15 +180,13 @@ class PilihAlamatActivity : AppCompatActivity() {
         Toast.makeText(this@PilihAlamatActivity, message, Toast.LENGTH_SHORT).show()
     }
 
-    private fun setSuccessTambahAlamat(data: ArrayList<ResponseModel>) {
+    private fun setSuccessTambahAlamat(data: ResponseModel) {
         loading.alertDialogCancel()
-        if(data.isNotEmpty()){
-            if(data[0].status=="0"){
-                Toast.makeText(this@PilihAlamatActivity, "Berhasil Tambah", Toast.LENGTH_SHORT).show()
-                fetchAlamat(sharedPreferences.getIdUser())
-            } else{
-                Toast.makeText(this@PilihAlamatActivity, data[0].message_response, Toast.LENGTH_SHORT).show()
-            }
+        if(data.status=="0"){
+            Toast.makeText(this@PilihAlamatActivity, "Berhasil Tambah", Toast.LENGTH_SHORT).show()
+            fetchAlamat(sharedPreferences.getIdUser())
+        } else{
+            Toast.makeText(this@PilihAlamatActivity, data.message_response, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -288,17 +286,15 @@ class PilihAlamatActivity : AppCompatActivity() {
         Toast.makeText(this@PilihAlamatActivity, message, Toast.LENGTH_SHORT).show()
     }
 
-    private fun setSuccessUpdateMainAlamat(data: ArrayList<ResponseModel>) {
+    private fun setSuccessUpdateMainAlamat(data: ResponseModel) {
         loading.alertDialogCancel()
-        if(data.isNotEmpty()){
-            if(data[0].status=="0"){
-                val i = Intent(this@PilihAlamatActivity, PaymentActivity::class.java)
-                i.putExtra("pesanan", pesanan)
-                startActivity(i)
-                finish()
-            } else{
-                Toast.makeText(this@PilihAlamatActivity, data[0].message_response, Toast.LENGTH_SHORT).show()
-            }
+        if(data.status=="0"){
+            val i = Intent(this@PilihAlamatActivity, PaymentActivity::class.java)
+            i.putExtra("pesanan", pesanan)
+            startActivity(i)
+            finish()
+        } else{
+            Toast.makeText(this@PilihAlamatActivity, data.message_response, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -401,15 +397,13 @@ class PilihAlamatActivity : AppCompatActivity() {
         Toast.makeText(this@PilihAlamatActivity, message, Toast.LENGTH_SHORT).show()
     }
 
-    private fun setSuccessUpdateAlamat(data: ArrayList<ResponseModel>) {
+    private fun setSuccessUpdateAlamat(data: ResponseModel) {
         loading.alertDialogCancel()
-        if(data.isNotEmpty()){
-            if(data[0].status=="0"){
-                Toast.makeText(this@PilihAlamatActivity, "Berhasil Update", Toast.LENGTH_SHORT).show()
-                fetchAlamat(sharedPreferences.getIdUser())
-            } else{
-                Toast.makeText(this@PilihAlamatActivity, data[0].message_response, Toast.LENGTH_SHORT).show()
-            }
+        if(data.status=="0"){
+            Toast.makeText(this@PilihAlamatActivity, "Berhasil Update", Toast.LENGTH_SHORT).show()
+            fetchAlamat(sharedPreferences.getIdUser())
+        } else{
+            Toast.makeText(this@PilihAlamatActivity, data.message_response, Toast.LENGTH_SHORT).show()
         }
     }
 

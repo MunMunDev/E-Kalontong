@@ -21,9 +21,9 @@ class PilihAlamatViewModel @Inject constructor(
 ): ViewModel() {
     val _alamatUser = MutableLiveData<UIState<ArrayList<AlamatModel>>>()
     val _kecamatan = MutableLiveData<UIState<ArrayList<KecamatanModel>>>()
-    val _updateMainAlamat = MutableLiveData<UIState<ArrayList<ResponseModel>>>()
-    val _tambahAlamatUser = MutableLiveData<UIState<ArrayList<ResponseModel>>>()
-    val _updateAlamatUser = MutableLiveData<UIState<ArrayList<ResponseModel>>>()
+    val _updateMainAlamat = MutableLiveData<UIState<ResponseModel>>()
+    val _tambahAlamatUser = MutableLiveData<UIState<ResponseModel>>()
+    val _updateAlamatUser = MutableLiveData<UIState<ResponseModel>>()
 
     fun fetchDataAlamat(idUser:Int){
         viewModelScope.launch(Dispatchers.IO) {
@@ -106,7 +106,7 @@ class PilihAlamatViewModel @Inject constructor(
 
     fun getDataAlamat(): LiveData<UIState<ArrayList<AlamatModel>>> = _alamatUser
     fun getKecamatan(): LiveData<UIState<ArrayList<KecamatanModel>>> = _kecamatan
-    fun getUpdateMainAlamat(): LiveData<UIState<ArrayList<ResponseModel>>> = _updateMainAlamat
-    fun getTambahAlamat(): LiveData<UIState<ArrayList<ResponseModel>>> = _tambahAlamatUser
-    fun getUpdateAlamat(): LiveData<UIState<ArrayList<ResponseModel>>> = _updateAlamatUser
+    fun getUpdateMainAlamat(): LiveData<UIState<ResponseModel>> = _updateMainAlamat
+    fun getTambahAlamat(): LiveData<UIState<ResponseModel>> = _tambahAlamatUser
+    fun getUpdateAlamat(): LiveData<UIState<ResponseModel>> = _updateAlamatUser
 }
