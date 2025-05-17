@@ -121,7 +121,7 @@ interface ApiService {
         @Field("update_main_alamat") update_main_alamat: String,
         @Field("id_alamat") id_alamat: String,
         @Field("id_user") id_user: String,
-    ): ArrayList<ResponseModel>
+    ): ResponseModel
 
     @FormUrlEncoded
     @POST("e-kelontong/api/post.php")
@@ -132,7 +132,7 @@ interface ApiService {
         @Field("nomor_hp") nomor_hp: String,
         @Field("id_kecamatan") id_kecamatan: String,
         @Field("detail_alamat") detail_alamat: String,
-    ): ArrayList<ResponseModel>
+    ): ResponseModel
 
     @FormUrlEncoded
     @POST("e-kelontong/api/post.php")
@@ -144,7 +144,7 @@ interface ApiService {
         @Field("nomor_hp") nomor_hp: String,
         @Field("id_kecamatan") id_kecamatan: String,
         @Field("detail_alamat") detail_alamat: String,
-    ): ArrayList<ResponseModel>
+    ): ResponseModel
 
     @FormUrlEncoded
     @POST("e-kelontong/api/post.php")
