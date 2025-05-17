@@ -19,8 +19,8 @@ class PaymentViewModel @Inject constructor(
     private val api: ApiService
 ): ViewModel() {
     val _pembayaran = MutableLiveData<UIState<ArrayList<AlamatModel>>>()
-    val _responseRegistrasiPembayaran = MutableLiveData<UIState<ArrayList<ResponseModel>>>()
-    private val _postPesan = MutableLiveData<UIState<ArrayList<ResponseModel>>>()
+    val _responseRegistrasiPembayaran = MutableLiveData<UIState<ResponseModel>>()
+    private val _postPesan = MutableLiveData<UIState<ResponseModel>>()
 
     fun fetchAlamat(idUser:Int){
         viewModelScope.launch(Dispatchers.IO) {
@@ -34,7 +34,6 @@ class PaymentViewModel @Inject constructor(
             }
         }
     }
-
 
     fun postRegistrasiPembayaran(kodeUnik:String, idUser:Int){
         viewModelScope.launch(Dispatchers.IO){
@@ -64,6 +63,6 @@ class PaymentViewModel @Inject constructor(
     }
 
     fun getAlamat(): LiveData<UIState<ArrayList<AlamatModel>>> = _pembayaran
-    fun getRegistrasiPembayaran(): LiveData<UIState<ArrayList<ResponseModel>>> = _responseRegistrasiPembayaran
-    fun getPostPesan(): LiveData<UIState<ArrayList<ResponseModel>>> = _postPesan
+    fun getRegistrasiPembayaran(): LiveData<UIState<ResponseModel>> = _responseRegistrasiPembayaran
+    fun getPostPesan(): LiveData<UIState<ResponseModel>> = _postPesan
 }

@@ -105,7 +105,7 @@ interface ApiService {
     suspend fun postPesanCod(
         @Field("post_cod") post_cod:String,
         @Field("id_user") id_user: Int,
-    ): ArrayList<ResponseModel>
+    ): ResponseModel
 
     @FormUrlEncoded
     @POST("e-kelontong/api/post.php")
@@ -113,7 +113,7 @@ interface ApiService {
         @Field("post_register_pembayaran") post_register_pembayaran:String,
         @Field("kode_unik") kode_unik: String,
         @Field("id_user") id_user: Int,
-    ): ArrayList<ResponseModel>
+    ): ResponseModel
 
     @FormUrlEncoded
     @POST("e-kelontong/api/post.php")
