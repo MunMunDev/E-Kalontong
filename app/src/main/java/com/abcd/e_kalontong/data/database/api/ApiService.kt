@@ -3,6 +3,7 @@ package com.abcd.e_kalontong.data.database.api
 import com.abcd.e_kalontong.data.model.AlamatModel
 import com.abcd.e_kalontong.data.model.JenisProdukModel
 import com.abcd.e_kalontong.data.model.KecamatanModel
+import com.abcd.e_kalontong.data.model.PesananHalModel
 import com.abcd.e_kalontong.data.model.PesananModel
 import com.abcd.e_kalontong.data.model.ProdukModel
 import com.abcd.e_kalontong.data.model.ResponseModel
@@ -75,6 +76,11 @@ interface ApiService {
     suspend fun getAllProduk(
         @Query("get_all_produk") getAllProduk: String
     ): ArrayList<ProdukModel>
+
+    @GET("e-kelontong/api/get.php")
+    suspend fun getAdminKeranjangBelanja(
+        @Query("get_admin_keranjang_belanja") get_admin_keranjang_belanja: String,
+    ): ArrayList<PesananHalModel>
 
 
     // POST
@@ -237,6 +243,32 @@ interface ApiService {
     suspend fun postDeleteProduk(
         @Field("delete_admin_produk") delete_admin_produk:String,
         @Field("id_produk") id_produk:Int
+    ): ResponseModel
+
+    @FormUrlEncoded
+    @POST("e-kelontong/api/post.php")
+    suspend fun postAdminTambahPesanan(
+        @Field("tambah_admin_pesanan") tambah_admin_pesanan:String,
+        @Field("id_user") id_user:String,
+        @Field("id_produk") id_produk:String,
+        @Field("jumlah") jumlah:String,
+    ): ResponseModel
+
+    @FormUrlEncoded
+    @POST("e-kelontong/api/post.php")
+    suspend fun postAdminUpdatePesanan(
+        @Field("update_admin_pesanan") update_admin_pesanan:String,
+        @Field("id_pesanan") id_pesanan:String,
+        @Field("id_user") id_user:String,
+        @Field("id_produk") id_produk:String,
+        @Field("jumlah") jumlah:String,
+    ): ResponseModel
+
+    @FormUrlEncoded
+    @POST("e-kelontong/api/post.php")
+    suspend fun postAdminDeletePesanan(
+        @Field("delete_admin_pesanan") delete_admin_pesanan:String,
+        @Field("id_pesanan") id_pesanan:String,
     ): ResponseModel
 
 
