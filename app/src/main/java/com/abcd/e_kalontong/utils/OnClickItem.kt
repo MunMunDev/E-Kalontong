@@ -39,6 +39,6 @@ interface OnClickItem {
     }
 
     interface ClickAdminKeranjangBelanja{
-        fun clickItem(pesanan: ArrayList<PesananModel>, it: View)
+        fun clickItem(pesanan: ArrayList<PesananModel>, nama:String, it: View)
     }
 }
