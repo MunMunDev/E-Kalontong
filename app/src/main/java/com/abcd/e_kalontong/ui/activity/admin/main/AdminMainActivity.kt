@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.abcd.e_kalontong.databinding.ActivityAdminMainBinding
+import com.abcd.e_kalontong.ui.activity.admin.akun.AdminAkunActivity
 import com.abcd.e_kalontong.ui.activity.admin.jenis_produk.AdminJenisProdukActivity
 import com.abcd.e_kalontong.ui.activity.admin.keranjang_belanja.AdminKeranjangBelanjaActivity
 import com.abcd.e_kalontong.ui.activity.admin.produk.AdminProdukActivity
@@ -50,7 +51,7 @@ class AdminMainActivity : AppCompatActivity() {
 //                startActivity(Intent(this@AdminMainActivity, AdminRiwayatPesananActivity::class.java))
             }
             cvAkun.setOnClickListener {
-//                startActivity(Intent(this@AdminMainActivity, AdminSemuaAkunActivity::class.java))
+                startActivity(Intent(this@AdminMainActivity, AdminAkunActivity::class.java))
             }
         }
     }
