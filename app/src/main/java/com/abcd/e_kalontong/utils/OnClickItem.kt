@@ -6,6 +6,7 @@ import com.abcd.e_kalontong.data.model.JenisProdukModel
 import com.abcd.e_kalontong.data.model.PesananModel
 import com.abcd.e_kalontong.data.model.ProdukModel
 import com.abcd.e_kalontong.data.model.RiwayatPesananModel
+import com.abcd.e_kalontong.data.model.UserModel
 
 interface OnClickItem {
     interface ClickPesanan{
@@ -40,5 +41,12 @@ interface OnClickItem {
 
     interface ClickAdminKeranjangBelanja{
         fun clickItem(pesanan: ArrayList<PesananModel>, nama:String, it: View)
+    }
+
+    interface ClickAkun{
+        fun clickItemNama(keterangan: String, nama:String, it: View)
+        fun clickItemNomoHp(keterangan: String, nomorHp:String, it: View)
+        fun clickItemUsername(keterangan: String, username:String, it: View)
+        fun clickItemSetting(akun: UserModel, it: View)
     }
 }

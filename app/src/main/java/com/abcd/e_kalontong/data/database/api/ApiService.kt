@@ -82,6 +82,11 @@ interface ApiService {
         @Query("get_admin_keranjang_belanja") get_admin_keranjang_belanja: String,
     ): ArrayList<PesananHalModel>
 
+    @GET("e-kelontong/api/get.php")
+    suspend fun getAllUser(
+        @Query("get_admin_all_user") get_admin_all_user: String,
+    ): ArrayList<UserModel>
+
 
     // POST
 
@@ -271,5 +276,11 @@ interface ApiService {
         @Field("id_pesanan") id_pesanan:String,
     ): ResponseModel
 
+    @FormUrlEncoded
+    @POST("e-kelontong/api/post.php")
+    suspend fun postAdminHapusUser(
+        @Field("admin_delete_user") admin_delete_user:String,
+        @Field("id_user") idUser: String
+    ): ResponseModel
 
 }
