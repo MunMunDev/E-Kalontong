@@ -29,4 +29,12 @@ interface OnClickItem {
     interface ClickAdminJenisProduk{
         fun clickItemSetting(jenisProduk: JenisProdukModel, it: View)
     }
+
+    interface ClickAdminProduk{
+        fun clickItemJenisProduk(keterangan: String, jenisProduk: String, it: View)
+        fun clickItemProduk(keterangan: String, produk: String, it: View)
+        fun clickItemHargaProduk(keterangan: String, harga: String, it: View)
+        fun clickItemGambarProduk(keterangan: String, gambar: String, it: View)
+        fun clickItemSetting(produk: ProdukModel, it: View)
+    }
 }
