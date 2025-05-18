@@ -8,10 +8,14 @@ import com.abcd.e_kalontong.data.model.ProdukModel
 import com.abcd.e_kalontong.data.model.ResponseModel
 import com.abcd.e_kalontong.data.model.RiwayatPesananModel
 import com.abcd.e_kalontong.data.model.UserModel
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.Part
 import retrofit2.http.Query
 
 interface ApiService {
@@ -66,6 +70,11 @@ interface ApiService {
     suspend fun getJenisProduk(
         @Query("get_jenis_produk") get_jenis_produk: String
     ): ArrayList<JenisProdukModel>
+
+    @GET("e-kelontong/api/get.php")
+    suspend fun getAllProduk(
+        @Query("get_all_produk") getAllProduk: String
+    ): ArrayList<ProdukModel>
 
 
     // POST
@@ -185,6 +194,49 @@ interface ApiService {
     suspend fun postDeleteJenisProduk(
         @Field("delete_jenis_produk") delete_jenis_produk:String,
         @Field("id_jenis_produk") id_jenis_produk: String
+    ): ResponseModel
+
+
+    // Post Produk
+    @Multipart
+    @POST("e-kelontong/api/post.php")
+    suspend fun postTambahProduk(
+        @Part("tambah_admin_produk") tambah_admin_produk: RequestBody,
+        @Part("id_jenis_produk") id_jenis_produk: RequestBody,
+        @Part("produk") produk: RequestBody,
+        @Part("harga") harga: RequestBody,
+        @Part("stok") stok: RequestBody,
+        @Part gambar: MultipartBody.Part,
+    ): ResponseModel
+
+    @Multipart
+    @POST("e-kelontong/api/post.php")
+    suspend fun postUpdateProduk(
+        @Part("update_admin_produk") update_admin_produk: RequestBody,
+        @Part("id_produk") id_produk: RequestBody,
+        @Part("id_jenis_produk") id_jenis_produk: RequestBody,
+        @Part("produk") produk: RequestBody,
+        @Part("harga") harga: RequestBody,
+        @Part("stok") stok: RequestBody,
+        @Part gambar: MultipartBody.Part,
+    ): ResponseModel
+
+    @FormUrlEncoded
+    @POST("e-kelontong/api/post.php")
+    suspend fun postUpdateProdukNoImage(
+        @Field("update_produk_no_image") update_produk_no_image:String,
+        @Field("id_produk") id_produk:String,
+        @Field("id_jenis_produk") id_jenis_produk:String,
+        @Field("produk") produk: String,
+        @Field("harga") harga:String,
+        @Field("stok") stok: String,
+    ): ResponseModel
+
+    @FormUrlEncoded
+    @POST("e-kelontong/api/post.php")
+    suspend fun postDeleteProduk(
+        @Field("delete_admin_produk") delete_admin_produk:String,
+        @Field("id_produk") id_produk:Int
     ): ResponseModel
 
 

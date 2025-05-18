@@ -10,6 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.abcd.e_kalontong.R
 import com.abcd.e_kalontong.ui.activity.admin.jenis_produk.AdminJenisProdukActivity
 import com.abcd.e_kalontong.ui.activity.admin.main.AdminMainActivity
+import com.abcd.e_kalontong.ui.activity.admin.produk.AdminProdukActivity
 
 //import com.abcd.e_kalontong.ui.activity.login.LoginActivity
 
@@ -40,7 +41,9 @@ class KontrolNavigationDrawer(var context: Context) {
                         activity.finish()
                     }
                     R.id.adminNavDrawerProduk -> {
-
+                        val intent = Intent(context, AdminProdukActivity::class.java)
+                        context.startActivity(intent)
+                        activity.finish()
                     }
                     R.id.adminNavDrawerKeranjangBelanja -> {
 
