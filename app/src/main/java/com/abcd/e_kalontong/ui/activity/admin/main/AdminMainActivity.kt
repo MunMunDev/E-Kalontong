@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.abcd.e_kalontong.databinding.ActivityAdminMainBinding
 import com.abcd.e_kalontong.ui.activity.admin.jenis_produk.AdminJenisProdukActivity
+import com.abcd.e_kalontong.ui.activity.admin.produk.AdminProdukActivity
 import com.abcd.e_kalontong.utils.KontrolNavigationDrawer
 
 class AdminMainActivity : AppCompatActivity() {
@@ -36,7 +37,7 @@ class AdminMainActivity : AppCompatActivity() {
                 startActivity(Intent(this@AdminMainActivity, AdminJenisProdukActivity::class.java))
             }
             cvProduk.setOnClickListener {
-//                startActivity(Intent(this@AdminMainActivity, AdminProdukActivity::class.java))
+                startActivity(Intent(this@AdminMainActivity, AdminProdukActivity::class.java))
             }
             cvKeranjangBelanja.setOnClickListener {
 //                startActivity(Intent(this@AdminMainActivity, AdminKeranjangBelanjaActivity::class.java))
