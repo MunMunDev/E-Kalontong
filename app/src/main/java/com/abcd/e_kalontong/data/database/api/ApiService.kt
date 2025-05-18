@@ -7,6 +7,7 @@ import com.abcd.e_kalontong.data.model.PesananHalModel
 import com.abcd.e_kalontong.data.model.PesananModel
 import com.abcd.e_kalontong.data.model.ProdukModel
 import com.abcd.e_kalontong.data.model.ResponseModel
+import com.abcd.e_kalontong.data.model.RiwayatPesananHalModel
 import com.abcd.e_kalontong.data.model.RiwayatPesananModel
 import com.abcd.e_kalontong.data.model.UserModel
 import okhttp3.MultipartBody
@@ -86,6 +87,11 @@ interface ApiService {
     suspend fun getAllUser(
         @Query("get_admin_all_user") get_admin_all_user: String,
     ): ArrayList<UserModel>
+
+    @GET("e-kelontong/api/get.php")
+    suspend fun getAdminRiwayatPesanan(
+        @Query("get_admin_riwayat_pesanan") get_admin_riwayat_pesanan: String,
+    ): ArrayList<RiwayatPesananHalModel>
 
 
     // POST

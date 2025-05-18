@@ -24,6 +24,9 @@
         android:theme="@style/Theme.EKalontong"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activity.admin.riwayat_pesanan.AdminRiwayatPesananActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.admin.akun.AdminAkunActivity"
             android:exported="false" />
         <activity

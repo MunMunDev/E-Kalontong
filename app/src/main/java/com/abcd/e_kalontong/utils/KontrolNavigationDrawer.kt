@@ -13,6 +13,7 @@ import com.abcd.e_kalontong.ui.activity.admin.jenis_produk.AdminJenisProdukActiv
 import com.abcd.e_kalontong.ui.activity.admin.keranjang_belanja.AdminKeranjangBelanjaActivity
 import com.abcd.e_kalontong.ui.activity.admin.main.AdminMainActivity
 import com.abcd.e_kalontong.ui.activity.admin.produk.AdminProdukActivity
+import com.abcd.e_kalontong.ui.activity.admin.riwayat_pesanan.AdminRiwayatPesananActivity
 import com.abcd.e_kalontong.ui.activity.login.LoginActivity
 
 //import com.abcd.e_kalontong.ui.activity.login.LoginActivity
@@ -57,7 +58,9 @@ class KontrolNavigationDrawer(var context: Context) {
 
                     }
                     R.id.adminNavDrawerRiwayatPesanan -> {
-
+                        val intent = Intent(context, AdminRiwayatPesananActivity::class.java)
+                        context.startActivity(intent)
+                        activity.finish()
                     }
                     R.id.adminNavDrawerAkun -> {
                         val intent = Intent(context, AdminAkunActivity::class.java)

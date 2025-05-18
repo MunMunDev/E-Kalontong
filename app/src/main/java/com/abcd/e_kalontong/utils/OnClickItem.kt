@@ -49,4 +49,8 @@ interface OnClickItem {
         fun clickItemUsername(keterangan: String, username:String, it: View)
         fun clickItemSetting(akun: UserModel, it: View)
     }
+
+    interface ClickAdminRiwayatPesanan{
+        fun clickItem(pesanan: ArrayList<RiwayatPesananModel>, nama:String, it: View)
+    }
 }
