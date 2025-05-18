@@ -9,6 +9,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.abcd.e_kalontong.R
 import com.abcd.e_kalontong.ui.activity.admin.jenis_produk.AdminJenisProdukActivity
+import com.abcd.e_kalontong.ui.activity.admin.keranjang_belanja.AdminKeranjangBelanjaActivity
 import com.abcd.e_kalontong.ui.activity.admin.main.AdminMainActivity
 import com.abcd.e_kalontong.ui.activity.admin.produk.AdminProdukActivity
 
@@ -46,7 +47,9 @@ class KontrolNavigationDrawer(var context: Context) {
                         activity.finish()
                     }
                     R.id.adminNavDrawerKeranjangBelanja -> {
-
+                        val intent = Intent(context, AdminKeranjangBelanjaActivity::class.java)
+                        context.startActivity(intent)
+                        activity.finish()
                     }
                     R.id.adminNavDrawerPesanan-> {
 
