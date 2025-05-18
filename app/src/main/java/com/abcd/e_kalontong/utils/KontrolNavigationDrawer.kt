@@ -8,10 +8,12 @@ import android.widget.ImageView
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.abcd.e_kalontong.R
+import com.abcd.e_kalontong.ui.activity.admin.akun.AdminAkunActivity
 import com.abcd.e_kalontong.ui.activity.admin.jenis_produk.AdminJenisProdukActivity
 import com.abcd.e_kalontong.ui.activity.admin.keranjang_belanja.AdminKeranjangBelanjaActivity
 import com.abcd.e_kalontong.ui.activity.admin.main.AdminMainActivity
 import com.abcd.e_kalontong.ui.activity.admin.produk.AdminProdukActivity
+import com.abcd.e_kalontong.ui.activity.login.LoginActivity
 
 //import com.abcd.e_kalontong.ui.activity.login.LoginActivity
 
@@ -58,10 +60,12 @@ class KontrolNavigationDrawer(var context: Context) {
 
                     }
                     R.id.adminNavDrawerAkun -> {
-
+                        val intent = Intent(context, AdminAkunActivity::class.java)
+                        context.startActivity(intent)
+                        activity.finish()
                     }
                     R.id.adminDrawerBottom ->{
-                        logoutGuruAdmin(activity)
+                        logoutAdmin(activity)
                     }
                 }
             }
@@ -75,10 +79,10 @@ class KontrolNavigationDrawer(var context: Context) {
         }
     }
 
-    fun logoutGuruAdmin(activity: Activity){
-//        sharedPreferences.setLoginGuru("", "", "","", "","", "")
-//        context.startActivity(Intent(context, LoginActivity::class.java))
-//        activity.finish()
+    fun logoutAdmin(activity: Activity){
+        sharedPreferences.setLogout()
+        context.startActivity(Intent(context, LoginActivity::class.java))
+        activity.finish()
     }
 
 //    fun logoutAdmin(activity: Activity){
