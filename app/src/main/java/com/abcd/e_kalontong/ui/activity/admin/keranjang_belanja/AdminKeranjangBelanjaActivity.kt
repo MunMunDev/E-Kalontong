@@ -77,8 +77,9 @@ class AdminKeranjangBelanjaActivity : AppCompatActivity() {
 
     private fun setAdapter(data: ArrayList<PesananHalModel>) {
         adapter = AdminKeranjangBelanjaAdapter(data, object: OnClickItem.ClickAdminKeranjangBelanja{
-            override fun clickItem(pesanan: ArrayList<PesananModel>, it: View) {
+            override fun clickItem(pesanan: ArrayList<PesananModel>, nama: String, it: View) {
                 val i = Intent(this@AdminKeranjangBelanjaActivity, AdminKeranjangBelanjaDetailActivity::class.java)
+                i.putExtra("nama", nama)
                 i.putParcelableArrayListExtra("pesanan", pesanan)
                 startActivity(i)
             }

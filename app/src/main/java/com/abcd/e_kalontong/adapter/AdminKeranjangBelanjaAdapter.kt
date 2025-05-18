@@ -55,7 +55,7 @@ class AdminKeranjangBelanjaAdapter(
             tvTanggal.text = valueTanggalDanWaktu
 
             holder.itemView.setOnClickListener{
-                onClickItem.clickItem(listPesanan.pesanan, it)
+                onClickItem.clickItem(listPesanan.pesanan, listPesanan.user.nama!!, it)
             }
 
         }
