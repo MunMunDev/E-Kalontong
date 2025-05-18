@@ -8,6 +8,7 @@ import com.abcd.e_kalontong.ui.activity.admin.akun.AdminAkunActivity
 import com.abcd.e_kalontong.ui.activity.admin.jenis_produk.AdminJenisProdukActivity
 import com.abcd.e_kalontong.ui.activity.admin.keranjang_belanja.AdminKeranjangBelanjaActivity
 import com.abcd.e_kalontong.ui.activity.admin.produk.AdminProdukActivity
+import com.abcd.e_kalontong.ui.activity.admin.riwayat_pesanan.AdminRiwayatPesananActivity
 import com.abcd.e_kalontong.utils.KontrolNavigationDrawer
 
 class AdminMainActivity : AppCompatActivity() {
@@ -48,7 +49,7 @@ class AdminMainActivity : AppCompatActivity() {
 //                startActivity(Intent(this@AdminMainActivity, AdminPesananActivity::class.java))
             }
             cvRiwayatPesanan.setOnClickListener {
-//                startActivity(Intent(this@AdminMainActivity, AdminRiwayatPesananActivity::class.java))
+                startActivity(Intent(this@AdminMainActivity, AdminRiwayatPesananActivity::class.java))
             }
             cvAkun.setOnClickListener {
                 startActivity(Intent(this@AdminMainActivity, AdminAkunActivity::class.java))
