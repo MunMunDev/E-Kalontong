@@ -53,4 +53,8 @@ interface OnClickItem {
     interface ClickAdminRiwayatPesanan{
         fun clickItem(pesanan: ArrayList<RiwayatPesananModel>, nama:String, it: View)
     }
+
+    interface ClickAdminRiwayatPesananDetail{
+        fun clickItemGambarProduk(keterangan: String, gambar: String, it: View)
+    }
 }
