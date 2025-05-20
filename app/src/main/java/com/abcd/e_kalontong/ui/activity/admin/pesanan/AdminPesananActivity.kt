@@ -17,6 +17,7 @@ import com.abcd.e_kalontong.data.model.PesananModel
 import com.abcd.e_kalontong.data.model.RiwayatPesananModel
 import com.abcd.e_kalontong.databinding.ActivityAdminPesananBinding
 import com.abcd.e_kalontong.ui.activity.admin.main.AdminMainActivity
+import com.abcd.e_kalontong.ui.activity.admin.pesanan.detail.AdminPesananDetailActivity
 import com.abcd.e_kalontong.utils.KontrolNavigationDrawer
 import com.abcd.e_kalontong.utils.LoadingAlertDialog
 import com.abcd.e_kalontong.utils.OnClickItem
@@ -84,10 +85,10 @@ class AdminPesananActivity : AppCompatActivity() {
                 nama: String,
                 it: View
             ) {
-//                val i = Intent(this@AdminPesananActivity, AdminPesananDetailActivity::class.java)
-//                i.putExtra("nama", nama)
-//                i.putParcelableArrayListExtra("pesanan", pesanan)
-//                startActivity(i)
+                val i = Intent(this@AdminPesananActivity, AdminPesananDetailActivity::class.java)
+                i.putExtra("nama", nama)
+                i.putParcelableArrayListExtra("pesanan", pesanan)
+                startActivity(i)
             }
         })
 
