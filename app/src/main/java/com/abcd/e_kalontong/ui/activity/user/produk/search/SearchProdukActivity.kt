@@ -20,6 +20,8 @@ import com.abcd.e_kalontong.databinding.ActivitySearchProdukBinding
 import com.abcd.e_kalontong.databinding.AlertDialogPesanProduk2Binding
 import com.abcd.e_kalontong.databinding.AlertDialogPesanProdukBinding
 import com.abcd.e_kalontong.databinding.AlertDialogShowImageBinding
+import com.abcd.e_kalontong.ui.activity.admin.kasir.AdminKasirActivity
+import com.abcd.e_kalontong.ui.activity.user.main.MainActivity
 import com.abcd.e_kalontong.utils.Constant
 import com.abcd.e_kalontong.utils.KonversiRupiah
 import com.abcd.e_kalontong.utils.LoadingAlertDialog
@@ -84,7 +86,12 @@ class SearchProdukActivity : AppCompatActivity() {
 
     private fun setButton() {
         binding.btnBack.setOnClickListener {
-            finish()
+            if(sharedPreferencesLogin.getIdUser() == 0){
+                startActivity(Intent(this@SearchProdukActivity, AdminKasirActivity::class.java))
+                finish()
+            } else{
+                finish()
+            }
         }
     }
 
@@ -233,9 +240,22 @@ class SearchProdukActivity : AppCompatActivity() {
     private fun setSuccessPostPesan(data: ResponseModel) {
         if(data.status == "0"){
             Toast.makeText(this@SearchProdukActivity, "Berhasil Pesan", Toast.LENGTH_SHORT).show()
+//            if(sharedPreferencesLogin.getIdUser() == 0){
+//                AdminKasirActivity().fetchPesananKasir()
+//            }
         } else{
             Toast.makeText(this@SearchProdukActivity, data.message_response, Toast.LENGTH_SHORT).show()
         }
         loading.alertDialogCancel()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if(sharedPreferencesLogin.getIdUser() == 0){
+            startActivity(Intent(this@SearchProdukActivity, AdminKasirActivity::class.java))
+            finish()
+        } else{
+            finish()
+        }
     }
 }
