@@ -79,6 +79,11 @@ interface ApiService {
     ): ArrayList<ProdukModel>
 
     @GET("e-kelontong/api/get.php")
+    suspend fun getAdminPesananKasir(
+        @Query("get_admin_pesanan_kasir") get_admin_pesanan_kasir: String,
+    ): ArrayList<PesananModel>
+
+    @GET("e-kelontong/api/get.php")
     suspend fun getAdminKeranjangBelanja(
         @Query("get_admin_keranjang_belanja") get_admin_keranjang_belanja: String,
     ): ArrayList<PesananHalModel>
@@ -285,6 +290,12 @@ interface ApiService {
     suspend fun postAdminDeletePesanan(
         @Field("delete_admin_pesanan") delete_admin_pesanan:String,
         @Field("id_pesanan") id_pesanan:String,
+    ): ResponseModel
+
+    @FormUrlEncoded
+    @POST("e-kelontong/api/post.php")
+    suspend fun postAdminPesan(
+        @Field("post_pesan_kasir") post_pesan_kasir:String,
     ): ResponseModel
 
     @FormUrlEncoded

@@ -10,6 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.abcd.e_kalontong.R
 import com.abcd.e_kalontong.ui.activity.admin.akun.AdminAkunActivity
 import com.abcd.e_kalontong.ui.activity.admin.jenis_produk.AdminJenisProdukActivity
+import com.abcd.e_kalontong.ui.activity.admin.kasir.AdminKasirActivity
 import com.abcd.e_kalontong.ui.activity.admin.keranjang_belanja.AdminKeranjangBelanjaActivity
 import com.abcd.e_kalontong.ui.activity.admin.main.AdminMainActivity
 import com.abcd.e_kalontong.ui.activity.admin.pesanan.AdminPesananActivity
@@ -27,6 +28,7 @@ class KontrolNavigationDrawer(var context: Context) {
             navigation.inflateMenu(R.menu.nav_menu_admin)
         }
     }
+
     @SuppressLint("ResourceAsColor")
     fun onClickItemNavigationDrawer(navigation: com.google.android.material.navigation.NavigationView, navigationLayout: DrawerLayout, igNavigation:ImageView, activity: Activity){
         navigation.setNavigationItemSelectedListener {
@@ -38,7 +40,9 @@ class KontrolNavigationDrawer(var context: Context) {
                         activity.finish()
                     }
                     R.id.adminNavDrawerKasir -> {
-
+                        val intent = Intent(context, AdminKasirActivity::class.java)
+                        context.startActivity(intent)
+                        activity.finish()
                     }
                     R.id.adminNavDrawerJenisProduk -> {
                         val intent = Intent(context, AdminJenisProdukActivity::class.java)
@@ -70,7 +74,7 @@ class KontrolNavigationDrawer(var context: Context) {
                         context.startActivity(intent)
                         activity.finish()
                     }
-                    R.id.adminDrawerBottom ->{
+                    R.id.adminBtnKeluar ->{
                         logoutAdmin(activity)
                     }
                 }
