@@ -118,7 +118,7 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                 finish()
             } else if(valueSebagai=="admin"){
-                sharedPreferencesLogin.setLogin(valueIdUser, valueNama, valueNomorHp, valueUsername, valuePassword, valueSebagai)
+                sharedPreferencesLogin.setLogin(0, valueNama, valueNomorHp, valueUsername, valuePassword, valueSebagai)
                 startActivity(Intent(this@LoginActivity, AdminMainActivity::class.java))
                 finish()
             } else{
