@@ -289,6 +289,20 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST("e-kelontong/api/post.php")
+    suspend fun postAdminPesananBayar(
+        @Field("admin_pesanan_bayar") admin_pesanan_bayar:String,
+        @Field("id_pemesanan") id_pemesanan: String
+    ): ResponseModel
+
+    @FormUrlEncoded
+    @POST("e-kelontong/api/post.php")
+    suspend fun postAdminPesananDikirim(
+        @Field("admin_pesanan_diantar") admin_pesanan_diantar:String,
+        @Field("id_pemesanan") id_pemesanan: String
+    ): ResponseModel
+
+    @FormUrlEncoded
+    @POST("e-kelontong/api/post.php")
     suspend fun postAdminHapusUser(
         @Field("admin_delete_user") admin_delete_user:String,
         @Field("id_user") idUser: String
