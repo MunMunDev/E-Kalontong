@@ -153,7 +153,7 @@ interface ApiService {
     @POST("e-kelontong/api/post.php")
     suspend fun postRegistrasiPembayaran(
         @Field("post_register_pembayaran") post_register_pembayaran:String,
-        @Field("kode_unik") kode_unik: String,
+        @Field("id_pembayaran") id_pembayaran: String,
         @Field("id_user") id_user: Int,
     ): ResponseModel
 

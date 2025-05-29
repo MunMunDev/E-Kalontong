@@ -229,7 +229,7 @@ class PaymentActivity : AppCompatActivity() {
 
                 itemDetails.add(
                     ItemDetails(
-                        "$no", harga.toDouble(), 1, "$namaProduk"
+                        "$no", harga.toDouble(), jumlah, "$namaProduk"
                     )
                 )
                 no++
