@@ -22,7 +22,7 @@ class AdminProdukViewModel @Inject constructor(
     private val api: ApiService
 ): ViewModel() {
     private var _jenisProduk = MutableLiveData<UIState<ArrayList<JenisProdukModel>>>()
-    private var _plafon = MutableLiveData<UIState<ArrayList<ProdukModel>>>()
+    private var _produk = MutableLiveData<UIState<ArrayList<ProdukModel>>>()
     private var _postTambahProduk = MutableLiveData<UIState<ResponseModel>>()
     private var _postUpdateProduk = MutableLiveData<UIState<ResponseModel>>()
     private var _postUpdateProdukNoImage = MutableLiveData<UIState<ResponseModel>>()
@@ -43,13 +43,13 @@ class AdminProdukViewModel @Inject constructor(
 
     fun fetchProduk() {
         viewModelScope.launch(Dispatchers.IO) {
-            _plafon.postValue(UIState.Loading)
+            _produk.postValue(UIState.Loading)
             delay(1_000)
             try {
                 val fetchProduk = api.getProduk("")
-                _plafon.postValue(UIState.Success(fetchProduk))
+                _produk.postValue(UIState.Success(fetchProduk))
             } catch (ex: Exception) {
-                _plafon.postValue(UIState.Failure("Gagal : ${ex.message}"))
+                _produk.postValue(UIState.Failure("Gagal : ${ex.message}"))
             }
         }
     }
@@ -133,7 +133,7 @@ class AdminProdukViewModel @Inject constructor(
     }
 
     fun getJenisProduk(): LiveData<UIState<ArrayList<JenisProdukModel>>> = _jenisProduk
-    fun getProduk(): LiveData<UIState<ArrayList<ProdukModel>>> = _plafon
+    fun getProduk(): LiveData<UIState<ArrayList<ProdukModel>>> = _produk
     fun getTambahProduk(): LiveData<UIState<ResponseModel>> = _postTambahProduk
     fun getUpdateProduk(): LiveData<UIState<ResponseModel>> = _postUpdateProduk
     fun getUpdateProdukNoImage(): LiveData<UIState<ResponseModel>> = _postUpdateProdukNoImage
