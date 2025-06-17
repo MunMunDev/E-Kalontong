@@ -113,6 +113,8 @@ interface ApiService {
         @Field("add_user") addUser:String,
         @Field("nama") nama:String,
         @Field("nomor_hp") nomorHp:String,
+        @Field("id_kecamatan") idKecamatan:String,
+        @Field("detail_alamat") detailAlamat:String,
         @Field("username") username:String,
         @Field("password") password:String,
         @Field("sebagai") sebagai:String

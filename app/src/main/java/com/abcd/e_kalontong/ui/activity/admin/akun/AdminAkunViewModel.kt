@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.abcd.e_kalontong.data.database.api.ApiService
+import com.abcd.e_kalontong.data.model.KecamatanModel
 import com.abcd.e_kalontong.data.model.ResponseModel
 import com.abcd.e_kalontong.data.model.UserModel
 import com.abcd.e_kalontong.utils.network.UIState
@@ -19,6 +20,7 @@ class AdminAkunViewModel @Inject constructor(
     private val api: ApiService
 ): ViewModel() {
     private var _semuaAkun = MutableLiveData<UIState<ArrayList<UserModel>>>()
+    private var _kecamatan = MutableLiveData<UIState<ArrayList<KecamatanModel>>>()
     private var _postTambahAkun = MutableLiveData<UIState<ResponseModel>>()
     private var _postUpdateAkun = MutableLiveData<UIState<ResponseModel>>()
     private var _postDeleteAkun = MutableLiveData<UIState<ResponseModel>>()
@@ -36,14 +38,28 @@ class AdminAkunViewModel @Inject constructor(
         }
     }
 
+    fun fetchKecamatan(){
+        viewModelScope.launch(Dispatchers.IO) {
+            _kecamatan.postValue(UIState.Loading)
+            delay(1_000)
+            try {
+                val dataAlamat = api.getKecamatan("")
+                _kecamatan.postValue(UIState.Success(dataAlamat))
+            } catch (ex: Exception){
+                _kecamatan.postValue(UIState.Failure("Error pada: ${ex.message}"))
+            }
+        }
+    }
+
     fun postTambahAkun(
-        nama:String, nomorHp:String, username:String, password:String, sebagai:String
+        nama:String, nomorHp:String, idKecamatan:String, detailAlamat:String,
+        username:String, password:String, sebagai:String
     ){
         viewModelScope.launch {
             _postTambahAkun.postValue(UIState.Loading)
             delay(1_000)
             try {
-                val postTambahAkun = api.addUser("", nama, nomorHp, username, password, "user")
+                val postTambahAkun = api.addUser("", nama, nomorHp, idKecamatan, detailAlamat, username, password, "user")
                 _postTambahAkun.postValue(UIState.Success(postTambahAkun))
             } catch (ex: Exception){
                 _postTambahAkun.postValue(UIState.Failure("Error: ${ex.message}"))
@@ -84,6 +100,7 @@ class AdminAkunViewModel @Inject constructor(
     }
 
     fun getAkun(): LiveData<UIState<ArrayList<UserModel>>> = _semuaAkun
+    fun getKecamatan(): LiveData<UIState<ArrayList<KecamatanModel>>> = _kecamatan
     fun getTambahAkun(): LiveData<UIState<ResponseModel>> = _postTambahAkun
     fun getUpdateAkun(): LiveData<UIState<ResponseModel>> = _postUpdateAkun
     fun getDeleteAkun(): LiveData<UIState<ResponseModel>> = _postDeleteAkun

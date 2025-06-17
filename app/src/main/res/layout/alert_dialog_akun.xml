@@ -98,6 +98,71 @@
                     android:maxLength="14"
                     android:background="@drawable/bg_card" />
 
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="6dp"
+                    android:text="Kota"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/tvKabKota"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/etEditNomorHp"
+                    android:layout_marginTop="2dp"
+                    android:text="Sidenreng Rappang"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="normal"
+                    android:background="@drawable/bg_card" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="6dp"
+                    android:text="Kecamatan"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+                <Spinner
+                    android:id="@+id/spKecamatan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/etEditNomorHp"
+                    android:layout_marginTop="2dp"
+                    android:textColor="@color/black"
+                    android:textStyle="normal"
+                    android:background="@drawable/bg_card" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="6dp"
+                    android:text="Detail Alamat"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+                <EditText
+                    android:id="@+id/etDetailAlamat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/etEditNomorHp"
+                    android:layout_marginTop="2dp"
+                    android:hint="Misal: Jln. Ahmad Yani No. 3, Samping Umpar"
+                    android:textColor="@color/black"
+                    android:textStyle="normal"
+                    android:textSize="16sp"
+                    android:inputType="textMultiLine"
+                    android:maxLength="200"
+                    android:lines="3"
+                    android:background="@drawable/bg_card" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

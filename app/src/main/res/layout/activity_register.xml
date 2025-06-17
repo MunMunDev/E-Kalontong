@@ -50,98 +50,154 @@
             android:orientation="vertical"
             app:layout_constraintTop_toBottomOf="@id/ivBack"
             app:layout_constraintBottom_toBottomOf="parent">
-
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="20dp">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="6dp"
-                    android:text="Nama"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"/>
-                <EditText
-                    android:id="@+id/etEditNama"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/title"
-                    android:layout_marginTop="2dp"
-                    android:padding="18dp"
-                    android:background="@drawable/bg_card"
-                    android:hint="Masukkan Nama"
-                    android:textColorHint="@color/abuabu_tua"
-                    android:inputType="text"
-                    android:maxLength="30" />
+                android:layout_marginBottom="6dp"
+                android:text="Nama"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/etEditNama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/title"
+                android:layout_marginTop="2dp"
+                android:padding="18dp"
+                android:background="@drawable/bg_card"
+                android:hint="Masukkan Nama"
+                android:textColorHint="@color/abuabu_tua"
+                android:inputType="text"
+                android:maxLength="30" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
-                    android:layout_marginBottom="6dp"
-                    android:text="Nomor HP"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"/>
-                <EditText
-                    android:id="@+id/etEditNomorHp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:padding="18dp"
-                    android:background="@drawable/bg_card"
-                    android:hint="Masukkan Nomor Hp"
-                    android:textColorHint="@color/abuabu_tua"
-                    android:inputType="number"
-                    android:maxLength="12" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="6dp"
+                android:text="Nomor HP"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/etEditNomorHp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:padding="18dp"
+                android:background="@drawable/bg_card"
+                android:hint="Masukkan Nomor Hp"
+                android:textColorHint="@color/abuabu_tua"
+                android:inputType="number"
+                android:maxLength="15" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
-                    android:layout_marginBottom="6dp"
-                    android:text="Username"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"/>
-                <EditText
-                    android:id="@+id/etEditUsername"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/etEditNomorHp"
-                    android:layout_marginTop="4dp"
-                    android:padding="18dp"
-                    android:background="@drawable/bg_card"
-                    android:hint="Masukkan Username"
-                    android:textColorHint="@color/abuabu_tua"
-                    android:inputType="text"
-                    android:maxLength="50" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="6dp"
+                android:text="Kota"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/tvKabKota"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/etEditNomorHp"
+                android:layout_marginTop="2dp"
+                android:text="Sidenreng Rappang"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="normal"
+                android:background="@drawable/bg_card" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
-                    android:layout_marginBottom="6dp"
-                    android:text="Password"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"/>
-                <EditText
-                    android:id="@+id/etEditPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:padding="18dp"
-                    android:background="@drawable/bg_card"
-                    android:hint="Masukkan Password"
-                    android:textColorHint="@color/abuabu_tua"
-                    android:inputType="textPassword"
-                    android:maxLength="20"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="6dp"
+                android:text="Kecamatan"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+            <Spinner
+                android:id="@+id/spKecamatan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/etEditNomorHp"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/black"
+                android:textStyle="normal"
+                android:background="@drawable/bg_card" />
 
-            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="6dp"
+                android:text="Detail Alamat"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/etDetailAlamat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/etEditNomorHp"
+                android:layout_marginTop="2dp"
+                android:hint="Misal: Jln. Ahmad Yani No. 3, Samping Umpar"
+                android:textColor="@color/black"
+                android:textStyle="normal"
+                android:textSize="16sp"
+                android:inputType="textMultiLine"
+                android:maxLength="200"
+                android:lines="3"
+                android:background="@drawable/bg_card" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="6dp"
+                android:text="Username"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/etEditUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/etEditNomorHp"
+                android:layout_marginTop="4dp"
+                android:padding="18dp"
+                android:background="@drawable/bg_card"
+                android:hint="Masukkan Username"
+                android:textColorHint="@color/abuabu_tua"
+                android:inputType="text"
+                android:maxLength="50" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="6dp"
+                android:text="Password"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/etEditPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:padding="18dp"
+                android:background="@drawable/bg_card"
+                android:hint="Masukkan Password"
+                android:textColorHint="@color/abuabu_tua"
+                android:inputType="textPassword"
+                android:maxLength="20"/>
 
             <Button
                 android:id="@+id/btnRegistrasi"
