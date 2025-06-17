@@ -1,8 +1,11 @@
 package com.abcd.e_kalontong.ui.activity.admin.akun
 
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -14,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.abcd.e_kalontong.R
 import com.abcd.e_kalontong.adapter.AdminAkunAdapter
+import com.abcd.e_kalontong.data.model.KecamatanModel
 import com.abcd.e_kalontong.data.model.ResponseModel
 import com.abcd.e_kalontong.data.model.UserModel
 import com.abcd.e_kalontong.databinding.ActivityAdminAkunBinding
@@ -35,6 +39,8 @@ class AdminAkunActivity : AppCompatActivity() {
     lateinit var loading: LoadingAlertDialog
     private lateinit var kontrolNavigationDrawer: KontrolNavigationDrawer
     private lateinit var adapter: AdminAkunAdapter
+    private lateinit var listKecamatan: java.util.ArrayList<KecamatanModel>
+    var listNamaKecamatan: java.util.ArrayList<String> = arrayListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAdminAkunBinding.inflate(layoutInflater)
@@ -43,12 +49,13 @@ class AdminAkunActivity : AppCompatActivity() {
         setKontrolNavigationDrawer()
         setButton()
         fetchAkun()
+        fetchKecamatan()
         getAkun()
+        getKecamatan()
         getTambahUser()
         getUpdateUser()
         getHapusUser()
     }
-
 
     private fun setKontrolNavigationDrawer() {
         binding.apply {
@@ -81,14 +88,63 @@ class AdminAkunActivity : AppCompatActivity() {
         dialogInputan.show()
 
         view.apply {
+            var selectedKecamatan = ""
+            val arrayAdapterKecamatan = ArrayAdapter(
+                this@AdminAkunActivity,
+                android.R.layout.simple_spinner_item,
+                listNamaKecamatan
+            )
+
+            arrayAdapterKecamatan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spKecamatan.adapter = arrayAdapterKecamatan
+
+            spKecamatan.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    selectedKecamatan = listKecamatan[position].id_kecamatan!!
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+
+                }
+            }
 
             btnSimpan.setOnClickListener {
-                val nama = etEditNama.text.toString().trim()
-                val nomorHp = etEditNomorHp.text.toString().trim()
-                val username = etEditUsername.text.toString().trim()
-                val password = etEditPassword.text.toString().trim()
-                postTambahUser(nama, nomorHp, username, password)
-                dialogInputan.dismiss()
+                var cek = false
+                if (etEditNama.toString().isEmpty()) {
+                    etEditNama.error = "Tidak Boleh Kosong"
+                    cek = true
+                }
+                if (etEditNomorHp.toString().isEmpty()) {
+                    etEditNomorHp.error = "Tidak Boleh Kosong"
+                    cek = true
+                }
+                if (etDetailAlamat.toString().isEmpty()) {
+                    etDetailAlamat.error = "Tidak Boleh Kosong"
+                    cek = true
+                }
+                if (etEditUsername.toString().isEmpty()) {
+                    etEditUsername.error = "Tidak Boleh Kosong"
+                    cek = true
+                }
+                if (etEditPassword.toString().isEmpty()) {
+                    etEditPassword.error = "Tidak Boleh Kosong"
+                    cek = true
+                }
+
+                if (!cek) {
+                    val nama = etEditNama.text.toString().trim()
+                    val nomorHp = etEditNomorHp.text.toString().trim()
+                    val detailAlamat = etDetailAlamat.text.toString().trim()
+                    val username = etEditUsername.text.toString().trim()
+                    val password = etEditPassword.text.toString().trim()
+                    postTambahUser(nama, nomorHp, selectedKecamatan, detailAlamat, username, password)
+                    dialogInputan.dismiss()
+                }
             }
             btnBatal.setOnClickListener {
                 dialogInputan.dismiss()
@@ -97,10 +153,10 @@ class AdminAkunActivity : AppCompatActivity() {
     }
 
     private fun postTambahUser(
-        nama: String, nomorHp: String,
+        nama: String, nomorHp: String, idKecamatan: String, detailAlamat: String,
         username: String, password: String
     ) {
-        viewModel.postTambahAkun(nama, nomorHp, username, password, "user")
+        viewModel.postTambahAkun(nama, nomorHp, idKecamatan, detailAlamat, username, password, "user")
     }
 
     private fun getTambahUser(){
@@ -126,6 +182,33 @@ class AdminAkunActivity : AppCompatActivity() {
     private fun setFailureTambahAkun(message: String) {
         Toast.makeText(this@AdminAkunActivity, message, Toast.LENGTH_SHORT).show()
         loading.alertDialogCancel()
+    }
+
+    private fun fetchKecamatan() {
+        viewModel.fetchKecamatan()
+    }
+
+    private fun getKecamatan(){
+        viewModel.getKecamatan().observe(this@AdminAkunActivity){result->
+            when(result){
+                is UIState.Loading->{}
+                is UIState.Success-> setSuccessFetchKecamatan(result.data)
+                is UIState.Failure-> setFailureFetchKecamatan(result.message)
+            }
+        }
+    }
+
+    private fun setFailureFetchKecamatan(message: String) {
+        Log.e("RegisterActivityTAG", "setFailureFetchKecamatan: $message ")
+    }
+
+    private fun setSuccessFetchKecamatan(data: java.util.ArrayList<KecamatanModel>) {
+        if(data.isNotEmpty()){
+            listKecamatan = data
+            for(value in data){
+                listNamaKecamatan.add(value.kecamatan!!)
+            }
+        }
     }
 
     private fun fetchAkun() {
