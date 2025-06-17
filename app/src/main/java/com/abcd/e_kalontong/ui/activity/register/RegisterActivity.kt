@@ -172,6 +172,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun responseSuccessRegiserUser(data: ResponseModel) {
         if (data.status == "0"){
             Toast.makeText(this@RegisterActivity, "Berhasil melakukan registrasi", Toast.LENGTH_SHORT).show()
+            finish()
         } else{
             Toast.makeText(this@RegisterActivity, data.message_response, Toast.LENGTH_SHORT).show()
         }
