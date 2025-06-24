@@ -11,7 +11,9 @@ import androidx.fragment.app.Fragment
 import com.abcd.e_kalontong.R
 import com.abcd.e_kalontong.databinding.ActivityMainBinding
 import com.abcd.e_kalontong.ui.fragment.user.home.HomeFragment
+import com.abcd.e_kalontong.ui.fragment.user.pesanan.PesananFragment
 import com.abcd.e_kalontong.ui.fragment.user.product.ProductFragment
+import com.abcd.e_kalontong.ui.fragment.user.profile.ProfileFragment
 import com.abcd.e_kalontong.utils.SharedPreferencesLogin
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -43,8 +45,8 @@ class MainActivity : AppCompatActivity() {
             btnProduk.setOnClickListener {
                 clickProduk()
             }
-            btnRiwayat.setOnClickListener {
-                clickRiwayat()
+            btnPesanan.setOnClickListener {
+                clickPesanan()
             }
             btnAccount.setOnClickListener {
                 clickAccount()
@@ -57,13 +59,13 @@ class MainActivity : AppCompatActivity() {
             // text color
             tvHome.setTextColor(resources.getColor(R.color.primaryColor))
             tvProduk.setTextColor(resources.getColor(R.color.textColorBlack))
-            tvRiwayat.setTextColor(resources.getColor(R.color.textColorBlack))
+            tvPesanan.setTextColor(resources.getColor(R.color.textColorBlack))
             tvAccount.setTextColor(resources.getColor(R.color.textColorBlack))
 
             // image view visibility
             ivHome.setImageResource(R.drawable.icon_home_active)
             ivProduk.setImageResource(R.drawable.icon_product)
-            ivRiwayat.setImageResource(R.drawable.icon_riwayat)
+            ivPesanan.setImageResource(R.drawable.icon_riwayat)
             ivAccount.setImageResource(R.drawable.icon_akun)
 
             setFragment(HomeFragment())
@@ -76,13 +78,13 @@ class MainActivity : AppCompatActivity() {
             // text color
             tvHome.setTextColor(resources.getColor(R.color.textColorBlack))
             tvProduk.setTextColor(resources.getColor(R.color.primaryColor))
-            tvRiwayat.setTextColor(resources.getColor(R.color.textColorBlack))
+            tvPesanan.setTextColor(resources.getColor(R.color.textColorBlack))
             tvAccount.setTextColor(resources.getColor(R.color.textColorBlack))
 
             // image view visibility
             ivHome.setImageResource(R.drawable.icon_home)
             ivProduk.setImageResource(R.drawable.icon_product_active)
-            ivRiwayat.setImageResource(R.drawable.icon_riwayat)
+            ivPesanan.setImageResource(R.drawable.icon_riwayat)
             ivAccount.setImageResource(R.drawable.icon_akun)
 
             setFragment(ProductFragment())
@@ -90,21 +92,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun clickRiwayat() {
+    fun clickPesanan() {
         binding.icBottom.apply {
             // text color
             tvHome.setTextColor(resources.getColor(R.color.textColorBlack))
             tvProduk.setTextColor(resources.getColor(R.color.textColorBlack))
-            tvRiwayat.setTextColor(resources.getColor(R.color.primaryColor))
+            tvPesanan.setTextColor(resources.getColor(R.color.primaryColor))
             tvAccount.setTextColor(resources.getColor(R.color.textColorBlack))
 
             // image view visibility
             ivHome.setImageResource(R.drawable.icon_home)
             ivProduk.setImageResource(R.drawable.icon_product)
-            ivRiwayat.setImageResource(R.drawable.icon_riwayat_active)
+            ivPesanan.setImageResource(R.drawable.icon_riwayat_active)
             ivAccount.setImageResource(R.drawable.icon_akun)
 
-//            setFragment(RiwayatFragment())
+            setFragment(PesananFragment())
             checkFragmentPosition = 2
         }
     }
@@ -114,16 +116,16 @@ class MainActivity : AppCompatActivity() {
             // text color
             tvHome.setTextColor(resources.getColor(R.color.textColorBlack))
             tvProduk.setTextColor(resources.getColor(R.color.textColorBlack))
-            tvRiwayat.setTextColor(resources.getColor(R.color.textColorBlack))
+            tvPesanan.setTextColor(resources.getColor(R.color.textColorBlack))
             tvAccount.setTextColor(resources.getColor(R.color.primaryColor))
 
             // image view visibility
             ivHome.setImageResource(R.drawable.icon_home)
             ivProduk.setImageResource(R.drawable.icon_product)
-            ivRiwayat.setImageResource(R.drawable.icon_riwayat)
+            ivPesanan.setImageResource(R.drawable.icon_riwayat)
             ivAccount.setImageResource(R.drawable.icon_akun_active)
 
-//            setFragment(AccountFragment())
+            setFragment(ProfileFragment())
             checkFragmentPosition = 3
         }
     }

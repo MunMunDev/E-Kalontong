@@ -67,7 +67,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/btnRiwayat"
+        android:id="@+id/btnPesanan"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -77,18 +77,18 @@
         android:gravity="center"
         tools:ignore="UseCompoundDrawables">
         <ImageView
-            android:id="@+id/ivRiwayat"
+            android:id="@+id/ivPesanan"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:contentDescription="Riwayat image"
+            android:contentDescription="Pesanan image"
             android:src="@drawable/icon_riwayat"/>
 
         <TextView
-            android:id="@+id/tvRiwayat"
+            android:id="@+id/tvPesanan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:text="Riwayat"
+            android:text="Pesanan"
             android:textSize="14sp"
             android:textColor="@color/textColorBlack"
             android:lines="1"/>

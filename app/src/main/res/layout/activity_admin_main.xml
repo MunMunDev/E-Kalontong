@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.admin.main.AdminMainActivity"
+    android:id="@+id/drawerLayoutMain">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="6dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="6dp">
+
+            <View
+                android:id="@+id/bgHeader"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/titleHeader"
+                android:background="@color/primaryColor"/>
+
+            <ImageView
+                android:id="@+id/ivDrawerView"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/baseline_dehaze_24"
+                android:elevation="10dp"/>
+
+            <TextView
+                android:id="@+id/titleHeader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivDrawerView"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="22dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="20dp"
+                android:text="Admin - Halaman Home"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvKasir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/bgHeader"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:cardCornerRadius="8dp"
+                android:backgroundTint="@color/white">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp">
+                    <ImageView
+                        android:id="@+id/ivGambarKasir"
+                        android:layout_width="90dp"
+                        android:layout_height="80dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="8dp"
+                        android:src="@drawable/icon_kasir"/>
+
+                    <TextView
+                        android:id="@+id/tvTitleKasir"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/ivGambarKasir"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginEnd="12dp"
+                        android:text="Halaman Kasir"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tvPenjelasanKasir"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/tvTitleKasir"
+                        app:layout_constraintStart_toEndOf="@id/ivGambarKasir"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginEnd="12dp"
+                        android:text="Atur Jenis Produk Yang Terdapat pada Produk"
+                        android:textSize="14sp"
+                        android:textColor="@color/abuabu_tua"
+                        android:textStyle="bold"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvJenisProduk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/cvKasir"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:cardCornerRadius="8dp"
+                android:backgroundTint="@color/white">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp">
+                    <ImageView
+                        android:id="@+id/ivGambarJenisProduk"
+                        android:layout_width="90dp"
+                        android:layout_height="80dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="8dp"
+                        android:src="@drawable/icon_jenis_produk"/>
+
+                    <TextView
+                        android:id="@+id/tvTitleJenisProduk"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/ivGambarJenisProduk"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginEnd="12dp"
+                        android:text="Halaman Jenis Produk"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tvPenjelasanJenisProduk"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/tvTitleJenisProduk"
+                        app:layout_constraintStart_toEndOf="@id/ivGambarJenisProduk"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginEnd="12dp"
+                        android:text="Atur Jenis Produk Pada Produk yang tersedia"
+                        android:textSize="14sp"
+                        android:textColor="@color/abuabu_tua"
+                        android:textStyle="bold"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvProduk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/cvJenisProduk"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:cardCornerRadius="8dp"
+                android:backgroundTint="@color/white">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp">
+                    <ImageView
+                        android:id="@+id/ivGambarProduk"
+                        android:layout_width="90dp"
+                        android:layout_height="80dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="8dp"
+                        android:src="@drawable/icon_produk2"/>
+
+                    <TextView
+                        android:id="@+id/tvTitleProduk"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/ivGambarProduk"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginEnd="12dp"
+                        android:text="Halaman Produk"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tvPenjelasanProduk"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/tvTitleProduk"
+                        app:layout_constraintStart_toEndOf="@id/ivGambarProduk"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginEnd="12dp"
+                        android:text="Atur Produk yang Akan di pesan User"
+                        android:textSize="14sp"
+                        android:textColor="@color/abuabu_tua"
+                        android:textStyle="bold"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvKeranjangBelanja"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/cvProduk"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:cardCornerRadius="8dp"
+                android:backgroundTint="@color/white">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp">
+                    <ImageView
+                        android:id="@+id/ivGambarKeranjangBelanja"
+                        android:layout_width="90dp"
+                        android:layout_height="80dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="8dp"
+                        android:src="@drawable/icon_cart"/>
+
+                    <TextView
+                        android:id="@+id/tvTitleKeranjangBelanja"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/ivGambarKeranjangBelanja"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginEnd="12dp"
+                        android:text="Halaman Keranjang Belanja"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tvPenjelasanKeranjangBelanja"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/tvTitleKeranjangBelanja"
+                        app:layout_constraintStart_toEndOf="@id/ivGambarKeranjangBelanja"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginEnd="12dp"
+                        android:text="Atur Keranjang Belanja yang telah di pesan User"
+                        android:textSize="14sp"
+                        android:textColor="@color/abuabu_tua"
+                        android:textStyle="bold"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvPesanan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/cvKeranjangBelanja"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:cardCornerRadius="8dp"
+                android:backgroundTint="@color/white">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp">
+                    <ImageView
+                        android:id="@+id/ivGambarPesanan"
+                        android:layout_width="90dp"
+                        android:layout_height="80dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="8dp"
+                        android:src="@drawable/icon_pesanan"/>
+
+                    <TextView
+                        android:id="@+id/tvTitlePesanan"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/ivGambarPesanan"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginEnd="12dp"
+                        android:text="Halaman Pesanan"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tvPenjelasanPesanan"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/tvTitlePesanan"
+                        app:layout_constraintStart_toEndOf="@id/ivGambarPesanan"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginEnd="12dp"
+                        android:text="Atur Pesanan yang telah di pesan User"
+                        android:textSize="14sp"
+                        android:textColor="@color/abuabu_tua"
+                        android:textStyle="bold"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvRiwayatPesanan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/cvPesanan"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:cardCornerRadius="8dp"
+                android:backgroundTint="@color/white">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp">
+                    <ImageView
+                        android:id="@+id/ivGambarRiwayatPesanan"
+                        android:layout_width="90dp"
+                        android:layout_height="80dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="8dp"
+                        android:src="@drawable/icon_riwayat_pesanan"/>
+
+                    <TextView
+                        android:id="@+id/tvTitleRiwayatPesanan"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/ivGambarRiwayatPesanan"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginEnd="12dp"
+                        android:text="Halaman Riwayat Pesanan"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tvPenjelasanRiwayatPesanan"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/tvTitleRiwayatPesanan"
+                        app:layout_constraintStart_toEndOf="@id/ivGambarRiwayatPesanan"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginEnd="12dp"
+                        android:text="Atur Riwayat Pesanan yang Ada"
+                        android:textSize="14sp"
+                        android:textColor="@color/abuabu_tua"
+                        android:textStyle="bold"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvAkun"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/cvRiwayatPesanan"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:cardCornerRadius="8dp"
+                android:backgroundTint="@color/white">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp">
+                    <ImageView
+                        android:id="@+id/ivGambarAkun"
+                        android:layout_width="90dp"
+                        android:layout_height="80dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="8dp"
+                        android:src="@drawable/icon_akun_home"/>
+
+                    <TextView
+                        android:id="@+id/tvTitleAkun"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/ivGambarAkun"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginEnd="12dp"
+                        android:text="Halaman Akun"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tvPenjelasanAkun"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/tvTitleAkun"
+                        app:layout_constraintStart_toEndOf="@id/ivGambarAkun"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginEnd="12dp"
+                        android:text="Atur Akun yang telah terdaftar"
+                        android:textSize="14sp"
+                        android:textColor="@color/abuabu_tua"
+                        android:textStyle="bold"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_menu_admin"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        android:background="@color/white"/>
+</androidx.drawerlayout.widget.DrawerLayout>

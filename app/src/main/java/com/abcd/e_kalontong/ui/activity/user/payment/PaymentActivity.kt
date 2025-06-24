@@ -229,7 +229,7 @@ class PaymentActivity : AppCompatActivity() {
 
                 itemDetails.add(
                     ItemDetails(
-                        "$no", harga.toDouble(), 1, "$namaProduk"
+                        "$no", harga.toDouble(), jumlah, "$namaProduk"
                     )
                 )
                 no++
@@ -313,22 +313,18 @@ class PaymentActivity : AppCompatActivity() {
         Toast.makeText(this@PaymentActivity, "Ada masalah : $message", Toast.LENGTH_SHORT).show()
     }
 
-    private fun setDataSuccessRegistrasiPembayaran(data: ArrayList<ResponseModel>) {
+    private fun setDataSuccessRegistrasiPembayaran(data: ResponseModel) {
         loading.alertDialogCancel()
-        if(data.isNotEmpty()){
-            if(data[0].status == "0"){
-                UiKitApi.getDefaultInstance().startPaymentUiFlow(
-                    activity = this@PaymentActivity,
-                    launcher = launcher,
-                    transactionDetails = initTransactionDetails,
-                    customerDetails = customerDetails,
-                    itemDetails = itemDetails
-                )
-            }else{
-                Toast.makeText(this@PaymentActivity, "Gagal Registrasi", Toast.LENGTH_SHORT).show()
-            }
-        } else{
-            Toast.makeText(this@PaymentActivity, "Bermasalah di web", Toast.LENGTH_SHORT).show()
+        if(data.status == "0"){
+            UiKitApi.getDefaultInstance().startPaymentUiFlow(
+                activity = this@PaymentActivity,
+                launcher = launcher,
+                transactionDetails = initTransactionDetails,
+                customerDetails = customerDetails,
+                itemDetails = itemDetails
+            )
+        }else{
+            Toast.makeText(this@PaymentActivity, "Gagal Registrasi", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -353,18 +349,14 @@ class PaymentActivity : AppCompatActivity() {
         Toast.makeText(this@PaymentActivity, message, Toast.LENGTH_SHORT).show()
     }
 
-    private fun setSuccessPostPesan(data: ArrayList<ResponseModel>) {
+    private fun setSuccessPostPesan(data: ResponseModel) {
         loading.alertDialogCancel()
-        if(data.isNotEmpty()){
-            if(data[0].status=="0"){
-                Toast.makeText(this@PaymentActivity, "Berhasil", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this@PaymentActivity, MainActivity::class.java))
-                finish()
-            } else{
-                Toast.makeText(this@PaymentActivity, data[0].message_response, Toast.LENGTH_SHORT).show()
-            }
+        if(data.status=="0"){
+            Toast.makeText(this@PaymentActivity, "Berhasil", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this@PaymentActivity, MainActivity::class.java))
+            finish()
         } else{
-            Toast.makeText(this@PaymentActivity, "No respon", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@PaymentActivity, data.message_response, Toast.LENGTH_SHORT).show()
         }
     }
 

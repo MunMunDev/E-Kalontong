@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.abcd.e_kalontong.R
+import com.abcd.e_kalontong.ui.activity.admin.main.AdminMainActivity
 import com.abcd.e_kalontong.ui.activity.login.LoginActivity
 import com.abcd.e_kalontong.ui.activity.user.main.MainActivity
 import com.abcd.e_kalontong.utils.SharedPreferencesLogin
@@ -15,9 +16,6 @@ class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
-        supportActionBar?.let {
-            it.hide()
-        }
 
         sharedPreferencesLogin = SharedPreferencesLogin(this@SplashScreenActivity)
 
@@ -29,8 +27,8 @@ class SplashScreenActivity : AppCompatActivity() {
                     finish()
                 } else if(sharedPreferencesLogin.getSebagai() == "admin"){
                     // To admin
-//                    startActivity(Intent(this@SplashScreenActivity, AdminMainActivity::class.java))
-//                    finish()
+                    startActivity(Intent(this@SplashScreenActivity, AdminMainActivity::class.java))
+                    finish()
                 } else{
                     startActivity(Intent(this@SplashScreenActivity, LoginActivity::class.java))
                     finish()

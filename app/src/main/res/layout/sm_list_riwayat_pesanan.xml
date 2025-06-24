@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg_card"
+    android:layout_marginTop="14dp">
+
+    <TextView
+        android:id="@+id/lsTvJumlahProduk"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="3 Jenis Produk"
+        android:textColor="@color/abuabu_tua"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:background="@color/abuabu_tua"/>
+
+    <TextView
+        android:id="@+id/lsTvTotalHargaProduk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/lsTvJumlahProduk"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="10dp"
+        android:text="Rp. 100.000.000.000"
+        android:textColor="@color/abuabu_tua"
+        android:textSize="14sp"
+        android:background="@color/abuabu_tua"/>
+
+    <TextView
+        android:id="@+id/lsTvTanggalWaktu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/lsTvTotalHargaProduk"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="6dp"
+        android:text="23 Maret 2023 - 17:00"
+        android:textColor="@color/abuabu_tua"
+        android:textSize="14sp"
+        android:background="@color/abuabu_tua"/>
+
+<!--    <ImageView-->
+<!--        android:id="@+id/ivSetting"-->
+<!--        android:layout_width="30dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:src="@drawable/icon_setting"/>-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

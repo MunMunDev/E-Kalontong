@@ -5,6 +5,11 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".utils.hilt.BaseApplication"
@@ -18,6 +23,42 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EKalontong"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.activity.admin.kasir.AdminKasirActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.admin.pesanan.detail.AdminPesananDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.admin.pesanan.AdminPesananActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.admin.riwayat_pesanan.detail.AdminRiwayatPesananDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.admin.riwayat_pesanan.AdminRiwayatPesananActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.admin.akun.AdminAkunActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.admin.keranjang_belanja.detail.AdminKeranjangBelanjaDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.admin.keranjang_belanja.AdminKeranjangBelanjaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.admin.produk.AdminProdukActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.admin.jenis_produk.AdminJenisProdukActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.admin.main.AdminMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.pesanan.detail.PesananDetailActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.activity.alamat.PilihAlamatActivity"
             android:exported="false" />
