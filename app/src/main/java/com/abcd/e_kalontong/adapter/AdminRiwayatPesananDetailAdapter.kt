@@ -1,6 +1,7 @@
 package com.abcd.e_kalontong.adapter
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,6 +39,8 @@ class AdminRiwayatPesananDetailAdapter(
             tvProduk.text = dataPesanan.produk
             tvHarga.text = rupiah.rupiah(dataPesanan.harga!!.trim().toLong())
             tvJumlah.text = "${dataPesanan.jumlah}"
+
+            Log.d("AdminTAG", "onBindViewHolder: ${Constant.LOCATION_GAMBAR}${dataPesanan.gambar}")
 
             Glide.with(holder.itemView.context)
                 .load("${Constant.LOCATION_GAMBAR}${dataPesanan.gambar}") // URL Gambar
