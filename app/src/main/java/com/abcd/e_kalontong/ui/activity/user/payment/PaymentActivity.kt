@@ -94,6 +94,7 @@ class PaymentActivity : AppCompatActivity() {
         konfigurationMidtrans()
         getDataRegistrasiPembayaran()
         getTambahPesananDitempat()
+        getPesanan()
     }
 
     private fun fetchDataSebelumnya() {
@@ -424,8 +425,7 @@ class PaymentActivity : AppCompatActivity() {
                     val transactionResult = it.getParcelableExtra<com.midtrans.sdk.uikit.api.model.TransactionResult>(
                         UiKitConstants.KEY_TRANSACTION_RESULT)
 
-
-//                    Toast.makeText(this, "${transactionResult?.transactionId}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "${transactionResult?.transactionId}", Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -442,42 +442,77 @@ class PaymentActivity : AppCompatActivity() {
                         loading.alertDialogCancel()
                         Toast.makeText(this, "Transaction Finished. ID: " + transactionResult.transactionId, Toast.LENGTH_LONG).show()
 //                        fetchDataPembayaran(idUser)
+                        fetchPesanan()
                     }
                     UiKitConstants.STATUS_PENDING -> {
                         loading.alertDialogCancel()
                         Toast.makeText(this, "Transaction Pending. ID: " + transactionResult.transactionId, Toast.LENGTH_LONG).show()
                         acak = kataAcak.getHurufDanAngka()
 //                        fetchDataPembayaran(idUser)
+                        fetchPesanan()
                     }
                     UiKitConstants.STATUS_FAILED -> {
                         loading.alertDialogCancel()
                         Toast.makeText(this, "Transaction Failed. ID: " + transactionResult.transactionId, Toast.LENGTH_LONG).show()
                         acak = kataAcak.getHurufDanAngka()
 //                        fetchDataPembayaran(idUser)
+                        fetchPesanan()
                     }
                     UiKitConstants.STATUS_CANCELED -> {
                         loading.alertDialogCancel()
                         Toast.makeText(this, "Transaction Cancelled", Toast.LENGTH_LONG).show()
                         acak = kataAcak.getHurufDanAngka()
 //                        fetchDataPembayaran(idUser)
+                        fetchPesanan()
                     }
                     UiKitConstants.STATUS_INVALID -> {
                         loading.alertDialogCancel()
                         Toast.makeText(this, "Transaction Invalid. ID: " + transactionResult.transactionId, Toast.LENGTH_LONG).show()
                         acak = kataAcak.getHurufDanAngka()
 //                        fetchDataPembayaran(idUser)
+                        fetchPesanan()
                     }
                     else -> {
                         Toast.makeText(this, "Transaction ID: " + transactionResult.transactionId + ". Message: " + transactionResult.status, Toast.LENGTH_LONG).show()
                         loading.alertDialogCancel()
+                        fetchPesanan()
 //                        fetchDataPembayaran(idUser)
                     }
                 }
             } else {
                 Toast.makeText(this@PaymentActivity, "Gagal Tranksaksi", Toast.LENGTH_LONG).show()
+                fetchPesanan()
             }
         }
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+
+
+    private fun fetchPesanan() {
+        viewModel.fetchKeranjangBelanja(sharedPreferencesLogin.getIdUser())
+    }
+
+    private fun getPesanan() {
+        viewModel.getKeranjangBelanja().observe(this@PaymentActivity){ result->
+            when(result){
+                is UIState.Loading-> {}
+                is UIState.Failure-> setFailureFetchPesanan(result.message)
+                is UIState.Success-> setSuccessFetchPesanan(result.data)
+            }
+        }
+    }
+
+    private fun setFailureFetchPesanan(message: String) {
+        startActivity(Intent(this@PaymentActivity, MainActivity::class.java))
+        finish()
+    }
+
+    private fun setSuccessFetchPesanan(data: ArrayList<PesananModel>) {
+        if(data.isEmpty()){
+            startActivity(Intent(this@PaymentActivity, MainActivity::class.java))
+            finish()
+        }
     }
 
     private fun setStartShimmer(){
