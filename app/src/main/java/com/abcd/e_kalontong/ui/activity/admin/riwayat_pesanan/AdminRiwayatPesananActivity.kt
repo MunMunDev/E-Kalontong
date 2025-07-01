@@ -3,9 +3,12 @@ package com.abcd.e_kalontong.ui.activity.admin.riwayat_pesanan
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -16,8 +19,10 @@ import com.abcd.e_kalontong.data.model.RiwayatPesananModel
 import com.abcd.e_kalontong.data.model.PesananModel
 import com.abcd.e_kalontong.data.model.RiwayatPesananHalModel
 import com.abcd.e_kalontong.databinding.ActivityAdminRiwayatPesananBinding
+import com.abcd.e_kalontong.databinding.AlertDialogAdminPrintLaporanBinding
 import com.abcd.e_kalontong.ui.activity.admin.main.AdminMainActivity
 import com.abcd.e_kalontong.ui.activity.admin.riwayat_pesanan.detail.AdminRiwayatPesananDetailActivity
+import com.abcd.e_kalontong.ui.activity.admin.riwayat_pesanan.print.AdminPrintLaporanActivity
 import com.abcd.e_kalontong.utils.KontrolNavigationDrawer
 import com.abcd.e_kalontong.utils.LoadingAlertDialog
 import com.abcd.e_kalontong.utils.OnClickItem
@@ -39,6 +44,7 @@ class AdminRiwayatPesananActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setKontrolNavigationDrawer()
+        setButton()
         fetchData()
         getPesanan()
     }
@@ -48,6 +54,14 @@ class AdminRiwayatPesananActivity : AppCompatActivity() {
             kontrolNavigationDrawer = KontrolNavigationDrawer(this@AdminRiwayatPesananActivity)
             kontrolNavigationDrawer.cekSebagai(navView)
             kontrolNavigationDrawer.onClickItemNavigationDrawer(navView, drawerLayoutMain, ivDrawerView, this@AdminRiwayatPesananActivity)
+        }
+    }
+
+    private fun setButton() {
+        binding.apply {
+            btnPrint.setOnClickListener {
+                setShowDialogPrintLaporan()
+            }
         }
     }
 
@@ -101,6 +115,65 @@ class AdminRiwayatPesananActivity : AppCompatActivity() {
             rvPesanan.adapter = adapter
         }
 
+    }
+
+    private fun setShowDialogPrintLaporan() {
+        val view = AlertDialogAdminPrintLaporanBinding.inflate(layoutInflater)
+        val alertDialog = AlertDialog.Builder(this@AdminRiwayatPesananActivity)
+        alertDialog.setView(view.root)
+            .setCancelable(false)
+        val dialogInputan = alertDialog.create()
+        dialogInputan.show()
+
+        var numberPosition = 0
+        var selectedValue = ""
+
+        view.apply {
+            // Spinner Metode Pembayaran
+            val arrayAdapter = ArrayAdapter.createFromResource(
+                this@AdminRiwayatPesananActivity,
+                R.array.print_laporan,
+                android.R.layout.simple_spinner_item
+            )
+
+            arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spPrintLaporan.adapter = arrayAdapter
+
+            spPrintLaporan.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    numberPosition = spPrintLaporan.selectedItemPosition
+                    selectedValue = spPrintLaporan.selectedItem.toString()
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+
+                }
+            }
+
+            spPrintLaporan.adapter = arrayAdapter
+
+            btnPrint.setOnClickListener {
+                if(numberPosition==0){
+                    val i = Intent(this@AdminRiwayatPesananActivity, AdminPrintLaporanActivity::class.java)
+                    i.putExtra("print_laporan", "online")
+                    startActivity(i)
+                } else{
+                    val i = Intent(this@AdminRiwayatPesananActivity, AdminPrintLaporanActivity::class.java)
+                    i.putExtra("print_laporan", "ditempat")
+                    startActivity(i)
+                }
+                dialogInputan.dismiss()
+            }
+
+            btnBatal.setOnClickListener {
+                dialogInputan.dismiss()
+            }
+        }
     }
 
     override fun onBackPressed() {

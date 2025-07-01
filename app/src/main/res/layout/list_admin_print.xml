@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tvNo"
+        android:layout_width="50dp"
+        android:layout_height="60dp"
+        android:text="NO"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="@drawable/bg_table"/>
+
+    <TextView
+        android:id="@+id/tvNama"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:text="Nama User"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:textStyle="normal"
+        android:gravity="center"
+        android:background="@drawable/bg_table"
+        android:ellipsize="end"
+        android:lines="1"/>
+
+    <TextView
+        android:id="@+id/tvProduk"
+        android:layout_width="220dp"
+        android:layout_height="60dp"
+        android:text="Produk"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:textStyle="normal"
+        android:gravity="center"
+        android:ellipsize="end"
+        android:background="@drawable/bg_table"
+        android:lines="1"/>
+
+    <TextView
+        android:id="@+id/tvHarga"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:text="Rp. 1.000.000"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:textStyle="normal"
+        android:gravity="center"
+        android:background="@drawable/bg_table"/>
+
+    <TextView
+        android:id="@+id/tvJumlah"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:text="Stok"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:textStyle="normal"
+        android:gravity="center"
+        android:background="@drawable/bg_table"/>
+
+    <TextView
+        android:id="@+id/tvMetodePembayaran"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:text="Stok"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:textStyle="normal"
+        android:gravity="center"
+        android:background="@drawable/bg_table"/>
+
+</LinearLayout>
