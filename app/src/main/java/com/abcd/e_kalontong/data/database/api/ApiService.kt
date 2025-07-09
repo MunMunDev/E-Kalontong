@@ -104,9 +104,15 @@ interface ApiService {
     ): ArrayList<UserModel>
 
     @GET("e-kelontong/api/get.php")
+    suspend fun getAdminTahunRiwayatPesanan(
+        @Query("get_tahun_riwayat_pesanan") get_tahun_riwayat_pesanan: String,
+    ): ArrayList<String>
+
+    @GET("e-kelontong/api/get.php")
     suspend fun getAdminPrintLaporan(
         @Query("get_admin_print_laporan") get_admin_print_laporan: String,
-        @Query("metode_pembayaran") metode_pembayaran: String,
+        @Query("dari") dari: String,
+        @Query("sampai") sampai: String,
     ): ArrayList<RiwayatPesananModel>
 
 

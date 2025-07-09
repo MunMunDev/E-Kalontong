@@ -19,7 +19,24 @@ class AdminRiwayatPesananViewModel @Inject constructor(
     private val api: ApiService
 ): ViewModel() {
 
+    private var _tahunRiwayatPesanan = MutableLiveData<UIState<ArrayList<String>>>()
+    fun getTahunRiwayatPesanan(): LiveData<UIState<ArrayList<String>>> = _tahunRiwayatPesanan
+
     private var _riwayatPesanan = MutableLiveData<UIState<ArrayList<RiwayatPesananHalModel>>>()
+    fun getRiwayatPesanan(): LiveData<UIState<ArrayList<RiwayatPesananHalModel>>> = _riwayatPesanan
+
+    fun fetchTahunRiwayatPesanan(){
+        viewModelScope.launch(Dispatchers.IO) {
+            _tahunRiwayatPesanan.postValue(UIState.Loading)
+            delay(1_000)
+            try {
+                val fetchPesanan = api.getAdminTahunRiwayatPesanan("")
+                _tahunRiwayatPesanan.postValue(UIState.Success(fetchPesanan))
+            } catch (ex: Exception){
+                _tahunRiwayatPesanan.postValue(UIState.Failure("Gagal : ${ex.message}"))
+            }
+        }
+    }
 
     fun fetchRiwayatPesanan(){
         viewModelScope.launch(Dispatchers.IO) {
@@ -35,5 +52,4 @@ class AdminRiwayatPesananViewModel @Inject constructor(
     }
 
 
-    fun getRiwayatPesanan(): LiveData<UIState<ArrayList<RiwayatPesananHalModel>>> = _riwayatPesanan
 }

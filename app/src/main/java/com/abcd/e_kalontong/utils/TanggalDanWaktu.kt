@@ -101,6 +101,27 @@ class TanggalDanWaktu {
         return date
     }
 
+    fun waktuSekarangZonaMakassar2():String{
+        var time = ""
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val makassarZone  = ZoneId.of("Asia/Makassar")
+            val makassarTime = LocalTime.now(makassarZone)
+            val waktu = makassarTime.toString().split(".")
+            val arrayWaktu = waktu[0].split(":")
+            val vWaktu = "${arrayWaktu[0]}.${arrayWaktu[1]}.${arrayWaktu[2]}"
+            time = vWaktu
+
+        } else {
+            val makassarTimeZone = TimeZone.getTimeZone("Asia/Makassar")
+            val timeFormat = SimpleDateFormat("HH.mm.ss")
+            timeFormat.timeZone = makassarTimeZone
+            val currentTime = Date()
+            val makassarTime = timeFormat.format(currentTime)
+            time = makassarTime
+        }
+        return time
+    }
+
     fun waktuSekarangZonaMakassar():String{
         var time = ""
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

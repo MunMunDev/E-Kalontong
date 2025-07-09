@@ -19,12 +19,12 @@ class AdminLaporanViewModel @Inject constructor(
 ): ViewModel() {
     private var _pesanan = MutableLiveData<UIState<ArrayList<RiwayatPesananModel>>>()
 
-    fun fetchPesanan(ket: String){
+    fun fetchPesanan(dari: String, sampai: String){
         viewModelScope.launch(Dispatchers.IO) {
             _pesanan.postValue(UIState.Loading)
             delay(1_000)
             try {
-                val fetchPesanan = api.getAdminPrintLaporan("", ket)
+                val fetchPesanan = api.getAdminPrintLaporan("", dari, sampai)
                 _pesanan.postValue(UIState.Success(fetchPesanan))
             } catch (ex: Exception){
                 _pesanan.postValue(UIState.Failure("Gagal : ${ex.message}"))

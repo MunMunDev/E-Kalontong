@@ -21,6 +21,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.abcd.aplikasipenjualanplafon.utils.TanggalDanWaktu
 import com.abcd.e_kalontong.R
 import com.abcd.e_kalontong.adapter.AdminPrintLaporanAdapter
 import com.abcd.e_kalontong.adapter.AdminRiwayatPesananAdapter
@@ -44,9 +45,10 @@ class AdminPrintLaporanActivity : AppCompatActivity() {
     @Inject
     lateinit var loading: LoadingAlertDialog
 
-    private var printLaporan = ""
+    val tanggalDanWaktu = TanggalDanWaktu()
     private var tempArrayRiwayatPesanan: ArrayList<RiwayatPesananModel> = arrayListOf()
     private var arrayRiwayatPesanan: ArrayList<RiwayatPesananModel> = arrayListOf()
+    private var tanggal = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAdminPrintLaporanBinding.inflate(layoutInflater)
@@ -65,15 +67,18 @@ class AdminPrintLaporanActivity : AppCompatActivity() {
     private fun setDataSebelumnya() {
         val extras = intent.extras
         if(extras != null){
-            printLaporan = extras.getString("print_laporan")!!
+            val mulai = extras.getString("mulai_tanggal")!!
+            val sampai = extras.getString("sampai_tanggal")!!
 
-            if(printLaporan=="online"){
-                fetchData("Online")
-                Log.d("DetailTAG", "setDataSebelumnya: Online")
-            } else{
-                fetchData("Ditempat")
-                Log.d("DetailTAG", "setDataSebelumnya: Ditempat")
-            }
+            var arrayMulai = mulai.split(" ")
+            var arraySampai = sampai.split(" ")
+
+            val vMulai = tanggalDanWaktu.konversiBulan(arrayMulai[0])
+            val vSampai = tanggalDanWaktu.konversiBulan(arraySampai[0])
+
+            tanggal = "$vMulai - $vSampai"
+
+            fetchData(mulai, sampai)
         }
     }
 
@@ -88,8 +93,8 @@ class AdminPrintLaporanActivity : AppCompatActivity() {
         }
     }
 
-    private fun fetchData(print:String){
-        viewModel.fetchPesanan(print)
+    private fun fetchData(dari:String, sampai:String){
+        viewModel.fetchPesanan(dari, sampai)
     }
 
     private fun getData(){
@@ -177,9 +182,12 @@ class AdminPrintLaporanActivity : AppCompatActivity() {
             pdf(pdfDocument, data)
         }
 
+        val tanggal = tanggalDanWaktu.tanggalSekarangZonaMakassar()
+        val waktu = tanggalDanWaktu.waktuSekarangZonaMakassar2()
+        val vTanggalDanWaktu = "$tanggal-$waktu"
 
         // Simpan
-        val file = File(Environment.getExternalStorageDirectory(), "download/riwayat-pesanan-$printLaporan.pdf")
+        val file = File(Environment.getExternalStorageDirectory(), "download/riwayat-pesanan-$vTanggalDanWaktu.pdf")
 
         try {
             pdfDocument.writeTo(FileOutputStream(file))
@@ -228,9 +236,9 @@ class AdminPrintLaporanActivity : AppCompatActivity() {
         title.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL))
         title.setColor(ContextCompat.getColor(this, R.color.black))
         title.textSize = 14F
-        canvas.drawText("Tabel Riwayat Pesanan - $printLaporan", 75f, 175f, title)
+        canvas.drawText("Tabel Riwayat Pesanan - $tanggal", 75f, 175f, title)
         title.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD))
-        canvas.drawText("Riwayat Pesanan - $printLaporan | page-0${noHalaman}", 78f, 560F, title)
+        canvas.drawText("Riwayat Pesanan - $tanggal | page-0${noHalaman}", 78f, 560F, title)
 
         pdfDocument.finishPage(myPage)
     }

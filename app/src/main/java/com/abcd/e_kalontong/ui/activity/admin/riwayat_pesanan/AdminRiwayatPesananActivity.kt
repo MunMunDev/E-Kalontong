@@ -38,6 +38,10 @@ class AdminRiwayatPesananActivity : AppCompatActivity() {
     @Inject
     lateinit var loading: LoadingAlertDialog
     private lateinit var kontrolNavigationDrawer: KontrolNavigationDrawer
+
+    private lateinit var tahun: ArrayList<String>
+    private lateinit var bulan: ArrayList<String>
+    private lateinit var tanggal: ArrayList<String>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAdminRiwayatPesananBinding.inflate(layoutInflater)
@@ -45,6 +49,8 @@ class AdminRiwayatPesananActivity : AppCompatActivity() {
 
         setKontrolNavigationDrawer()
         setButton()
+        fetchTahun()
+        getTahun()
         fetchData()
         getPesanan()
     }
@@ -64,6 +70,33 @@ class AdminRiwayatPesananActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun fetchTahun(){
+        viewModel.fetchTahunRiwayatPesanan()
+    }
+
+    private fun getTahun(){
+        viewModel.getTahunRiwayatPesanan().observe(this@AdminRiwayatPesananActivity){result->
+            when(result){
+                is UIState.Loading->{}
+                is UIState.Failure-> setFailureTahun(result.message)
+                is UIState.Success-> setSuccessTahun(result.data)
+            }
+        }
+    }
+
+    private fun setFailureTahun(message: String) {
+        Toast.makeText(this@AdminRiwayatPesananActivity, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun setSuccessTahun(data: ArrayList<String>) {
+        if(data.isNotEmpty()){
+            tahun = data
+        } else{
+
+        }
+    }
+
 
     private fun fetchData() {
         viewModel.fetchRiwayatPesanan()
@@ -114,7 +147,18 @@ class AdminRiwayatPesananActivity : AppCompatActivity() {
             )
             rvPesanan.adapter = adapter
         }
+    }
 
+    private fun setArray(){
+        bulan = arrayListOf(
+            "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli",
+            "Agustus", "September", "Oktober", "November", "Desember"
+        )
+        tanggal = arrayListOf(
+            "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
+            "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+            "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"
+        )
     }
 
     private fun setShowDialogPrintLaporan() {
@@ -125,48 +169,156 @@ class AdminRiwayatPesananActivity : AppCompatActivity() {
         val dialogInputan = alertDialog.create()
         dialogInputan.show()
 
-        var numberPosition = 0
-        var selectedValue = ""
+        setArray()
+
+        var selectedValueMulaiTahun = ""
+        var selectedPositionMulaiBulan = 0
+        var selectedValueMulaiTanggal = ""
+
+        var selectedValueSampaiTahun = ""
+        var selectedPositionSampaiBulan = 0
+        var selectedValueSampaiTanggal = ""
 
         view.apply {
-            // Spinner Metode Pembayaran
-            val arrayAdapter = ArrayAdapter.createFromResource(
+            val arrayAdapterMulaiTahun = ArrayAdapter(
                 this@AdminRiwayatPesananActivity,
-                R.array.print_laporan,
-                android.R.layout.simple_spinner_item
+                android.R.layout.simple_spinner_item,
+                tahun
             )
-
-            arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spPrintLaporan.adapter = arrayAdapter
-
-            spPrintLaporan.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+            arrayAdapterMulaiTahun.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spMulaiTahun.adapter = arrayAdapterMulaiTahun
+            spMulaiTahun.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
                 override fun onItemSelected(
                     parent: AdapterView<*>?,
                     view: View?,
                     position: Int,
                     id: Long
                 ) {
-                    numberPosition = spPrintLaporan.selectedItemPosition
-                    selectedValue = spPrintLaporan.selectedItem.toString()
+                    selectedValueMulaiTahun = spMulaiTahun.selectedItem.toString()
                 }
-
                 override fun onNothingSelected(parent: AdapterView<*>?) {
-
                 }
             }
+            spMulaiTahun.adapter = arrayAdapterMulaiTahun
 
-            spPrintLaporan.adapter = arrayAdapter
+            val arrayAdapterMulaiBulan = ArrayAdapter(
+                this@AdminRiwayatPesananActivity,
+                android.R.layout.simple_spinner_item,
+                bulan
+            )
+            arrayAdapterMulaiBulan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spMulaiBulan.adapter = arrayAdapterMulaiBulan
+            spMulaiBulan.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    selectedPositionMulaiBulan = position
+                }
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                }
+            }
+            spMulaiBulan.adapter = arrayAdapterMulaiBulan
+
+            val arrayAdapterMulaiTanggal = ArrayAdapter(
+                this@AdminRiwayatPesananActivity,
+                android.R.layout.simple_spinner_item,
+                tanggal
+            )
+            arrayAdapterMulaiTanggal.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spMulaiTanggal.adapter = arrayAdapterMulaiTanggal
+            spMulaiTanggal.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    selectedValueMulaiTanggal = spMulaiTanggal.selectedItem.toString()
+                }
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                }
+            }
+            spMulaiTanggal.adapter = arrayAdapterMulaiTanggal
+
+
+            // Sampai
+            val arrayAdapterSampaiTahun = ArrayAdapter(
+                this@AdminRiwayatPesananActivity,
+                android.R.layout.simple_spinner_item,
+                tahun
+            )
+            arrayAdapterSampaiTahun.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spSampaiTahun.adapter = arrayAdapterSampaiTahun
+            spSampaiTahun.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    selectedValueSampaiTahun = spSampaiTahun.selectedItem.toString()
+                }
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                }
+            }
+            spSampaiTahun.adapter = arrayAdapterSampaiTahun
+
+            val arrayAdapterSampaiBulan = ArrayAdapter(
+                this@AdminRiwayatPesananActivity,
+                android.R.layout.simple_spinner_item,
+                bulan
+            )
+            arrayAdapterSampaiBulan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spSampaiBulan.adapter = arrayAdapterSampaiBulan
+            spSampaiBulan.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    selectedPositionSampaiBulan = position
+                }
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                }
+            }
+            spSampaiBulan.adapter = arrayAdapterSampaiBulan
+
+            val arrayAdapterSampaiTanggal = ArrayAdapter(
+                this@AdminRiwayatPesananActivity,
+                android.R.layout.simple_spinner_item,
+                tanggal
+            )
+            arrayAdapterSampaiTanggal.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spSampaiTanggal.adapter = arrayAdapterSampaiTanggal
+            spSampaiTanggal.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    selectedValueSampaiTanggal = spSampaiTanggal.selectedItem.toString()
+                }
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                }
+            }
+            spSampaiTanggal.adapter = arrayAdapterSampaiTanggal
 
             btnPrint.setOnClickListener {
-                if(numberPosition==0){
-                    val i = Intent(this@AdminRiwayatPesananActivity, AdminPrintLaporanActivity::class.java)
-                    i.putExtra("print_laporan", "online")
-                    startActivity(i)
-                } else{
-                    val i = Intent(this@AdminRiwayatPesananActivity, AdminPrintLaporanActivity::class.java)
-                    i.putExtra("print_laporan", "ditempat")
-                    startActivity(i)
-                }
+                val mulaiBulan = selectedPositionMulaiBulan+1
+                val sampaiBulan = selectedPositionSampaiBulan+1
+
+                val mulaiTanggal = "$selectedValueMulaiTahun-$mulaiBulan-$selectedValueMulaiTanggal 00:00:00"
+                val sampaiTanggal = "$selectedValueSampaiTahun-$sampaiBulan-$selectedValueSampaiTanggal 23:59:59"
+
+                val i = Intent(this@AdminRiwayatPesananActivity, AdminPrintLaporanActivity::class.java)
+                i.putExtra("mulai_tanggal", mulaiTanggal)
+                i.putExtra("sampai_tanggal", sampaiTanggal)
+                startActivity(i)
                 dialogInputan.dismiss()
             }
 

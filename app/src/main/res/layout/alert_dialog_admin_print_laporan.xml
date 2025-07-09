@@ -42,34 +42,123 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp">
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="6dp"
-                    android:text="Print Laporan"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"/>
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="6dp"
+                        android:text="Dari Tanggal"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"/>
 
-                <Spinner
-                    android:id="@+id/spPrintLaporan"
+                    <Spinner
+                        android:id="@+id/spMulaiTahun"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/title"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@color/black"
+                        android:textStyle="normal"
+                        android:textSize="16sp"
+                        android:background="@drawable/bg_card"/>
+
+                    <Spinner
+                        android:id="@+id/spMulaiBulan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/title"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@color/black"
+                        android:textStyle="normal"
+                        android:textSize="16sp"
+                        android:background="@drawable/bg_card"/>
+
+                    <Spinner
+                        android:id="@+id/spMulaiTanggal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/title"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@color/black"
+                        android:textStyle="normal"
+                        android:textSize="16sp"
+                        android:background="@drawable/bg_card"/>
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/title"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:hint="Masukkan Jenis Plafon"
-                    android:textColor="@color/black"
-                    android:textStyle="normal"
-                    android:textSize="16sp"
-                    android:background="@drawable/bg_card"/>
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="6dp"
+                        android:text="Sampai Tanggal"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"/>
 
+                    <Spinner
+                        android:id="@+id/spSampaiTahun"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/title"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:hint="Masukkan Jenis Plafon"
+                        android:textColor="@color/black"
+                        android:textStyle="normal"
+                        android:textSize="16sp"
+                        android:background="@drawable/bg_card"/>
+
+                    <Spinner
+                        android:id="@+id/spSampaiBulan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/title"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:hint="Masukkan Jenis Plafon"
+                        android:textColor="@color/black"
+                        android:textStyle="normal"
+                        android:textSize="16sp"
+                        android:background="@drawable/bg_card"/>
+
+                    <Spinner
+                        android:id="@+id/spSampaiTanggal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/title"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:hint="Masukkan Jenis Plafon"
+                        android:textColor="@color/black"
+                        android:textStyle="normal"
+                        android:textSize="16sp"
+                        android:background="@drawable/bg_card"/>
+                </LinearLayout>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
