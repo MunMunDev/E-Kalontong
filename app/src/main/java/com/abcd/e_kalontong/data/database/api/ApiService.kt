@@ -103,6 +103,18 @@ interface ApiService {
         @Query("get_admin_all_user") get_admin_all_user: String,
     ): ArrayList<UserModel>
 
+    @GET("e-kelontong/api/get.php")
+    suspend fun getAdminTahunRiwayatPesanan(
+        @Query("get_tahun_riwayat_pesanan") get_tahun_riwayat_pesanan: String,
+    ): ArrayList<String>
+
+    @GET("e-kelontong/api/get.php")
+    suspend fun getAdminPrintLaporan(
+        @Query("get_admin_print_laporan") get_admin_print_laporan: String,
+        @Query("dari") dari: String,
+        @Query("sampai") sampai: String,
+    ): ArrayList<RiwayatPesananModel>
+
 
     // POST
 
