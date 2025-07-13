@@ -238,7 +238,7 @@ class AdminPrintLaporanActivity : AppCompatActivity() {
         title.textSize = 14F
         canvas.drawText("Tabel Riwayat Pesanan - $tanggal", 75f, 175f, title)
         title.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD))
-        canvas.drawText("Riwayat Pesanan - $tanggal | page-0${noHalaman}", 78f, 560F, title)
+        canvas.drawText("Riwayat Pesanan - $tanggal | page-0${noHalaman}", 78f, 575F, title)
 
         pdfDocument.finishPage(myPage)
     }
@@ -288,8 +288,9 @@ class AdminPrintLaporanActivity : AppCompatActivity() {
 
         var s = arrayRiwayatPesanan.size-1
 
+        var totalHarga = 0
         while (valueNomor<1){
-            var value = arrayRiwayatPesanan[0]
+            val value = arrayRiwayatPesanan[0]
             canvas.drawLine(nilaiBodyTableStartX, nilaiBodyTableStartY, nilaiBodyTableStartX, nilaiBodyTableStopY, paint) // paling kiri vertical
             canvas.drawLine(nilaiBodyTableStartX, nilaiBodyTableStartY, nilaiBodyTableStopX, nilaiBodyTableStartY, paint) // paling atas horizontal
             canvas.drawLine(nilaiBodyTableStopX, nilaiBodyTableStartY, nilaiBodyTableStopX, nilaiBodyTableStopY, paint) // paling kanan vertical
@@ -326,11 +327,30 @@ class AdminPrintLaporanActivity : AppCompatActivity() {
 
 //            Log.d(TAG, "tableBodyPdf: ${arrayRiwayatPesanan.size}")
 
+            totalHarga += (value.harga!!.trim().toInt() * value.jumlah!!.trim().toInt())
             if(arrayRiwayatPesanan.size<=0){
                 valueNomor = 1
+
+                canvas.drawLine(nilaiBodyTableStartX, nilaiBodyTableStartY, nilaiBodyTableStartX, nilaiBodyTableStopY, paint) // paling kiri vertical
+                canvas.drawLine(nilaiBodyTableStartX, nilaiBodyTableStartY, nilaiBodyTableStopX, nilaiBodyTableStartY, paint) // paling atas horizontal
+                canvas.drawLine(nilaiBodyTableStopX, nilaiBodyTableStartY, nilaiBodyTableStopX, nilaiBodyTableStopY, paint) // paling kanan vertical
+                canvas.drawLine(nilaiBodyTableStartX, nilaiBodyTableStopY, nilaiBodyTableStopX, nilaiBodyTableStopY, paint) // paling bawah horizontal
+
+                canvas.drawLine(590f, nilaiBodyTableStartY, 590f, nilaiBodyTableStopY, paint) // Jenis
+                canvas.drawText("Total Harga Per Table", 400F, (nilaiBodyTableStartY+20f), title)
+                canvas.drawText("${rupiah.rupiah(totalHarga.toLong())}", 600F, (nilaiBodyTableStartY+20f), title)
             }
             if(cekNomor>=10){
                 valueNomor = 1
+
+                canvas.drawLine(nilaiBodyTableStartX, nilaiBodyTableStartY, nilaiBodyTableStartX, nilaiBodyTableStopY, paint) // paling kiri vertical
+                canvas.drawLine(nilaiBodyTableStartX, nilaiBodyTableStartY, nilaiBodyTableStopX, nilaiBodyTableStartY, paint) // paling atas horizontal
+                canvas.drawLine(nilaiBodyTableStopX, nilaiBodyTableStartY, nilaiBodyTableStopX, nilaiBodyTableStopY, paint) // paling kanan vertical
+                canvas.drawLine(nilaiBodyTableStartX, nilaiBodyTableStopY, nilaiBodyTableStopX, nilaiBodyTableStopY, paint) // paling bawah horizontal
+
+                canvas.drawLine(590f, nilaiBodyTableStartY, 590f, nilaiBodyTableStopY, paint) // Jenis
+                canvas.drawText("Total Harga Per Table", 400F, (nilaiBodyTableStartY+20f), title)
+                canvas.drawText("${rupiah.rupiah(totalHarga.toLong())}", 600F, (nilaiBodyTableStartY+20f), title)
             }
 
             cekNomor++
