@@ -1,6 +1,7 @@
 package com.abcd.e_kalontong.ui.activity.admin.riwayat_pesanan.print
 
 import android.Manifest
+import android.content.ContentValues
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -8,8 +9,10 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.graphics.pdf.PdfDocument
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -186,21 +189,59 @@ class AdminPrintLaporanActivity : AppCompatActivity() {
         val waktu = tanggalDanWaktu.waktuSekarangZonaMakassar2()
         val vTanggalDanWaktu = "$tanggal-$waktu"
 
-        // Simpan
-        val file = File(Environment.getExternalStorageDirectory(), "download/riwayat-pesanan-$vTanggalDanWaktu.pdf")
+        val fileName = "riwayat-pesanan-$vTanggalDanWaktu.pdf"
 
-        try {
-            pdfDocument.writeTo(FileOutputStream(file))
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            val resolver = applicationContext.contentResolver
+            val contentValues = ContentValues().apply {
+                put(MediaStore.Downloads.DISPLAY_NAME, fileName)
+                put(MediaStore.Downloads.MIME_TYPE, "application/pdf")
+                put(MediaStore.Downloads.IS_PENDING, 1)
+            }
 
-            loading.alertDialogCancel()
-            Toast.makeText(this@AdminPrintLaporanActivity, "PDF file generated..", Toast.LENGTH_SHORT).show()
-        } catch (e: Exception) {
-            e.printStackTrace()
+            val uri = resolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, contentValues)
+            uri?.let {
+                try {
+                    resolver.openOutputStream(uri)?.use { outputStream ->
+                        pdfDocument.writeTo(outputStream)
+                    }
 
-            loading.alertDialogCancel()
-            Toast.makeText(this@AdminPrintLaporanActivity, "Fail to generate PDF file..", Toast.LENGTH_SHORT).show()
+                    contentValues.clear()
+                    contentValues.put(MediaStore.Downloads.IS_PENDING, 0)
+                    resolver.update(uri, contentValues, null, null)
+
+                    loading.alertDialogCancel()
+                    Toast.makeText(this@AdminPrintLaporanActivity, "PDF file saved to Downloads", Toast.LENGTH_SHORT).show()
+                } catch (e: Exception) {
+                    e.printStackTrace()
+
+                    loading.alertDialogCancel()
+                    Toast.makeText(this@AdminPrintLaporanActivity, "Fail to generate PDF file..", Toast.LENGTH_SHORT).show()
+                } finally {
+                    pdfDocument.close()
+                }
+            } ?: run {
+                loading.alertDialogCancel()
+                Toast.makeText(this@AdminPrintLaporanActivity, "Unable to create PDF URI", Toast.LENGTH_SHORT).show()
+            }
+        } else{
+            // Simpan
+            val file = File(Environment.getExternalStorageDirectory(), fileName)
+
+            try {
+                pdfDocument.writeTo(FileOutputStream(file))
+
+                loading.alertDialogCancel()
+                Toast.makeText(this@AdminPrintLaporanActivity, "PDF file generated..", Toast.LENGTH_SHORT).show()
+            } catch (e: Exception) {
+                e.printStackTrace()
+
+                loading.alertDialogCancel()
+                Toast.makeText(this@AdminPrintLaporanActivity, "Fail to generate PDF file..", Toast.LENGTH_SHORT).show()
+            }
+            pdfDocument.close()
         }
-        pdfDocument.close()
+
     }
 
 
@@ -357,21 +398,36 @@ class AdminPrintLaporanActivity : AppCompatActivity() {
         }
     }
 
-    fun checkPermissions(): Boolean {
-        var writeStoragePermission = ContextCompat.checkSelfPermission(
-            this@AdminPrintLaporanActivity,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
-        )
+    private fun checkPermissions(): Boolean {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            // Android 15 (API 35) ke atas
+            return true
+        } else {
+            val writeStoragePermission = ContextCompat.checkSelfPermission(
+                this@AdminPrintLaporanActivity,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
 
-        // on below line we are creating a variable
-        // for reading external storage permission
-        var readStoragePermission = ContextCompat.checkSelfPermission(
-            this@AdminPrintLaporanActivity,
-            Manifest.permission.READ_EXTERNAL_STORAGE
-        )
+            val readStoragePermission = ContextCompat.checkSelfPermission(
+                this@AdminPrintLaporanActivity,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            )
 
-        return writeStoragePermission == PackageManager.PERMISSION_GRANTED
-                && readStoragePermission == PackageManager.PERMISSION_GRANTED
+            return writeStoragePermission == PackageManager.PERMISSION_GRANTED
+                    && readStoragePermission == PackageManager.PERMISSION_GRANTED
+        }
+//        var writeStoragePermission = ContextCompat.checkSelfPermission(
+//            this@AdminPrintLaporanActivity,
+//            Manifest.permission.WRITE_EXTERNAL_STORAGE
+//        )
+//
+//        var readStoragePermission = ContextCompat.checkSelfPermission(
+//            this@AdminPrintLaporanActivity,
+//            Manifest.permission.READ_EXTERNAL_STORAGE
+//        )
+//
+//        return writeStoragePermission == PackageManager.PERMISSION_GRANTED
+//                && readStoragePermission == PackageManager.PERMISSION_GRANTED
     }
 
     var PERMISSION_CODE = 101
