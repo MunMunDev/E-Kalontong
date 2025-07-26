@@ -1,5 +1,6 @@
 package com.abcd.e_kalontong.ui.activity.admin.kasir
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -16,11 +17,9 @@ import com.abcd.e_kalontong.adapter.PesananAdapter
 import com.abcd.e_kalontong.data.model.PesananModel
 import com.abcd.e_kalontong.data.model.ResponseModel
 import com.abcd.e_kalontong.databinding.ActivityAdminKasirBinding
-import com.abcd.e_kalontong.databinding.AlertDialogKeteranganBinding
 import com.abcd.e_kalontong.databinding.AlertDialogKonfirmasiBinding
 import com.abcd.e_kalontong.databinding.AlertDialogPesanProdukBinding
 import com.abcd.e_kalontong.databinding.AlertDialogShowImageBinding
-import com.abcd.e_kalontong.ui.activity.user.main.MainActivity
 import com.abcd.e_kalontong.ui.activity.user.produk.search.SearchProdukActivity
 import com.abcd.e_kalontong.utils.KontrolNavigationDrawer
 import com.abcd.e_kalontong.utils.KonversiRupiah
@@ -28,10 +27,7 @@ import com.abcd.e_kalontong.utils.LoadingAlertDialog
 import com.abcd.e_kalontong.utils.OnClickItem
 import com.abcd.e_kalontong.utils.network.UIState
 import com.bumptech.glide.Glide
-import com.midtrans.sdk.uikit.api.model.ItemDetails
-import com.midtrans.sdk.uikit.api.model.SnapTransactionDetail
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.UUID
 import javax.inject.Inject
 import kotlin.collections.ArrayList
 
@@ -57,6 +53,7 @@ class AdminKasirActivity : AppCompatActivity() {
         getDeletePesanan()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setKontrolNavigationDrawer() {
         binding.apply {
             appNavbarDrawer.apply{
@@ -78,7 +75,7 @@ class AdminKasirActivity : AppCompatActivity() {
             }
             btnBayar.setOnClickListener {
                 if(listPesanan.isNotEmpty()){
-                    showClickKonfirmasi("Pesanan Dari Kasir", "Apakah pembeli telah melakukan pembayaran?")
+                    showClickKonfirmasi()
                 }else {
                     Toast.makeText(this@AdminKasirActivity, "Pesanan Belum Ada", Toast.LENGTH_SHORT).show()
                 }
@@ -86,7 +83,8 @@ class AdminKasirActivity : AppCompatActivity() {
         }
     }
 
-    private fun showClickKonfirmasi(keterangan: String, value: String) {
+    @SuppressLint("SetTextI18n")
+    private fun showClickKonfirmasi() {
         val view = AlertDialogKonfirmasiBinding.inflate(layoutInflater)
 
         val alertDialog = AlertDialog.Builder(this@AdminKasirActivity)
@@ -96,8 +94,8 @@ class AdminKasirActivity : AppCompatActivity() {
         dialogInputan.show()
 
         view.apply {
-            tvTitleKonfirmasi.text = keterangan
-            tvBodyKonfirmasi.text = value
+            tvTitleKonfirmasi.text = "Pesanan Dari Kasir"
+            tvBodyKonfirmasi.text = "Apakah pembeli telah melakukan pembayaran?"
 
             btnKonfirmasi.setOnClickListener {
                 postPesan()
@@ -139,7 +137,7 @@ class AdminKasirActivity : AppCompatActivity() {
         loading.alertDialogCancel()
     }
 
-    fun fetchPesananKasir(){
+    private fun fetchPesananKasir(){
         viewModel.fetchPesananKasir()
     }
 
@@ -159,13 +157,15 @@ class AdminKasirActivity : AppCompatActivity() {
     }
 
     private fun setSuccessFetchPesanan(data: ArrayList<PesananModel>) {
+        listPesanan = arrayListOf()
         if(data.isNotEmpty()){
-            listPesanan = data
+            listPesanan.addAll(data)
             setHargaTotalProduk(data)
-            setAdapter(data)
         } else{
             Toast.makeText(this@AdminKasirActivity, "Belum ada pesanan", Toast.LENGTH_SHORT).show()
+            binding.tvTotalTagihan.text = rupiah.rupiah(0)
         }
+        setAdapter(listPesanan)
         setStopShimmerPesanan()
     }
 
@@ -207,11 +207,9 @@ class AdminKasirActivity : AppCompatActivity() {
 
     private fun setHargaTotalProduk(data: ArrayList<PesananModel>){
         if(data.size>0){
-            var totalHarga: Double = 0.0
+            var totalHarga = 0.0
 
             Log.d("MainActivityTag", "setData: $data")
-
-            var no = 1
 
             for (value in data){
                 val harga = value.produk!!.harga!!.toInt()
@@ -221,7 +219,7 @@ class AdminKasirActivity : AppCompatActivity() {
                 val vHarga = harga*jumlah
 
                 totalHarga += vHarga
-                Log.d("PaymentActivityTAG", "set: no: $no, " +
+                Log.d("PaymentActivityTAG", "set: " +
                         "harga: $totalHarga, namaProduk: $namaProduk ")
             }
             binding.apply {
@@ -254,6 +252,7 @@ class AdminKasirActivity : AppCompatActivity() {
             .into(view.ivShowImage) // imageView mana yang akan diterapkan
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setShowDialogDelete(pesanan: PesananModel) {
         val view = AlertDialogKonfirmasiBinding.inflate(layoutInflater)
 
