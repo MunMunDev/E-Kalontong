@@ -26,7 +26,7 @@ class AdminKasirViewModel @Inject constructor(
     fun fetchPesananKasir(){
         viewModelScope.launch(Dispatchers.IO) {
             _fetchPesananPesananKasir.postValue(UIState.Loading)
-            delay(1_000)
+            delay(500)
             try {
                 val fetchPesananKasir = api.getAdminPesananKasir("")
                 _fetchPesananPesananKasir.postValue(UIState.Success(fetchPesananKasir))
@@ -41,7 +41,7 @@ class AdminKasirViewModel @Inject constructor(
     ){
         viewModelScope.launch {
             _postUpdatePesananKasir.postValue(UIState.Loading)
-            delay(1_000)
+            delay(500)
             try {
                 val postData = api.postUpdatePesanan(
                     "", idPesanan, jumlah
@@ -56,7 +56,7 @@ class AdminKasirViewModel @Inject constructor(
     fun postDeletePesanan(idPesanan: Int){
         viewModelScope.launch {
             _postDeletePesananKasir.postValue(UIState.Loading)
-            delay(1_000)
+            delay(500)
             try {
                 val postData = api.postDeletePesanan(
                     "", idPesanan
@@ -71,7 +71,7 @@ class AdminKasirViewModel @Inject constructor(
     fun postPesan(){
         viewModelScope.launch {
             _postPesan.postValue(UIState.Loading)
-            delay(1_000)
+            delay(500)
             try {
                 val postData = api.postAdminPesan("")
                 _postPesan.postValue(UIState.Success(postData))
