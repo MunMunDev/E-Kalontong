@@ -28,7 +28,7 @@ class PaymentViewModel @Inject constructor(
     fun fetchKeranjangBelanja(idUser: Int){
         viewModelScope.launch(Dispatchers.IO) {
             _keranjangBelanja.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val data = api.getKeranjangBelanja("", idUser)
                 _keranjangBelanja.postValue(UIState.Success(data))
@@ -41,7 +41,7 @@ class PaymentViewModel @Inject constructor(
     fun fetchAlamat(idUser:Int){
         viewModelScope.launch(Dispatchers.IO) {
             _pembayaran.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val dataPembayaran = api.getAlamatUtama("", idUser)
                 _pembayaran.postValue(UIState.Success(dataPembayaran))
@@ -54,7 +54,7 @@ class PaymentViewModel @Inject constructor(
     fun postRegistrasiPembayaran(kodeUnik:String, idUser:Int){
         viewModelScope.launch(Dispatchers.IO){
             _responseRegistrasiPembayaran.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val dataRegistrasiPembayaran = api.postRegistrasiPembayaran(
                     "", kodeUnik, idUser)
@@ -68,7 +68,7 @@ class PaymentViewModel @Inject constructor(
     fun postPesanCod(idUser:Int){
         viewModelScope.launch(Dispatchers.IO) {
             _postPesan.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val fetchPesanan = api.postPesanCod("", idUser)
                 _postPesan.postValue(UIState.Success(fetchPesanan))

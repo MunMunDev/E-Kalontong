@@ -24,7 +24,7 @@ class SearchProdukViewModel @Inject constructor(
     fun fetchProduk(){
         viewModelScope.launch(Dispatchers.IO) {
             _produk.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val data = api.getProduk("")
                 _produk.postValue(UIState.Success(data))
@@ -37,7 +37,7 @@ class SearchProdukViewModel @Inject constructor(
     fun postPesan(idUser: Int, idProduk: Int, jumlah: String){
         viewModelScope.launch(Dispatchers.IO) {
             _pesan.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val data = api.postTambahPesanan("", idUser, idProduk, jumlah)
                 _pesan.postValue(UIState.Success(data))

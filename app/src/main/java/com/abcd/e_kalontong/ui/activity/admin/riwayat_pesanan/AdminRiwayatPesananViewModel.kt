@@ -28,7 +28,7 @@ class AdminRiwayatPesananViewModel @Inject constructor(
     fun fetchTahunRiwayatPesanan(){
         viewModelScope.launch(Dispatchers.IO) {
             _tahunRiwayatPesanan.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val fetchPesanan = api.getAdminTahunRiwayatPesanan("")
                 _tahunRiwayatPesanan.postValue(UIState.Success(fetchPesanan))
@@ -41,7 +41,7 @@ class AdminRiwayatPesananViewModel @Inject constructor(
     fun fetchRiwayatPesanan(){
         viewModelScope.launch(Dispatchers.IO) {
             _riwayatPesanan.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val fetchPesanan = api.getAdminRiwayatPesanan("")
                 _riwayatPesanan.postValue(UIState.Success(fetchPesanan))

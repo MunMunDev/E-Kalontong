@@ -28,7 +28,7 @@ class PilihAlamatViewModel @Inject constructor(
     fun fetchDataAlamat(idUser:Int){
         viewModelScope.launch(Dispatchers.IO) {
             _alamatUser.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val dataAlamat = api.getAlamatUser("", idUser)
                 _alamatUser.postValue(UIState.Success(dataAlamat))
@@ -41,7 +41,7 @@ class PilihAlamatViewModel @Inject constructor(
     fun fetchKecamatan(){
         viewModelScope.launch(Dispatchers.IO) {
             _kecamatan.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val dataAlamat = api.getKecamatan("")
                 _kecamatan.postValue(UIState.Success(dataAlamat))
@@ -56,7 +56,7 @@ class PilihAlamatViewModel @Inject constructor(
     ){
         viewModelScope.launch(Dispatchers.IO) {
             _updateMainAlamat.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val dataAlamat = api.postUpdateMainAlamat(
                     "", idAlamat, idUser
@@ -74,7 +74,7 @@ class PilihAlamatViewModel @Inject constructor(
     ){
         viewModelScope.launch(Dispatchers.IO) {
             _tambahAlamatUser.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val dataAlamat = api.postTambahAlamat(
                     "", idUser, namaLengkap, nomorHp, idKecamatan, detailAlamat
@@ -92,7 +92,7 @@ class PilihAlamatViewModel @Inject constructor(
     ){
         viewModelScope.launch(Dispatchers.IO) {
             _updateAlamatUser.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val dataAlamat = api.postUpdateAlamat(
                     "", idAlamat, idUser, namaLengkap, nomorHp, idKecamatan, detailAlamat

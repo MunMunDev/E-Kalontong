@@ -23,7 +23,7 @@ class PesananViewModel @Inject constructor(
     fun fetchPesanan(idUser: String) {
         viewModelScope.launch(Dispatchers.IO) {
             _pesanan.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val dataPembayaran = api.getPesanan("", idUser)
                 _pesanan.postValue(UIState.Success(dataPembayaran))
@@ -36,7 +36,7 @@ class PesananViewModel @Inject constructor(
     fun fetchRiwayatPesanan(idUser: String) {
         viewModelScope.launch(Dispatchers.IO) {
             _riwayatPesanan.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val dataPembayaran = api.getRiwayatPesanan("", idUser)
                 _riwayatPesanan.postValue(UIState.Success(dataPembayaran))
