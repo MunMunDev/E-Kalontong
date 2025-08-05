@@ -25,7 +25,7 @@ class HomeViewModel @Inject constructor(
     fun fetchKeranjangBelanja(idUser: Int){
         viewModelScope.launch(Dispatchers.IO) {
             _keranjangBelanja.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val data = api.getKeranjangBelanja("", idUser)
                 _keranjangBelanja.postValue(UIState.Success(data))
@@ -38,7 +38,7 @@ class HomeViewModel @Inject constructor(
     fun postUpdatePesanan(idPesanan: Int, jumlah: String){
         viewModelScope.launch(Dispatchers.IO) {
             _updatePesanan.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val data = api.postUpdatePesanan("", idPesanan, jumlah)
                 _updatePesanan.postValue(UIState.Success(data))
@@ -51,7 +51,7 @@ class HomeViewModel @Inject constructor(
     fun postDeletePesanan(idPesanan: Int){
         viewModelScope.launch(Dispatchers.IO) {
             _deletePesanan.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val data = api.postDeletePesanan("", idPesanan)
                 _deletePesanan.postValue(UIState.Success(data))

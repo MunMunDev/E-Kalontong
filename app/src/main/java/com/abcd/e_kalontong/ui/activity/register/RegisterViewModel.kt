@@ -27,7 +27,7 @@ class RegisterViewModel @Inject constructor(
     ){
         viewModelScope.launch(Dispatchers.IO) {
             _registerUser.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val registerUser = api.addUser("", nama, nomorHp, idKecamatan, detailAlamat, username, password, sebagai)
                 _registerUser.postValue(UIState.Success(registerUser))

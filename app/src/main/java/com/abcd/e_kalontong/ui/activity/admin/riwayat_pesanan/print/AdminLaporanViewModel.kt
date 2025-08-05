@@ -22,7 +22,7 @@ class AdminLaporanViewModel @Inject constructor(
     fun fetchPesanan(dari: String, sampai: String){
         viewModelScope.launch(Dispatchers.IO) {
             _pesanan.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val fetchPesanan = api.getAdminPrintLaporan("", dari, sampai)
                 _pesanan.postValue(UIState.Success(fetchPesanan))

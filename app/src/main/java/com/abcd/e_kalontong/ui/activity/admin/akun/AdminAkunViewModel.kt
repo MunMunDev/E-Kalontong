@@ -28,7 +28,7 @@ class AdminAkunViewModel @Inject constructor(
     fun fetchAkun(){
         viewModelScope.launch(Dispatchers.IO) {
             _semuaAkun.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val fetchAkun = api.getAllUser("")
                 _semuaAkun.postValue(UIState.Success(fetchAkun))
@@ -41,7 +41,7 @@ class AdminAkunViewModel @Inject constructor(
     fun fetchKecamatan(){
         viewModelScope.launch(Dispatchers.IO) {
             _kecamatan.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val dataAlamat = api.getKecamatan("")
                 _kecamatan.postValue(UIState.Success(dataAlamat))
@@ -57,7 +57,7 @@ class AdminAkunViewModel @Inject constructor(
     ){
         viewModelScope.launch {
             _postTambahAkun.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val postTambahAkun = api.addUser("", nama, nomorHp, idKecamatan, detailAlamat, username, password, "user")
                 _postTambahAkun.postValue(UIState.Success(postTambahAkun))
@@ -72,7 +72,7 @@ class AdminAkunViewModel @Inject constructor(
     ){
         viewModelScope.launch {
             _postUpdateAkun.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val postTambahAkun = api.postUpdateUser(
                     "", idUser, nama, nomorHp, username, password, usernameLama
@@ -87,7 +87,7 @@ class AdminAkunViewModel @Inject constructor(
     fun postDeleteAkun(idUser: String){
         viewModelScope.launch {
             _postDeleteAkun.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val postTambahAkun = api.postAdminHapusUser(
                     "", idUser

@@ -27,7 +27,7 @@ class AdminKeranjangBelanjaViewModel @Inject constructor(
     fun fetchPesanan(){
         viewModelScope.launch(Dispatchers.IO) {
             _pesanan.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val fetchPesanan = api.getAdminKeranjangBelanja("")
                 _pesanan.postValue(UIState.Success(fetchPesanan))
@@ -42,7 +42,7 @@ class AdminKeranjangBelanjaViewModel @Inject constructor(
     ){
         viewModelScope.launch {
             _postTambahPesanan.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val postTambahPesanan = api.postAdminTambahPesanan(
                     "", idUser, idProduk, jumlah
@@ -59,7 +59,7 @@ class AdminKeranjangBelanjaViewModel @Inject constructor(
     ){
         viewModelScope.launch {
             _postUpdatePesanan.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val postUpdatePesanan = api.postAdminUpdatePesanan(
                     "", idPesanan, idUser, idProduk, jumlah
@@ -74,7 +74,7 @@ class AdminKeranjangBelanjaViewModel @Inject constructor(
     fun postDeletePesanan(idPesanan: String){
         viewModelScope.launch {
             _postDeletePesanan.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val postDeletePesanan = api.postAdminDeletePesanan(
                     "", idPesanan

@@ -23,7 +23,7 @@ class LoginViewModel @Inject constructor(
         username: String, password: String
     ){
         viewModelScope.launch(Dispatchers.IO) {
-            delay(1_000)
+            delay(200)
             try {
                 val data = api.getUser("", username, password)
                 _user.postValue(UIState.Success(data))

@@ -24,7 +24,7 @@ class AdminPesananViewModel @Inject constructor(
     fun fetchPesanan(){
         viewModelScope.launch(Dispatchers.IO) {
             _riwayatPesanan.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val fetchPesanan = api.getAdminPesanan("")
                 _riwayatPesanan.postValue(UIState.Success(fetchPesanan))

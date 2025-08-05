@@ -26,7 +26,7 @@ class AdminJenisProdukViewModel @Inject constructor(
     fun fetchJenisProduk(){
         viewModelScope.launch(Dispatchers.IO) {
             _jenisProduk.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val fetchJenisProduk = api.getJenisProduk("")
                 _jenisProduk.postValue(UIState.Success(fetchJenisProduk))
@@ -39,7 +39,7 @@ class AdminJenisProdukViewModel @Inject constructor(
     fun postTambahProduk(jenisProduk: String){
         viewModelScope.launch {
             _postTambahJenisProduk.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val postTambahProduk = api.postTambahJenisProduk(
                     "", jenisProduk
@@ -56,7 +56,7 @@ class AdminJenisProdukViewModel @Inject constructor(
     ){
         viewModelScope.launch {
             _postUpdateJenisProduk.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val postTambahProduk = api.postUpdateJenisProduk(
                     "", idJenisProduk, jenisProduk
@@ -71,7 +71,7 @@ class AdminJenisProdukViewModel @Inject constructor(
     fun postDeleteProduk(idJenisProduk: String){
         viewModelScope.launch {
             _postDeleteProduk.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val postTambahProduk = api.postDeleteJenisProduk(
                     "", idJenisProduk

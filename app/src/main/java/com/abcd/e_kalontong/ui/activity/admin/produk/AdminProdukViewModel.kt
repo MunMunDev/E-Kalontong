@@ -31,7 +31,7 @@ class AdminProdukViewModel @Inject constructor(
     fun fetchJenisProduk() {
         viewModelScope.launch(Dispatchers.IO) {
             _jenisProduk.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val fetchJenisProduk = api.getJenisProduk("")
                 _jenisProduk.postValue(UIState.Success(fetchJenisProduk))
@@ -44,7 +44,7 @@ class AdminProdukViewModel @Inject constructor(
     fun fetchProduk() {
         viewModelScope.launch(Dispatchers.IO) {
             _produk.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val fetchProduk = api.getProduk("")
                 _produk.postValue(UIState.Success(fetchProduk))
@@ -60,7 +60,7 @@ class AdminProdukViewModel @Inject constructor(
     ) {
         viewModelScope.launch {
             _postTambahProduk.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val postTambahProduk = api.postTambahProduk(
                     tambahProduk, idJenisProduk, produk, harga, stok, gambar
@@ -83,7 +83,7 @@ class AdminProdukViewModel @Inject constructor(
     ) {
         viewModelScope.launch {
             _postUpdateProduk.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val postTambahProduk = api.postUpdateProduk(
                     updateProduk, idProduk, idJenisProduk, produk, harga, stok, gambar
@@ -105,7 +105,7 @@ class AdminProdukViewModel @Inject constructor(
     ) {
         viewModelScope.launch {
             _postUpdateProdukNoImage.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val postTambahProduk = api.postUpdateProdukNoImage(
                     updateProduk, idProduk, idJenisProduk, produk, harga, stok
@@ -120,7 +120,7 @@ class AdminProdukViewModel @Inject constructor(
     fun postDeleteProduk(idProduk: Int) {
         viewModelScope.launch {
             _postDeleteProduk.postValue(UIState.Loading)
-            delay(1_000)
+            delay(200)
             try {
                 val postTambahProduk = api.postDeleteProduk(
                     "", idProduk
