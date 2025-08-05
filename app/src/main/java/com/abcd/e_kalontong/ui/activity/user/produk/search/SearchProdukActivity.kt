@@ -41,6 +41,7 @@ class SearchProdukActivity : AppCompatActivity() {
     lateinit var rupiah: KonversiRupiah
     private val viewModel: SearchProdukViewModel by viewModels()
     private var listProduk = ArrayList<ProdukModel>()
+    private var listKeranjangBelanja: ArrayList<PesananModel> = arrayListOf()
     private lateinit var adapter: ProdukAdapter
     private lateinit var sharedPreferencesLogin: SharedPreferencesLogin
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,7 +54,10 @@ class SearchProdukActivity : AppCompatActivity() {
         setButton()
         fetchProduk()
         getProduk()
+        fetchKeranjangBelanja(sharedPreferencesLogin.getIdUser())
+        getKeranjangBelanja()
         getPesan()
+        getUpdatePesan()
     }
 
     private fun setSharedPreferencesLogin() {
@@ -137,6 +141,29 @@ class SearchProdukActivity : AppCompatActivity() {
         }
     }
 
+    private fun fetchKeranjangBelanja(idUsr: Int) {
+        viewModel.fetchKeranjangBelanja(idUsr)
+    }
+
+    private fun getKeranjangBelanja() {
+        viewModel.getKeranjangBelanja().observe(this@SearchProdukActivity){result->
+            when(result){
+                is UIState.Loading-> {}
+                is UIState.Failure-> setFailureKeranjangBelanja(result.message)
+                is UIState.Success-> setSuccessKeranjangBelanja(result.data)
+            }
+        }
+    }
+
+    private fun setFailureKeranjangBelanja(message: String) {
+//        Toast.makeText(this@SearchProdukActivity, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun setSuccessKeranjangBelanja(data: ArrayList<PesananModel>) {
+        listKeranjangBelanja = arrayListOf()
+        listKeranjangBelanja.addAll(data)
+    }
+
     private fun setShowImage(gambar: String, produk: String) {
         val view = AlertDialogShowImageBinding.inflate(layoutInflater)
 
@@ -175,6 +202,13 @@ class SearchProdukActivity : AppCompatActivity() {
             tvJenisProduk.text = produk.jenis_produk!!.jenis_produk
             tvHarga.text = rupiah.rupiah(produk.harga!!.toLong())
 
+            val keranjangBelanja: PesananModel? = listKeranjangBelanja.firstOrNull { it.id_produk?.toInt() == produk.id_produk }
+            var check = false
+            if(keranjangBelanja != null){
+                check = true
+                tvJumlah.text = keranjangBelanja.jumlah
+            }
+
             btnTambah.setOnClickListener {
                 var jumlah = tvJumlah.text.toString().toInt()
                 if(jumlah < produk.stok!!){
@@ -205,11 +239,16 @@ class SearchProdukActivity : AppCompatActivity() {
 
                 if(!cek){
                     dialogInputan.dismiss()
+                    val idPesanan = keranjangBelanja?.id_pesanan
                     val idUser = sharedPreferencesLogin.getIdUser()
                     val idProduk = produk.id_produk!!
                     val jumlah = tvJumlah.text.toString().trim()
 
-                    postPesan(idUser, idProduk, jumlah)
+                    if(check){
+                        postUpdatePesan(idPesanan!!, jumlah)
+                    } else{
+                        postPesan(idUser, idProduk, jumlah)
+                    }
                 }
             }
             btnBatal.setOnClickListener {
@@ -240,6 +279,38 @@ class SearchProdukActivity : AppCompatActivity() {
     private fun setSuccessPostPesan(data: ResponseModel) {
         if(data.status == "0"){
             Toast.makeText(this@SearchProdukActivity, "Berhasil Pesan", Toast.LENGTH_SHORT).show()
+//            if(sharedPreferencesLogin.getIdUser() == 0){
+//                AdminKasirActivity().fetchPesananKasir()
+//            }
+        } else{
+            Toast.makeText(this@SearchProdukActivity, data.message_response, Toast.LENGTH_SHORT).show()
+        }
+        loading.alertDialogCancel()
+    }
+
+    private fun postUpdatePesan(idPesanan: Int, jumlah: String) {
+        viewModel.postUpdatePesan(idPesanan, jumlah)
+    }
+
+    private fun getUpdatePesan(){
+        viewModel.getUpdatePesan().observe(this@SearchProdukActivity){result->
+            when(result){
+                is UIState.Loading-> loading.alertDialogLoading(this@SearchProdukActivity)
+                is UIState.Success-> setSuccessPostUpdatePesan(result.data)
+                is UIState.Failure-> setFailurePostUpdatePesan(result.message)
+            }
+        }
+    }
+
+    private fun setFailurePostUpdatePesan(message: String) {
+        Toast.makeText(this@SearchProdukActivity, "Gagal pesan : $message", Toast.LENGTH_SHORT).show()
+        loading.alertDialogCancel()
+    }
+
+    private fun setSuccessPostUpdatePesan(data: ResponseModel) {
+        if(data.status == "0"){
+            Toast.makeText(this@SearchProdukActivity, "Berhasil Update Pesan", Toast.LENGTH_SHORT).show()
+            fetchKeranjangBelanja(sharedPreferencesLogin.getIdUser())
 //            if(sharedPreferencesLogin.getIdUser() == 0){
 //                AdminKasirActivity().fetchPesananKasir()
 //            }
